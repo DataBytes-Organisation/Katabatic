@@ -1,0 +1,20 @@
+{
+    "#": "Katabatic Model Configuration File",
+  
+    "mock_model": {
+        "tdgm_module_name": "models.model_template.mock_adapter",
+        "tdgm_class_name": "MockAdapter"
+    },
+    "ganblr": {
+        "tdgm_module_name": "models.ganblr.ganblr_adapter",
+        "tdgm_class_name": "GanblrAdapter"
+    },
+    "ctgan": {
+        "tdgm_module_name": "models.ctgan.ctgan_adapter",
+        "tdgm_class_name": "CtganAdapter"
+    },
+    "tvae": {
+        "tdgm_module_name": "models.tvae.tvae_adapter",
+        "tdgm_class_name": "TvaeAdapter"
+    }
+  }

@@ -1,0 +1,9 @@
+{
+    "trtr_logreg": "metrics/trtr_logreg.py",
+    "tstr_logreg": "metrics/tstr_logreg.py",
+    "tstr_rf": "metrics/tstr_rf.py",
+    "tstr_mlp": "metrics/tstr_mlp.py",
+    "model_compatability": "metrics/model_compatability.py",
+    "q_score": "metrics/q_score.py",
+    "similarity:": "metrics/similarity.py"
+}
