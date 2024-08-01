@@ -1,0 +1,12 @@
+{
+  "#": "Katabatic Configuration File",
+
+  "mock_datagen_1": {
+    "datagen_module_descriptor": "mock_datagen_1",
+    "datagen_class_name": "MockDataGen1"
+  },
+  "mock_datagen_2": {
+    "datagen_module_descriptor": "mock_datagen_2",
+    "datagen_class_name": "MockDataGen2"
+  }
+}
