@@ -109,5 +109,10 @@ trtr_scores = evaluator.evaluate_trtr()
 evaluator.compare_results(tstr_scores, trtr_scores)
 
 
+# TODO: understand the codependies code that intergrate the model to the library.
+# TODO: comments should be proffesional as in ganblr.py
+
+
+
 
 
