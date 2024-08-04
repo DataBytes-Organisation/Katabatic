@@ -1,0 +1,128 @@
+"""
+GanblrAdapter
+-------------
+
+A class to adapt the GANBLR model to the KatabaticModelSPI interface. This class is designed to provide an easy interface for loading, fitting, and generating data using the GANBLR model.
+
+Attributes
+----------
+type : str
+    Specifies whether the model type is 'discrete' or 'continuous'. Default is 'discrete'.
+constraints : any
+    Constraints for the model. Default is None.
+batch_size : int
+    Batch size for training the model. Default is None.
+epochs : int
+    Number of epochs for training the model. Default is None.
+training_sample_size : int
+    Size of the training sample. Initialized to 0.
+
+Methods
+-------
+load_model():
+    Initializes and returns an instance of the GANBLR model.
+load_data(data_pathname):
+    Loads data from the specified pathname.
+fit(X_train, y_train, k=0, epochs=10, batch_size=64):
+    Fits the GANBLR model using the provided training data.
+generate(size=None):
+    Generates data from the GANBLR model. If size is not specified, defaults to the training sample size.
+"""
+
+from katabatic_spi import KatabaticModelSPI
+import pandas as pd
+from .ganblr import GANBLR
+
+class GanblrAdapter(KatabaticModelSPI):
+    
+    def __init__(self, type='discrete'):
+        """
+        Initializes the GanblrAdapter with specified type.
+
+        Parameters
+        ----------
+        type : str, optional
+            Should be either 'discrete' or 'continuous'. Default is 'discrete'.
+        """
+        self.type = type
+        self.constraints = None 
+        self.batch_size = None
+        self.epochs = None
+
+    def load_model(self):
+        """
+        Initializes and returns an instance of the GANBLR model.
+        
+        Returns
+        -------
+        GANBLR
+            An initialized instance of the GANBLR model.
+        """
+        print("---Initialise Ganblr Model")
+        self.model = GANBLR() 
+        self.training_sample_size = 0
+        return self.model
+
+    def load_data(self, data_pathname):
+        """
+        Loads data from the specified pathname.
+
+        Parameters
+        ----------
+        data_pathname : str
+            The pathname to the data file.
+        
+        Returns
+        -------
+        pandas.DataFrame
+            Loaded data as a DataFrame.
+        """
+        print("Loading Data...")
+        data = pd.DataFrame  # Load data using pandas (you may want to use pd.read_csv or similar)
+        return data
+
+    def fit(self, X_train, y_train, k=0, epochs=10, batch_size=64):
+        """
+        Fits the GANBLR model using the provided training data.
+
+        Parameters
+        ----------
+        X_train : array-like
+            Training data features.
+        y_train : array-like
+            Training data labels.
+        k : int, optional
+            A parameter for the fit method (default is 0).
+        epochs : int, optional
+            Number of epochs for training (default is 10).
+        batch_size : int, optional
+            Batch size for training (default is 64).
+
+        Returns
+        -------
+        None
+        """
+        print("---FIT Ganblr Model")
+        self.model.fit(X_train, y_train, k, batch_size=batch_size, epochs=epochs, verbose=0) 
+        self.training_sample_size = len(X_train)
+
+    def generate(self, size=None):
+        """
+        Generates data from the GANBLR model.
+
+        Parameters
+        ----------
+        size : int, optional
+            Number of samples to generate. If not specified, defaults to the training sample size.
+
+        Returns
+        -------
+        array-like
+            Generated data.
+        """
+        print("---Generate from Ganblr Model")
+        if size is None: 
+            size = self.training_sample_size
+
+        generated_data = self.model.sample(size, verbose=0)
+        return generated_data
