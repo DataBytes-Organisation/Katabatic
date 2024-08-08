@@ -21,6 +21,7 @@ if os.environ.get("AIKO_IMPORTER_USE_CURRENT_DIRECTORY"):
 
 MODULES_LOADED = {}
 
+
 def load_module(module_descriptor):
     if module_descriptor in MODULES_LOADED:
         module = MODULES_LOADED[module_descriptor]
@@ -29,13 +30,17 @@ def load_module(module_descriptor):
             # Load module from Python source pathname, e.g "directory/file.py"
             module_pathname = module_descriptor
             module = importlib.machinery.SourceFileLoader(
-                'module', module_pathname).load_module()
+                "module", module_pathname
+            ).load_module()
         else:
+            print(module_descriptor)
             # Load module from "installed" modules, e.g "package.module"
             module_name = module_descriptor
             module = importlib.import_module(module_name)
+            print(module)
         MODULES_LOADED[module_descriptor] = module
     return module
+
 
 def load_modules(module_pathnames):
     modules = []
