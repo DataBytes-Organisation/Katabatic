@@ -3,7 +3,7 @@
 from abc import ABC, abstractmethod
 
 class KatabaticModelSPI(ABC):
-     """
+    """
     Abstract base class for all model adapters in Katabatic.
 
     This class defines the Model Service Provider Interface (SPI) which includes methods
