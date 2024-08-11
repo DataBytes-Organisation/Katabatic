@@ -1,15 +1,32 @@
-name: Python Test
+name: Test and Build Docker Image
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  test:
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-    - name: Run test
-      run: python dummy_model.py
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Python tests
+      run: |
+        python dummy.py
+        python mock_adapter.py
+
+    - name: Build Docker image
+      run: docker build -t katabatic-model .
+
+    - name: Test Docker image
+      run: |
+        docker run katabatic-model python dummy.py
+        docker run katabatic-model python mock_adapter.py
