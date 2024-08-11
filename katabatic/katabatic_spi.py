@@ -42,7 +42,7 @@ class KatabaticModelSPI(ABC):
 
     @abstractmethod
     def load_data(self): #Load data
-         """
+        """
         Load the data.
 
         This method should be implemented to load the dataset for training or evaluation.
@@ -51,7 +51,7 @@ class KatabaticModelSPI(ABC):
 
     @abstractmethod
     def fit(self):  #Fit model to data
-         """
+        """
         Fit the model to the data.
 
         This method should be implemented to train the model using the loaded data.
