@@ -1,21 +1,31 @@
-from katabatic_spi import KatabaticModelSPI
+from model import Model
+import unittest
 
-class MockAdapter(KatabaticModelSPI):
+class DummyModel(Model):
+    def __init__(self, x, Y, batch_size=64):
+        super().__init__()
+        self.batch_size = batch_size
+        self.x = x
+        self.Y = Y
+        self.k = 0
 
-    def __init__(self, type='discrete'):
-        self.type = None  # Should be either 'discrete' or 'continuous'
-        self.constraints = None 
-        self.batch_size = None
-        self.epochs = None
+    def fit(self, x, Y):
+        self.x = x
+        self.Y = Y
+        return 42
 
-    def load_model(self):
-        print('Loading the model')
+    def generate(self):
+        return 42
 
-    def load_data(self, data_pathname):
-        print("Loading data now.")
-    
-    def fit(self, X_train, y_train, k=0, epochs=10, batch_size=64):
-        print("Fitting the model now.")
+    def evaluate(self):
+        return 42
 
-    def generate(self, size=None): 
-        print("Generating data now.")
+def test_dummy_model():
+    model = DummyModel(None, None)
+    assert model.fit(None, None) == 42
+    assert model.generate() == 42
+    assert model.evaluate() == 42
+    print("All tests passed!")
+
+if __name__ == "__main__":
+    test_dummy_model()
