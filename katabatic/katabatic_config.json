@@ -6,11 +6,11 @@
         "tdgm_class_name": "MockAdapter"
     },
     "ganblr": {
-        "tdgm_module_name": "models.ganblr.ganblr_adapter",
+        "tdgm_module_name": "katabatic.models.ganblr.ganblr_adapter",
         "tdgm_class_name": "GanblrAdapter"
     },
     "ctgan": {
-        "tdgm_module_name": "models.ctgan.ctgan_adapter",
+        "tdgm_module_name": "katabatic.models.ctgan.ctgan_adapter",
         "tdgm_class_name": "CtganAdapter"
     },
     "tvae": {
