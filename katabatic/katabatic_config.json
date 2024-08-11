@@ -1,32 +1,3 @@
-"""
-Katabatic Model Configuration File
-
-This configuration file specifies the settings for different model adapters used in the Katabatic framework.
-Each entry in the configuration file represents a model adapter with its corresponding module and class name.
-
-Configuration Structure:
-- The configuration is a dictionary where each key represents a model type and its associated adapter.
-- Each model type contains the following keys:
-  - `tdgm_module_name`: The module path for the model adapter.
-  - `tdgm_class_name`: The class name of the model adapter.
-  
-Keys:
-- `mock_model` (dict): Configuration for the MockAdapter model.
-  - `tdgm_module_name` (str): Module path for the MockAdapter model.
-  - `tdgm_class_name` (str): Class name for the MockAdapter model.
-
-- `ganblr` (dict): Configuration for the GanblrAdapter model.
-  - `tdgm_module_name` (str): Module path for the GanblrAdapter model.
-  - `tdgm_class_name` (str): Class name for the GanblrAdapter model.
-
-- `ctgan` (dict): Configuration for the CtganAdapter model.
-  - `tdgm_module_name` (str): Module path for the CtganAdapter model.
-  - `tdgm_class_name` (str): Class name for the CtganAdapter model.
-
-- `tvae` (dict): Configuration for the TvaeAdapter model.
-  - `tdgm_module_name` (str): Module path for the TvaeAdapter model.
-  - `tdgm_class_name` (str): Class name for the TvaeAdapter model.
-"""
 {
     "#": "Katabatic Model Configuration File",
   
