@@ -1,74 +1,18 @@
-version: '3.9'
-
+version: '3'
 services:
-  aiko-service-1:
-    image: aiko/service1:latest
-    container_name: aiko_service_1
+  web:
+    build: .
     ports:
-      - "8001:8001"
+      - "5000:5000"
     volumes:
       - .:/app
-    networks:
-      - aiko-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-    restart: unless-stopped
-
-  aiko-service-2:
-    image: aiko/service2:latest
-    container_name: aiko_service_2
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    environment:s
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
     ports:
-      - "8002:8002"
-    volumes:
-      - .:/app
-    networks:
-      - aiko-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-    restart: unless-stopped
-
-  aiko-service-3:
-    image: aiko/service3:latest
-    container_name: aiko_service_3
-    ports:
-      - "8003:8003"
-    volumes:
-      - .:/app
-    networks:
-      - aiko-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-    restart: unless-stopped
-
-  aiko-service-4:
-    image: aiko/service4:latest
-    container_name: aiko_service_4
-    ports:
-      - "8004:8004"
-    volumes:
-      - .:/app
-    networks:
-      - aiko-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8004/health"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-    restart: unless-stopped
-
-networks:
-  aiko-network:
-    driver: bridge
+      - "5432:5432"
