@@ -1,8 +1,13 @@
+import numpy as np
+import tensorflow as tf
+from tensorflow.python.ops import math_ops
+from pandas import read_csv
+from sklearn.preprocessing import OneHotEncoder
+from .kdb import KdbHighOrderFeatureEncoder
+
 from tensorflow.python.ops import math_ops
 import numpy as np
 import tensorflow as tf
-import warnings
-warnings.filterwarnings("ignore")
 
 class softmax_weight(tf.keras.constraints.Constraint):
     """Constrains weight tensors to be under softmax `."""
