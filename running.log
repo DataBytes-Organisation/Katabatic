@@ -186,3 +186,41 @@ WARNING:pgmpy:Probability values don't exactly sum to 1. Differ by: 1.1102230246
 WARNING:pgmpy:Probability values don't exactly sum to 1. Differ by: 2.220446049250313e-16. Adjusting values.
 WARNING:pgmpy:Probability values don't exactly sum to 1. Differ by: 1.1102230246251565e-16. Adjusting values.
 WARNING:pgmpy:Probability values don't exactly sum to 1. Differ by: 1.1102230246251565e-16. Adjusting values.
+INFO:sdv.metadata.single_table:Detected metadata:
+INFO:sdv.metadata.single_table:{
+    "columns": {
+        "Country": {
+            "sdtype": "id"
+        },
+        "Capital City": {
+            "sdtype": "city",
+            "pii": true
+        },
+        "Latitude": {
+            "sdtype": "latitude",
+            "pii": true
+        },
+        "Longitude": {
+            "sdtype": "longitude",
+            "pii": true
+        },
+        "Temperature": {
+            "sdtype": "numerical"
+        },
+        "Category": {
+            "sdtype": "categorical"
+        }
+    },
+    "primary_key": "Country",
+    "METADATA_SPEC_VERSION": "SINGLE_TABLE_V1"
+}
+INFO:SingleTableSynthesizer:{'EVENT': 'Instance', 'TIMESTAMP': datetime.datetime(2024, 8, 8, 23, 35, 24, 242629), 'SYNTHESIZER CLASS NAME': 'CTGANSynthesizer', 'SYNTHESIZER ID': 'CTGANSynthesizer_1.15.0_ab9d9f514a034c4c9346055bd9b80b52'}
+INFO:SingleTableSynthesizer:{'EVENT': 'Fit', 'TIMESTAMP': datetime.datetime(2024, 8, 8, 23, 35, 24, 243056), 'SYNTHESIZER CLASS NAME': 'CTGANSynthesizer', 'SYNTHESIZER ID': 'CTGANSynthesizer_1.15.0_ab9d9f514a034c4c9346055bd9b80b52', 'TOTAL NUMBER OF TABLES': 1, 'TOTAL NUMBER OF ROWS': 13, 'TOTAL NUMBER OF COLUMNS': 6}
+INFO:sdv.data_processing.data_processor:Fitting table  metadata
+INFO:sdv.data_processing.data_processor:Fitting formatters for table 
+INFO:sdv.data_processing.data_processor:Fitting constraints for table 
+INFO:sdv.data_processing.data_processor:Setting the configuration for the ``HyperTransformer`` for table 
+INFO:sdv.data_processing.data_processor:Fitting HyperTransformer for table 
+INFO:SingleTableSynthesizer:{'EVENT': 'Fit processed data', 'TIMESTAMP': datetime.datetime(2024, 8, 8, 23, 35, 24, 683751), 'SYNTHESIZER CLASS NAME': 'CTGANSynthesizer', 'SYNTHESIZER ID': 'CTGANSynthesizer_1.15.0_ab9d9f514a034c4c9346055bd9b80b52', 'TOTAL NUMBER OF TABLES': 1, 'TOTAL NUMBER OF ROWS': 13, 'TOTAL NUMBER OF COLUMNS': 2}
+INFO:rdt.transformers.null:Guidance: There are no missing values in column Temperature. Extra column not created.
+INFO:SingleTableSynthesizer:{'EVENT': 'Sample', 'TIMESTAMP': datetime.datetime(2024, 8, 8, 23, 37, 11, 310646), 'SYNTHESIZER CLASS NAME': 'CTGANSynthesizer', 'SYNTHESIZER ID': 'CTGANSynthesizer_1.15.0_ab9d9f514a034c4c9346055bd9b80b52', 'TOTAL NUMBER OF TABLES': 1, 'TOTAL NUMBER OF ROWS': 13, 'TOTAL NUMBER OF COLUMNS': 6}

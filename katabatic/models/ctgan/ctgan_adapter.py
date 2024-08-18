@@ -40,5 +40,5 @@ class CtganAdapter(KatabaticModelSPI):
         return
 
     #     TODO: add exception handling to generate()
-    def generate(self):  # Generate synthetic data
-        return self.model.sample(num_rows=13)
+    def generate(self, size=13):  # Generate synthetic data
+        return self.model.sample(num_rows=size)
