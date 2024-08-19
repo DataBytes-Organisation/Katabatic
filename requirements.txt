@@ -1,6 +1,0 @@
-torch==2.4.0
-numpy
-tensorflow==2.13.1
-fsspec
-nvidia-nvtx-cu12==12.1.105
-nvidia-cudnn-cu12==9.1.0.70
