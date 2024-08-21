@@ -10,10 +10,10 @@ Subpackages
    Katabatic.models.GANBLR++
    Katabatic.models.ganblr
 
-Module contents
----------------
+.. Module contents
+.. ---------------
 
-.. automodule:: Katabatic.models
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: Katabatic.models
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:

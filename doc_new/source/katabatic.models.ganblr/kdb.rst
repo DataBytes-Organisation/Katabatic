@@ -63,9 +63,6 @@ Methods
 **_smoothing(cct, d)**
    Probability smoothing for kDB.
 
-   - **Parameters:**
-     - `cct`: Cross count table with shape (x0, *parents).
-     - `d`: Dimension of `cct`.
 
    - **Returns:**
      A smoothed joint probability table.

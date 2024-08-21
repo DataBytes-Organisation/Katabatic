@@ -36,8 +36,8 @@ Katabatic.models.ganblr package
 ..    :undoc-members:
 ..    :show-inheritance:
 
-.. Module contents
-.. ---------------
+Module contents
+---------------
 
 .. .. automodule:: Katabatic.models.ganblr
 ..    :members:

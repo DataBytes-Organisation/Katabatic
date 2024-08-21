@@ -2,7 +2,6 @@ GANBLR Model Class
 ===================
 The GANBLR model combines a Bayesian network and a neural network, leveraging the k-Dependency Bayesian (kDB) algorithm for building a dependency graph and using various utility functions for data preparation and model constraints.
 
-===================
 Defined in `ganblr.py`
 
 Class Properties

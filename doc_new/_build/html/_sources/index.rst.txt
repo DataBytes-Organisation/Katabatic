@@ -15,7 +15,6 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
 
-   importer
-   katabatic_spi
-   katabatic
+
+   modules
 

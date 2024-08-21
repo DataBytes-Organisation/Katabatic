@@ -10,45 +10,45 @@ Subpackages
    Katabatic.models
    Katabatic.utils
 
-Submodules
-----------
+.. Submodules
+.. ----------
 
-Katabatic.importer module
--------------------------
+.. Katabatic.importer module
+.. -------------------------
 
-.. automodule:: Katabatic.importer
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: Katabatic.importer
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:
 
-Katabatic.katabatic module
---------------------------
+.. Katabatic.katabatic module
+.. --------------------------
 
-.. automodule:: Katabatic.katabatic
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: Katabatic.katabatic
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:
 
-Katabatic.katabatic\_spi module
--------------------------------
+.. Katabatic.katabatic\_spi module
+.. -------------------------------
 
-.. automodule:: Katabatic.katabatic_spi
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: Katabatic.katabatic_spi
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:
 
-Katabatic.test2 module
-----------------------
+.. Katabatic.test2 module
+.. ----------------------
 
-.. automodule:: Katabatic.test2
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: Katabatic.test2
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:
 
-Module contents
----------------
+.. Module contents
+.. ---------------
 
-.. automodule:: Katabatic
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: Katabatic
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:
