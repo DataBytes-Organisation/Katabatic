@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>kDB Algorithm &#8212; Katabatic  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=c058f7c8" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="kdb-algorithm">
+<h1>kDB Algorithm<a class="headerlink" href="#kdb-algorithm" title="Link to this heading">¶</a></h1>
+<p>The kDB algorithm constructs a dependency graph for the Bayesian network. It is implemented in the <cite>kdb.py</cite> file.</p>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt><strong>build_graph(X, y, k=2)</strong></dt><dd><p>Constructs a k-dependency Bayesian network graph.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>X</cite>: Input data (features).
+- <cite>y</cite>: Labels.
+- <cite>k</cite>: Number of parent nodes (default: 2).</p></li>
+<li><p><strong>Returns:</strong>
+A list of graph edges.</p></li>
+</ul>
+</dd>
+<dt><strong>get_cross_table(*cols, apply_wt=False)</strong></dt><dd><p>Generates a cross table from input columns.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>cols</cite>: Columns for cross table generation.
+- <cite>apply_wt</cite>: Whether to apply weights (default: False).</p></li>
+<li><p><strong>Returns:</strong>
+A tuple containing:
+- The cross table as a NumPy array.
+- A list of unique values for all columns.
+- A list of unique values for individual columns.</p></li>
+</ul>
+</dd>
+<dt><strong>_get_dependencies_without_y(variables, y_name, kdb_edges)</strong></dt><dd><p>Finds the dependencies of each variable without considering <cite>y</cite>.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>variables</cite>: List of variable names.
+- <cite>y_name</cite>: Class name.
+- <cite>kdb_edges</cite>: List of tuples representing edges (source, target).</p></li>
+<li><p><strong>Returns:</strong>
+A dictionary of dependencies.</p></li>
+</ul>
+</dd>
+<dt><strong>_add_uniform(X, weight=1.0)</strong></dt><dd><p>Adds a uniform distribution to the data.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>X</cite>: Input data, a NumPy array or pandas DataFrame.
+- <cite>weight</cite>: Weight for the uniform distribution (default: 1.0).</p></li>
+<li><p><strong>Returns:</strong>
+The modified data with uniform distribution.</p></li>
+</ul>
+</dd>
+<dt><strong>_normalize_by_column(array)</strong></dt><dd><p>Normalizes the array by columns.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>array</cite>: Input array to normalize.</p></li>
+<li><p><strong>Returns:</strong>
+The normalized array.</p></li>
+</ul>
+</dd>
+<dt><strong>_smoothing(cct, d)</strong></dt><dd><p>Probability smoothing for kDB.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>cct</cite>: Cross count table with shape (x0, <a href="#id1"><span class="problematic" id="id2">*</span></a>parents).
+- <cite>d</cite>: Dimension of <cite>cct</cite>.</p></li>
+<li><p><strong>Returns:</strong>
+A smoothed joint probability table.</p></li>
+</ul>
+</dd>
+<dt><strong>get_high_order_feature(X, col, evidence_cols, feature_uniques)</strong></dt><dd><p>Encodes the high-order feature of <cite>X[col]</cite> given evidence from <cite>X[evidence_cols</cite>.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>X</cite>: Input data.
+- <cite>col</cite>: Column to encode.
+- <cite>evidence_cols</cite>: List of evidence columns.
+- <cite>feature_uniques</cite>: Unique values for features.</p></li>
+<li><p><strong>Returns:</strong>
+An encoded high-order feature.</p></li>
+</ul>
+</dd>
+<dt><strong>get_high_order_constraints(X, col, evidence_cols, feature_uniques)</strong></dt><dd><p>Gets high-order constraints for the feature.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>X</cite>: Input data.
+- <cite>col</cite>: Column to encode.
+- <cite>evidence_cols</cite>: List of evidence columns.
+- <cite>feature_uniques</cite>: Unique values for features.</p></li>
+<li><p><strong>Returns:</strong>
+High-order constraints.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt><strong>KdbHighOrderFeatureEncoder</strong></dt><dd><p>Encodes high-order features for the kDB model.</p>
+<ul class="simple">
+<li><p><strong>Class Properties:</strong>
+- <cite>feature_uniques_</cite>: Unique values for features.
+- <cite>dependencies_</cite>: Dependencies for features.
+- <cite>ohe_</cite>: OneHotEncoder instance.</p></li>
+<li><p><strong>Class Methods:</strong>
+- <cite>fit(X, y, k=0)</cite>: Fits the encoder to the data.
+- <cite>transform(X, return_constraints=False, use_ohe=True)</cite>: Transforms the input data.
+- <cite>fit_transform(X, y, k=0, return_constraints=False)</cite>: Fits the encoder and transforms the data.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Katabatic</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Daniel G.E. Ken.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.0.2</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/katabatic.models.ganblr/kdb.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

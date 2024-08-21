@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>GANBLR Model Class &#8212; Katabatic  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=c058f7c8" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="ganblr-model-class">
+<h1>GANBLR Model Class<a class="headerlink" href="#ganblr-model-class" title="Link to this heading">¶</a></h1>
+<p>The GANBLR model combines a Bayesian network and a neural network, leveraging the k-Dependency Bayesian (kDB) algorithm for building a dependency graph and using various utility functions for data preparation and model constraints.</p>
+<section id="class-properties">
+<h2>Class Properties<a class="headerlink" href="#class-properties" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>_d</strong>:
+Placeholder for data.</p></li>
+<li><p><strong>__gen_weights</strong>:
+Placeholder for generator weights.</p></li>
+<li><p><strong>batch_size</strong> (<cite>int</cite>):
+Batch size for training.</p></li>
+<li><p><strong>epochs</strong> (<cite>int</cite>):
+Number of epochs for training.</p></li>
+<li><p><strong>k</strong>:
+Parameter for the model.</p></li>
+<li><p><strong>constraints</strong>:
+Constraints for the model.</p></li>
+<li><p><strong>_ordinal_encoder</strong>:
+Ordinal encoder for preprocessing data.</p></li>
+<li><p><strong>_label_encoder</strong>:
+Label encoder for preprocessing data.</p></li>
+</ul>
+</section>
+<section id="class-methods">
+<h2>Class Methods<a class="headerlink" href="#class-methods" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt><strong>__init__()</strong></dt><dd><p>Initializes the model with default values.</p>
+</dd>
+<dt><strong>fit(x, y, k=0, batch_size=32, epochs=10, warmup_epochs=1, verbose=0)</strong></dt><dd><p>Fits the model to the given data.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>x</cite>: Input data.
+- <cite>y</cite>: Labels for the data.
+- <cite>k</cite>: Parameter for the model (default: 0).
+- <cite>batch_size</cite>: Size of batches for training (default: 32).
+- <cite>epochs</cite>: Number of training epochs (default: 10).
+- <cite>warmup_epochs</cite>: Number of warmup epochs (default: 1).
+- <cite>verbose</cite>: Verbosity level (default: 0).</p></li>
+<li><p><strong>Returns:</strong>
+The fitted model.</p></li>
+</ul>
+</dd>
+<dt><strong>_augment_cpd(d, size=None, verbose=0)</strong></dt><dd><p>Augments the Conditional Probability Distribution (CPD).</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>d</cite>: Data.
+- <cite>size</cite>: Size of the sample (default: None).
+- <cite>verbose</cite>: Verbosity level (default: 0).</p></li>
+<li><p><strong>Returns:</strong>
+The augmented data.</p></li>
+</ul>
+</dd>
+<dt><strong>_warmup_run(epochs, verbose=None)</strong></dt><dd><p>Runs a warmup phase.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>epochs</cite>: Number of epochs for warmup.
+- <cite>verbose</cite>: Verbosity level (default: None).</p></li>
+<li><p><strong>Returns:</strong>
+The history of the warmup run.</p></li>
+</ul>
+</dd>
+<dt><strong>_run_generator(loss)</strong></dt><dd><p>Runs the generator model.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>loss</cite>: Loss function.</p></li>
+<li><p><strong>Returns:</strong>
+The history of the generator run.</p></li>
+</ul>
+</dd>
+<dt><strong>_discrim()</strong></dt><dd><p>Creates a discriminator model.</p>
+<ul class="simple">
+<li><p><strong>Returns:</strong>
+The discriminator model.</p></li>
+</ul>
+</dd>
+<dt><strong>_sample(size=None, verbose=0)</strong></dt><dd><p>Generates synthetic data in ordinal encoding format.</p>
+<ul class="simple">
+<li><p><strong>Parameters:</strong>
+- <cite>size</cite>: Size of the sample (default: None).
+- <cite>verbose</cite>: Verbosity level (default: 0).</p></li>
+<li><p><strong>Returns:</strong>
+The sampled data.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Katabatic</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Daniel G.E. Ken.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.0.2</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/katabatic.models.ganblr/ganblr.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
