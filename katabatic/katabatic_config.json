@@ -16,5 +16,9 @@
     "tvae": {
         "tdgm_module_name": "models.tvae.tvae_adapter",
         "tdgm_class_name": "TvaeAdapter"
+    },
+    "ganblrpp": {
+        "tdgm_module_name": "katabatic.models.ganblrpp.ganblrpp_adapter",
+        "tdgm_class_name": "GanblrppAdapter"
     }
-  }
+}
