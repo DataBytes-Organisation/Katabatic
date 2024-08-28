@@ -1,68 +1,9 @@
-Model Execution Report
-# Errors observed at the start of the execution
-There was a mismatch with the entry point in docker while running , In Docker, the entry point is the command or script that gets executed when the container starts. Upon verifying the files, it was found that the correct script to be executed was main.py, not app.py.
-Incorrect Entry Point: 
-N/B: If the Dockerfile has the wrong entry point, the container will not execute the desired script, leading to the application not running as expected or failing to start altogether. By correcting the entry point, the application within the Docker container is now correctly set up to run the correct script.
-Issue: The Dockerfile initially specified app.py as the entry point, which did not match the actual script name.
-Correction: Verified and corrected the entry point to main.py, which is the actual script used for execution.
-Updated Dockerfile
-# Execution phase and commands used: 
-# Use an official Python runtime as a parent image
-FROM python:3.8-slim
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the requirements file and install dependencies
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of the application code into the container
-COPY . /app
-
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
-
-# Run the application
-CMD ["python", "main.py"]  # Updated entry point
-docker-compose.yml Errors
-Volume Mapping Conflicts:
-
-Issue: The initial volume mapping - .:/app led to conflicts by overwriting files during the build process.
-Correction: Adjusted volume mapping to avoid overwriting files and to ensure consistency. Removed volume mapping for production and added persistent storage for PostgreSQL data.
-Updated docker-compose.yml:
-version: '3'
-services:
-  web:
-    build: .
-    ports:
-      - "5000:5000"
-    depends_on:
-      - db
-  db:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydatabase
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-volumes:
-  pgdata:
-
-Database Initialization:
-
-Issue: Missing steps to initialize the database schema or seed initial data.
-Correction: Added a database initialization script to set up the schema and seed data as needed.
-Model Execution
+# Model Execution Steps
 Executed Model
 Model Executed: GANBLR
 Context: The GANBLR model was executed inside the Docker container.
 Fit in Docker: The model fit well within the Docker container after resolving dependency issues. The Dockerfile and requirements.txt were updated to accommodate the model’s requirements.
-Procedure
+# Procedure
 Build Docker Images:
 
 Ran docker-compose build to build Docker images based on the updated Dockerfile and docker-compose.yml.
