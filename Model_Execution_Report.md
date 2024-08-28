@@ -1,10 +1,12 @@
 Model Execution Report
-Docker Setup Errors
-Dockerfile Errors
-Incorrect Entry Point:
+# Errors observed at the start of the execution
+There was a mismatch with the entry point in docker while running , In Docker, the entry point is the command or script that gets executed when the container starts. Upon verifying the files, it was found that the correct script to be executed was main.py, not app.py.
+Incorrect Entry Point: 
+N/B: If the Dockerfile has the wrong entry point, the container will not execute the desired script, leading to the application not running as expected or failing to start altogether. By correcting the entry point, the application within the Docker container is now correctly set up to run the correct script.
 Issue: The Dockerfile initially specified app.py as the entry point, which did not match the actual script name.
 Correction: Verified and corrected the entry point to main.py, which is the actual script used for execution.
 Updated Dockerfile
+# Execution phase and commands used: 
 # Use an official Python runtime as a parent image
 FROM python:3.8-slim
 
@@ -70,7 +72,8 @@ Used docker-compose up to start the containers, ensuring both application and da
 Execute Models:
 
 Inside the running container, accessed the shell using docker exec -it <container_id> /bin/sh and executed the GANBLR model by running the relevant Python scripts.
-Errors or Issues Observed
+
+Errors or Issues Observed during the implementation
 Dependency Issues:
 
 Encountered issues related to missing or incompatible dependencies.
