@@ -1,5 +1,2 @@
 pyitlib
 pgmpy
-scikit-learn
-tensorflow
-sdv
