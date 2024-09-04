@@ -230,6 +230,9 @@ CMD ["python", "app.py"]  # Replace with your actual application entry point
 
 Justification for Multilayered Dockerfile Implementation
 Leverage Docker Cache for Efficiency: By copying requirements.txt first and installing dependencies before copying the entire application code, the Dockerfile takes full advantage of Docker’s caching mechanism, significantly reducing build times.
+# Sources #
+https://stackoverflow.com/questions/39223249/multiple-run-vs-single-chained-run-in-dockerfile-which-is-better
+https://www.cherryservers.com/blog/docker-multistage-build 
 
 Modularity and Maintainability: Separating dependency installation from the application code enhances modularity and simplifies dependency management.
 
