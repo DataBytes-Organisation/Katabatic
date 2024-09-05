@@ -1,4 +1,4 @@
-Katabatic.models.ganblr package
+Katabatic.models.tableGAN package
 ===============================
 
 .. Submodules
@@ -48,7 +48,6 @@ Module contents
    :maxdepth: 2
    :caption: Submodules:
 
-   .. katabatic.models.ganblr/ganblr
-   .. katabatic.models.ganblr/ganblr_adapter
-   .. katabatic.models.ganblr/kdb
-   .. katabatic.models.ganblr/utils
+   katabatic.models.tablegan/tablegan
+   katabatic.models.tablegan/tablegan_adapter
+   katabatic.models.tablegan/tablegan_utils
