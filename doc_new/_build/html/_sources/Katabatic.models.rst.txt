@@ -9,6 +9,7 @@ Subpackages
 
    Katabatic.models.GANBLR++
    Katabatic.models.ganblr
+   Katabatic.models.tableGAN
 
 .. Module contents
 .. ---------------
