@@ -18,10 +18,10 @@ class CtganAdapter(KatabaticModelSPI):
     def load_model(self):  # Load the model
         metadata = SingleTableMetadata()
         metadata.detect_from_csv(
-            filepath="/Users/abdullah/Documents/GitHub/Katabatic/katabatic/cities_demo.csv"
+            filepath="/Users/abdullah/Documents/GitHub/Katabatic/katabatic/nursery/nursery.data"
         )
         data = pd.read_csv(
-            "/Users/abdullah/Documents/GitHub/Katabatic/katabatic/cities_demo.csv"
+            "/Users/abdullah/Documents/GitHub/Katabatic/katabatic/nursery/nursery.data"
         )
         self.load_data(data)
         self.model = CTGANSynthesizer(

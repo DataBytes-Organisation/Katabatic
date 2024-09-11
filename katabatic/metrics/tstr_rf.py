@@ -1,5 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score
 import numpy as np
 
@@ -47,6 +49,20 @@ def evaluate(X_synthetic, y_synthetic, X_real, y_real):
     X_real = X_real.to_numpy() if hasattr(X_real, "to_numpy") else X_real
     y_real = y_real.to_numpy().ravel() if hasattr(y_real, "to_numpy") else y_real
 
+    # Identify categorical features and numeric features
+    categorical_features = np.where(X_synthetic.dtype == "O")[
+        0
+    ]  # Assuming all object columns are categorical
+    numeric_features = np.where(X_synthetic.dtype != "O")[0]
+
+    # Define the preprocessing pipeline for the features
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("num", "passthrough", numeric_features),
+            ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_features),
+        ]
+    )
+
     # Combine y_synthetic and y_real to ensure consistent label encoding
     y_combined = np.concatenate([y_synthetic, y_real])
 
@@ -56,8 +72,15 @@ def evaluate(X_synthetic, y_synthetic, X_real, y_real):
     y_synthetic = le.transform(y_synthetic)
     y_real = le.transform(y_real)
 
+    # Create a pipeline that applies the preprocessor and then trains the model
+    model = Pipeline(
+        steps=[
+            ("preprocessor", preprocessor),
+            ("classifier", RandomForestClassifier(random_state=42)),
+        ]
+    )
+
     # TSTR Evaluation using RandomForestClassifier
-    model = RandomForestClassifier(random_state=42)
     model.fit(X_synthetic, y_synthetic)
     y_pred = model.predict(X_real)
 

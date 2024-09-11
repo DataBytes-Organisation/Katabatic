@@ -1,4 +1,6 @@
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import LogisticRegression
@@ -49,18 +51,38 @@ def evaluate(X_synthetic, y_synthetic, X_real, y_real):
     X_real = X_real.to_numpy() if hasattr(X_real, "to_numpy") else X_real
     y_real = y_real.to_numpy().ravel() if hasattr(y_real, "to_numpy") else y_real
 
+    # Define the preprocessing pipeline for the features
+    categorical_features = np.where(X_synthetic.dtype == "O")[
+        0
+    ]  # Assuming all object columns are categorical
+    numeric_features = np.where(X_synthetic.dtype != "O")[0]
+
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("num", "passthrough", numeric_features),
+            ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_features),
+        ]
+    )
+
     # Split the real data into training and testing sets
     X_train_real, X_test_real, y_train_real, y_test_real = train_test_split(
         X_real, y_real, test_size=0.33, random_state=42
     )
 
-    # Encode labels (necessary if labels are not numerical)
+    # Create a pipeline that applies the preprocessor and then trains the model
+    model = Pipeline(
+        steps=[
+            ("preprocessor", preprocessor),
+            ("classifier", LogisticRegression(max_iter=200, random_state=42)),
+        ]
+    )
+
+    # # Encode labels (necessary if labels are not numerical)
     le = LabelEncoder()
     y_synthetic = le.fit_transform(y_synthetic)
     y_test_real = le.transform(y_test_real)
 
     # TSTR Evaluation using Logistic Regression
-    model = LogisticRegression(max_iter=200, random_state=42)
     model.fit(X_synthetic, y_synthetic)
     y_pred = model.predict(X_test_real)
 

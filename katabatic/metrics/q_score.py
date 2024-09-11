@@ -1,6 +1,9 @@
 from sklearn.metrics import accuracy_score, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
 import numpy as np
 import pandas as pd
 
@@ -37,6 +40,20 @@ def evaluate(X_synthetic, y_synthetic, X_real, y_real, use_labels=False):
     X_real = X_real.to_numpy() if isinstance(X_real, pd.DataFrame) else X_real
     y_real = y_real.to_numpy().ravel() if isinstance(y_real, pd.DataFrame) else y_real
 
+    # Identify categorical features and numeric features
+    categorical_features = np.where(X_synthetic.dtype == "O")[
+        0
+    ]  # Assuming all object columns are categorical
+    numeric_features = np.where(X_synthetic.dtype != "O")[0]
+
+    # Define the preprocessing pipeline for the features
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("num", "passthrough", numeric_features),
+            ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_features),
+        ]
+    )
+
     if use_labels:
         # Combine the features and labels of the real and synthetic data
         X_combined = np.vstack([X_real, X_synthetic])
@@ -49,6 +66,9 @@ def evaluate(X_synthetic, y_synthetic, X_real, y_real, use_labels=False):
 
         # Combine the real_vs_synthetic labels with the original labels as additional features
         X_combined_with_labels = np.column_stack((X_combined, y_combined))
+
+        # Create a pipeline that applies the preprocessor and then splits the data
+        X_combined_with_labels = preprocessor.fit_transform(X_combined_with_labels)
 
         # Split into train and test sets
         X_train, X_test, y_train, y_test = train_test_split(
@@ -65,6 +85,9 @@ def evaluate(X_synthetic, y_synthetic, X_real, y_real, use_labels=False):
         real_vs_synthetic_labels = np.hstack(
             [np.ones(X_real.shape[0]), np.zeros(X_synthetic.shape[0])]
         )
+
+        # Preprocess the combined data
+        X_combined = preprocessor.fit_transform(X_combined)
 
         # Split into train and test sets
         X_train, X_test, y_train, y_test = train_test_split(

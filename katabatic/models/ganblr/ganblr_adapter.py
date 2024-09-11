@@ -88,7 +88,7 @@ class GanblrAdapter(KatabaticModelSPI):
         try:
             print("[INFO] Training GANBLR model")
             self.model.fit(
-                X_train, y_train, k, batch_size=batch_size, epochs=epochs, verbose=0
+                X_train, y_train, k, batch_size=batch_size, epochs=epochs, verbose=1
             )
             self.training_sample_size = len(X_train)
             print("[SUCCESS] Model training completed")
