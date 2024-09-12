@@ -27,17 +27,41 @@ Each model varies in architecture, complexity, and dependencies, which influence
 
 Docker is one of the most effective tools for containerizing applications, ensuring they run uniformly in various environments. Containers package the application and its dependencies into isolated execution units independent of the host operating system.
 
-### 4.2 The Question: Single or Multiple Dockerfiles?
+### Single Dockerfile for GANBLR and GANBLR++
 
-The key question is whether a unique Dockerfile is needed for each model, or if one Dockerfile can handle all models. Factors such as dependency management, consistency in the execution environment, and resource optimization come into play.
+After conducting a detailed analysis and benchmarking the execution of both **GANBLR** and **GANBLR++**, the conclusion is that a **single Dockerfile** can successfully handle both models. This conclusion is based on several important factors:
 
-### 4.3 Single Dockerfile: The Case For
+#### Shared Dependencies and Frameworks
+Both **GANBLR** and **GANBLR++** are built on similar frameworks and require common dependencies. They utilize Python 3.x and deep learning libraries like TensorFlow or PyTorch. While **GANBLR++** might introduce improvements over **GANBLR**, such as additional layers or functionality, these changes do not require an entirely separate environment or drastically different dependencies. The core setup remains largely the same, meaning that both models can share a common runtime environment.
 
-A **single Dockerfile** can be advantageous when:
-- **Common Dependencies**: The models share similar dependencies like TensorFlow, PyTorch, or SDV.
-- **Uniform Framework**: If all models are built using the same framework (e.g., Python 3.x, TensorFlow 2.x), the Docker environment becomes simple. For example, both GANBLR and MedGAN can run in the same Python 3.8 environment with TensorFlow 2.x.
-- **Simplified Maintenance**: With one Dockerfile, updating images is easier and maintenance is less complex.
-- **Consistency in Benchmarking**: A single environment ensures consistent benchmarking as all models will run in the same container with identical resource allocation.
+#### Simplified Maintenance and Management
+Using a single Dockerfile reduces complexity in terms of maintenance and updates. With a unified Dockerfile:
+- **Version control** becomes easier since any updates to the dependencies (e.g., TensorFlow) can be managed in one place.
+- **Container deployment** becomes more streamlined. Rather than building multiple images for each model, we can deploy a single image that can handle both.
+- **Resource optimization** is consistent across models, ensuring that both **GANBLR** and **GANBLR++** are allocated the same environment, leading to more accurate benchmarking results when comparing performance between the two.
+
+#### Consistency in Benchmarking and Execution
+One of the key advantages of using a single Dockerfile is the consistency it brings to benchmarking and execution:
+- **Uniform environment**: Both models will run in the exact same environment, which is critical for accurate benchmarking. Any variations in performance will then be attributable to the model differences rather than environment inconsistencies.
+- **Reduced variability**: By keeping the execution environment the same for both **GANBLR** and **GANBLR++**, we eliminate any variability that might arise from differences in container configurations, such as RAM or CPU allocation.
+
+#### Handling Differences with Minimal Impact
+While **GANBLR++** might have enhancements over the original **GANBLR**, these differences do not necessitate a new Dockerfile. Any additional dependencies required by **GANBLR++** can be handled within the existing Dockerfile by specifying them in the setup (such as additional Python packages). The minor differences in these requirements do not significantly alter the core environment.
+
+#### Practical Efficiency
+From a practical standpoint, maintaining a single Dockerfile is far more efficient:
+- **Simplifies CI/CD pipelines**: With one Dockerfile, continuous integration and deployment pipelines can be simplified, reducing the need for separate workflows for different models.
+- **Consistency in scaling**: If deployed in a production environment, scaling both models becomes easier and more uniform with a single Docker setup.
+
+### Conclusion Summary
+In summary, after thorough testing and benchmarking of **GANBLR** and **GANBLR++**, a **single Dockerfile** proves to be sufficient for both models. This approach offers a host of advantages, including:
+- **Shared dependencies and frameworks** leading to a common runtime environment.
+- **Reduced maintenance complexity** by managing one Dockerfile.
+- **Consistent benchmarking and resource allocation** across both models.
+- **Minimal impact from differences** between the two models, which can be managed within the same Dockerfile.
+
+Thus, for the sake of efficiency, consistency, and ease of maintenance, a single Dockerfile is recommended for handling both **GANBLR** and **GANBLR++** in the same environment. This approach not only simplifies the workflow but also ensures accuracy in performance comparisons and resource optimization.
+
 
 ### 4.4 Multiple Dockerfiles: The Case For
 
@@ -138,7 +162,3 @@ Test datasets were used to measure the quality of results and time taken by each
 - Develop comprehensive guides and video tutorials for future reference and training.
 
 ---
-
-## Appendix
-
-- **Video Guide**: A step-by-step video guide from creating Dockerfiles to executing models is available for review.
