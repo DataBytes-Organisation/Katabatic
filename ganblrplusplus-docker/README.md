@@ -21,13 +21,7 @@ By packaging GANBLR++ into a Docker container, we achieve:
   - [2. Build the Docker Image](#2-build-the-docker-image)
   - [3. Run the Docker Container](#3-run-the-docker-container)
   - [4. Access the Container](#4-access-the-container)
-- [Folder Structure](#folder-structure)
-- [Usage](#usage)
-- [Future Improvements](#future-improvements)
-- [Evidence](#evidence)
-- [License](#license)
 
----
 
 ## Features
 
@@ -75,10 +69,3 @@ To access the container (for debugging or interaction), run:
 
 docker exec -it ganblrplusplus-container /bin/bash
 
-## Folder Structure
-
-2024-09-16 21-48-46.mkv
-Dockerfile
-README.md
-ganblr++.py
-requirements.txt
