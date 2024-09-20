@@ -14,8 +14,8 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Katabatic.models.tableGAN package" href="../Katabatic.models.tableGAN.html" />
-    <link rel="prev" title="kDB Algorithm" href="kdb.html" />
+    <link rel="next" title="Katabatic.utils package" href="../Katabatic.utils.html" />
+    <link rel="prev" title="TableGANAdapter" href="tablegan_adapter.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -35,66 +35,73 @@
             
   <section id="utility-functions">
 <h1>Utility Functions<a class="headerlink" href="#utility-functions" title="Link to this heading">¶</a></h1>
-<p>The utility functions are implemented in the <cite>utils.py</cite> file and provide various support functions for data preparation and model constraints.</p>
+<p>The utility functions are implemented in the <cite>utils.py</cite> file and provide various support functions for data preparation, model constraints, and logistic regression operations.</p>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<dl class="simple">
-<dt><strong>softmax_weight</strong></dt><dd><p>Constrains weight tensors to be under softmax.</p>
-</dd>
-<dt><strong>DataUtils</strong></dt><dd><p>Provides data utilities for preparation before training.</p>
-</dd>
-</dl>
+<ul>
+<li><p><strong>softmax_weight</strong></p>
+<p>A class that constrains weight tensors to be normalized using the softmax function, ensuring that the values sum up to 1.</p>
+</li>
+<li><p><strong>DataUtils</strong></p>
+<p>A utility class that provides helper functions for preparing data before training machine learning models.</p>
+</li>
+</ul>
 </section>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<dl class="simple">
-<dt><strong>elr_loss(KL_LOSS)</strong></dt><dd><p>Defines a custom loss function.</p>
+<ul>
+<li><p><strong>elr_loss(KL_LOSS)</strong></p>
+<p>Defines a custom loss function that integrates the KL loss into the overall loss calculation for model training.</p>
 <ul class="simple">
 <li><p><strong>Parameters:</strong>
-- <cite>KL_LOSS</cite>: The KL loss value.</p></li>
+- <cite>KL_LOSS</cite> (<cite>float</cite>): The Kullback-Leibler (KL) loss value that is integrated into the loss function.</p></li>
 <li><p><strong>Returns:</strong>
-A custom loss function.</p></li>
+A custom loss function that can be used in training models.</p></li>
 </ul>
-</dd>
-<dt><strong>KL_loss(prob_fake)</strong></dt><dd><p>Calculates the KL loss.</p>
+</li>
+<li><p><strong>KL_loss(prob_fake)</strong></p>
+<p>Calculates the Kullback-Leibler (KL) divergence loss, which measures how one probability distribution diverges from a second, expected distribution.</p>
 <ul class="simple">
 <li><p><strong>Parameters:</strong>
-- <cite>prob_fake</cite>: Probability of the fake data.</p></li>
+- <cite>prob_fake</cite> (<cite>numpy.array</cite>): The probability distribution of the fake (generated) data.</p></li>
 <li><p><strong>Returns:</strong>
-The KL loss value.</p></li>
+The calculated KL loss value.</p></li>
 </ul>
-</dd>
-<dt><strong>get_lr(input_dim, output_dim, constraint=None, KL_LOSS=0)</strong></dt><dd><p>Creates a logistic regression model.</p>
+</li>
+<li><p><strong>get_lr(input_dim, output_dim, constraint=None, KL_LOSS=0)</strong></p>
+<p>Creates and returns a logistic regression model, with optional constraints and KL loss integration.</p>
 <ul class="simple">
 <li><p><strong>Parameters:</strong>
-- <cite>input_dim</cite>: Dimension of the input features.
-- <cite>output_dim</cite>: Dimension of the output.
-- <cite>constraint</cite>: Optional constraint for the model (default: None).
-- <cite>KL_LOSS</cite>: Optional KL loss value (default: 0).</p></li>
+- <cite>input_dim</cite> (<cite>int</cite>): The dimension of the input features.
+- <cite>output_dim</cite> (<cite>int</cite>): The dimension of the output labels.
+- <cite>constraint</cite> (<cite>callable</cite>, optional): A constraint function applied to the logistic regression model weights (default: None).
+- <cite>KL_LOSS</cite> (<cite>float</cite>, optional): The Kullback-Leibler loss value to be incorporated into the model (default: 0).</p></li>
 <li><p><strong>Returns:</strong>
-A logistic regression model.</p></li>
+A logistic regression model object.</p></li>
 </ul>
-</dd>
-<dt><strong>sample(*arrays, n=None, frac=None, random_state=None)</strong></dt><dd><p>Generates random samples from the given arrays.</p>
+</li>
+<li><p><strong>sample(*arrays, n=None, frac=None, random_state=None)</strong></p>
+<p>Generates random samples from the provided arrays, either by specifying the number of samples or the fraction of the arrays to sample.</p>
 <ul class="simple">
 <li><p><strong>Parameters:</strong>
-- <cite>arrays</cite>: Arrays to sample from.
-- <cite>n</cite>: Number of samples to generate (default: None).
-- <cite>frac</cite>: Fraction of samples to generate (default: None).
-- <cite>random_state</cite>: Random seed for reproducibility (default: None).</p></li>
+- <cite>arrays</cite> (<cite>list</cite>): The input arrays to sample from.
+- <cite>n</cite> (<cite>int</cite>, optional): The number of samples to generate (default: None).
+- <cite>frac</cite> (<cite>float</cite>, optional): The fraction of the arrays to sample (default: None).
+- <cite>random_state</cite> (<cite>int</cite>, optional): A random seed to ensure reproducibility (default: None).</p></li>
 <li><p><strong>Returns:</strong>
-Random samples from the arrays.</p></li>
+Random samples from the provided arrays.</p></li>
 </ul>
-</dd>
-<dt><strong>get_demo_data(name=’adult’)</strong></dt><dd><p>Downloads a demo dataset from the internet.</p>
+</li>
+<li><p><strong>get_demo_data(name=’adult’)</strong></p>
+<p>Downloads and returns a demo dataset from the internet. By default, it downloads the ‘adult’ dataset, but other dataset names can be specified.</p>
 <ul class="simple">
 <li><p><strong>Parameters:</strong>
-- <cite>name</cite>: Name of the dataset to download (default: ‘adult’).</p></li>
+- <cite>name</cite> (<cite>str</cite>, optional): The name of the dataset to download (default: ‘adult’).</p></li>
 <li><p><strong>Returns:</strong>
-The downloaded dataset.</p></li>
+The downloaded dataset as a Pandas DataFrame.</p></li>
 </ul>
-</dd>
-</dl>
+</li>
+</ul>
 </section>
 </section>
 
@@ -139,9 +146,9 @@ The downloaded dataset.</p></li>
   <li><a href="../modules.html">Katabatic</a><ul>
   <li><a href="../Katabatic.html">Katabatic package</a><ul>
   <li><a href="../Katabatic.models.html">Katabatic.models package</a><ul>
-  <li><a href="../Katabatic.models.ganblr.html">Katabatic.models.ganblr package</a><ul>
-      <li>Previous: <a href="kdb.html" title="previous chapter">kDB Algorithm</a></li>
-      <li>Next: <a href="../Katabatic.models.tableGAN.html" title="next chapter">Katabatic.models.tableGAN package</a></li>
+  <li><a href="../Katabatic.models.tableGAN.html">Katabatic.models.tableGAN package</a><ul>
+      <li>Previous: <a href="tablegan_adapter.html" title="previous chapter">TableGANAdapter</a></li>
+      <li>Next: <a href="../Katabatic.utils.html" title="next chapter">Katabatic.utils package</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -169,7 +176,7 @@ The downloaded dataset.</p></li>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="../_sources/katabatic.models.ganblr/utils.rst.txt"
+      <a href="../_sources/katabatic.models.tablegan/tablegan_utils.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
