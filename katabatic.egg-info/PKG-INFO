@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: katabatic
+Version: 0.0.1
+Summary: An open source framework for tabular data generation
+Author: Jaime Blackwell, Nayyar Zaidi
+License-File: LICENSE

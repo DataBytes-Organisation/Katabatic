@@ -17,8 +17,12 @@
         "tdgm_module_name": "katabatic.models.tvae.tvae_adapter",
         "tdgm_class_name": "TvaeAdapter"
     },
+    "ganblrpp": {
+        "tdgm_module_name": "katabatic.models.ganblrpp.ganblrpp_adapter",
+        "tdgm_class_name": "GanblrppAdapter"
+    },
     "medgan": {
         "tdgm_module_name": "katabatic.models.medgan.medgan_adapter",
         "tdgm_class_name": "MedganAdapter"
     }
-  }
+}
