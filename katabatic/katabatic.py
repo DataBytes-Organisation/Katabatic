@@ -1,3 +1,8 @@
+"""
+This module declaratively loads the configured module and instantiates the Tabular Data Generative Model (TDGM) class.
+
+The `Katabatic` class provides methods for running models, evaluating metrics, preprocessing data, and evaluating models.
+"""
 # This file declaratively loads the configured module and instantiates the Tabular Data Generative Model (TDGM) class.
 import os
 import sys
@@ -28,7 +33,40 @@ METRICS_FILE = os.path.abspath(
 
 class Katabatic:
 
+    """
+    Class to handle model running, metric evaluation, and data preprocessing in the Katabatic framework.
+
+    Methods:
+        run_model(model_name):
+            Loads and instantiates the model specified by `model_name`.
+
+        run_metric(metric_name):
+            Loads and returns the metric module specified by `metric_name`.
+
+        evaluate_data(synthetic_data, real_data, data_type, dict_of_metrics):
+            Evaluates the synthetic data against real data using specified metrics.
+
+        evaluate_models(real_data, dict_of_models, dict_of_metrics):
+            Evaluates a set of models using specified metrics.
+
+        preprocessing(data):
+            Prepares the data by handling null values and splitting it into training and testing sets.
+    """
+
     def run_model(model_name):
+
+        """
+        Loads and instantiates the model specified by `model_name`.
+
+        Args:
+            model_name (str): The name of the model to load as specified in the configuration file.
+
+        Returns:
+            KatabaticModelSPI: An instance of the specified model class.
+
+        Raises:
+            SystemExit: If the model configuration is missing or the module cannot be loaded.
+        """
         print(f"--------------------------")
         print(f"module name:    {__name__}")
         print(f"parent process: {os.getppid()}")
@@ -83,6 +121,19 @@ class Katabatic:
     # TODO: possibly update METRICS_FILE to a dict of dicts (to include type etc.. of each metric)
     def run_metric(metric_name):
 
+        """
+        Loads and returns the metric module specified by `metric_name`.
+
+        Args:
+            metric_name (str): The name of the metric to load as specified in the metrics file.
+
+        Returns:
+            module: The loaded metric module.
+
+        Raises:
+            SystemExit: If the metric configuration is missing or the module cannot be loaded.
+        """
+
         with open(METRICS_FILE, "r") as file:
             metrics = json.load(file)
 
@@ -111,7 +162,24 @@ class Katabatic:
     # TODO: Update third parameter to something like discrete_or_continuous or discrete (True or False)
     def evaluate_data(
         synthetic_data, real_data, data_type, dict_of_metrics
-    ):  # data_type s/be either 'discrete' or 'continuous'
+    ):  
+        """
+        Evaluates the synthetic data against real data using specified metrics.
+
+        Args:
+            synthetic_data (pd.DataFrame): The synthetic data to evaluate.
+            real_data (pd.DataFrame): The real data to compare against.
+            data_type (str): Type of data ('discrete' or 'continuous').
+            dict_of_metrics (dict): Dictionary of metrics to use for evaluation.
+
+        Returns:
+            pd.DataFrame: A DataFrame with evaluation results for each metric.
+
+        Raises:
+            SystemExit: If the synthetic data and real data are not compatible.
+        """
+    
+        # data_type s/be either 'discrete' or 'continuous'
         # Convert column headers to integers?
         # Remove column headers?
         # print("Type of real_data: ", type(real_data))
@@ -167,6 +235,18 @@ class Katabatic:
     # TODO: return a dynamic comparison report of
     def evaluate_models(real_data, dict_of_models, dict_of_metrics):
 
+        """
+        Evaluates a set of models using specified metrics.
+
+        Args:
+            real_data (pd.DataFrame): The real data to use for evaluation.
+            dict_of_models (list): List of model names to evaluate.
+            dict_of_metrics (dict): Dictionary of metrics to use for evaluation.
+
+        Returns:
+            pd.DataFrame: A DataFrame with evaluation results for each model.
+        """
+
         results_df = pd.DataFrame()
         for i in range(len(dict_of_models)):
             model_name = dict_of_models[i]
@@ -176,6 +256,16 @@ class Katabatic:
 
     # Returns X_train, X_test, y_train, y_test in that order
     def preprocessing(data):
+
+        """
+        Prepares the data by handling null values and splitting it into training and testing sets.
+
+        Args:
+            data (pd.DataFrame): The data to preprocess.
+
+        Returns:
+            tuple: X_train, X_test, y_train, y_test
+        """
 
         # Reset Column Headers
         data.columns = range(data.shape[1])
@@ -205,6 +295,21 @@ class Katabatic:
 
 
 if __name__ == "__main__":
+    """
+    Main entry point for the Katabatic script.
+
+    Usage:
+        python katabatic.py MODEL_NAME ...
+
+    Arguments:
+        MODEL_NAME (str): The name of the model to run.
+
+    Example:
+        python katabatic.py ganblr
+
+    Loads the specified model, preprocesses demo data, fits the model, generates synthetic data,
+    evaluates the synthetic data, and prints the results.
+    """
     print(f"[Welcome to Katabatic version 0.1]")
     print(f"module name:    {__name__}")
     print(f"parent process: {os.getppid()}")

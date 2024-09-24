@@ -1,5 +1,5 @@
 pyitlib
-pgmpy
-scikit-learn
 tensorflow
+pgmpy
 sdv
+scikit-learn==1.0

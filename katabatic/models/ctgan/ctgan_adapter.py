@@ -48,7 +48,10 @@ class DataTransformer:
         for column in data.columns:
             if data[column].dtype == 'object' or data[column].dtype.name == 'category':
                 # Process categorical columns
-                encoder = OneHotEncoder(sparse=False, handle_unknown='ignore')
+                try:
+                    encoder = OneHotEncoder(sparse=False, handle_unknown='ignore')
+                except TypeError:
+                    encoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')    
                 encoder.fit(data[[column]])
                 self.encoders[column] = encoder
                 categories = encoder.categories_[0]
@@ -501,7 +504,7 @@ class CtganAdapter(KatabaticModelSPI):
         self.discriminator_steps = kwargs.get('discriminator_steps', 5)
         self.epochs = kwargs.get('epochs', 300)
         self.lambda_gp = kwargs.get('lambda_gp', 10)
-        self.vgm_components = kwargs.get('vgm_components', 10)
+        self.vgm_components = kwargs.get('vgm_components', "auto")  # Enable auto-detection of GMM components
         self.device = torch.device("cuda:0" if kwargs.get('cuda', True) and torch.cuda.is_available() else "cpu")
         self.writer = SummaryWriter()
         self.discrete_columns = []
@@ -693,23 +696,27 @@ class CtganAdapter(KatabaticModelSPI):
         Returns:
             pd.DataFrame: Generated synthetic data.
         """
-        self.generator.eval()
-        data = []
-        steps = n // self.batch_size + 1
-        for _ in range(steps):
-            noise = torch.randn(self.batch_size, self.embedding_dim, device=self.device)
-            condvec = self.data_sampler.sample_original_condvec(self.batch_size)
-            if condvec is not None:
-                c1 = torch.from_numpy(condvec).to(self.device)
-            else:
-                c1 = torch.zeros(self.batch_size, self.cond_dim, device=self.device)
-            with torch.no_grad():
-                fake = self.generator(noise, c1)
-            data.append(fake.cpu().numpy())
-        data = np.concatenate(data, axis=0)
-        data = data[:n]  # Trim to desired number of samples
-        data = self.transformer.inverse_transform(data)
-        return data
+        try:
+            self.generator.eval()
+            data = []
+            steps = n // self.batch_size + 1
+            for _ in range(steps):
+                noise = torch.randn(self.batch_size, self.embedding_dim, device=self.device)
+                condvec = self.data_sampler.sample_original_condvec(self.batch_size)
+                if condvec is not None:
+                    c1 = torch.from_numpy(condvec).to(self.device)
+                else:
+                    c1 = torch.zeros(self.batch_size, self.cond_dim, device=self.device)
+                with torch.no_grad():
+                    fake = self.generator(noise, c1)
+                data.append(fake.cpu().numpy())
+            data = np.concatenate(data, axis=0)
+            data = data[:n]  # Trim to desired number of samples
+            data = self.transformer.inverse_transform(data)
+            return data
+        except Exception as e:
+            print(f"An error occurred during data generation: {e}")
+            return pd.DataFrame()  # Return an empty DataFrame in case of failure
 
 
 # Example usage with updated configuration
