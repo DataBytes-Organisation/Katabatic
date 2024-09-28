@@ -1,116 +1,182 @@
-import torch
-import torch.nn as nn
-import torch.optim as optim
+from katabatic.katabatic_spi import KatabaticModelSPI
 import pandas as pd
 import numpy as np
-from MEG_SPI import MEGModelSPI
+from sklearn.preprocessing import LabelEncoder
+from .meg import MEG
 
-class MEG_Adapter(MEGModelSPI):
-    
-    def __init__(self, model_type, num_models, masks, input_dim, output_dim):
-        super().__init__(model_type, num_models, masks)
-        self.input_dim = input_dim
-        self.output_dim = output_dim
-        self.models = []
-        self.optimizers = []
-        self.criterion = nn.BCELoss()
-        self.discriminator = Discriminator(output_dim)
-        self.optimizer_D = optim.Adam(self.discriminator.parameters(), lr=0.0002)
-    
+class MegAdapter(KatabaticModelSPI):
+    """
+    Adapter class for the MEG model to interface with KatabaticModelSPI.
+
+    Attributes:
+        type (str): The type of model, either 'discrete' or 'continuous'.
+        candidate_labels (list): The candidate labels for the model.
+        batch_size (int): The batch size for training the model.
+        epochs (int): The number of epochs for training the model.
+        training_sample_size (int): The size of the training sample.
+    """
+
+    def __init__(self, type="discrete", candidate_labels=None):
+        """
+        Initialize the MEG Adapter with the specified type and candidate labels.
+
+        Args:
+            type (str): The type of model, either 'discrete' or 'continuous'. Default is 'discrete'.
+            candidate_labels (list): The candidate labels for the model. Default is None.
+        """
+        self._d = None
+        self.batch_size = None
+        self.epochs = None
+        self.k = None
+        self._units = None
+        self._candidate_labels = candidate_labels
+        self._column_names = None
+        self._weight = None
+        self._ordinal_encoder = None
+        self.training_sample_size = 0
+        self.model = None
+
     def load_model(self):
+        """
+        Initialize and load the MEG model.
 
-        for mask in self.masking_strategy:
-            model = MaskedGenerator(self.input_dim, self.output_dim, mask)
-            optimizer = optim.Adam(model.parameters(), lr=0.0002)
-            self.models.append(model)
-            self.optimizers.append(optimizer)
+        Returns:
+            MEG: An instance of the MEG model.
+        """
+        print("[INFO] Initializing MEG Model")
+        self.model = MEG()
+        return self.model
     
-    def load_data(self, data):
+    def preprocess_data(self, X, y):
+        """
+        Preprocess data by converting categorical features and labels to numerical format.
 
-        X = data.drop('Purchase', axis=1)
-        y = data['Purchase']
+        Args:
+            X (pd.DataFrame or np.ndarray): Features to preprocess.
+            y (pd.Series or np.ndarray): Labels to preprocess.
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        Returns:
+            Tuple: (preprocessed_X, preprocessed_y)
+        """
+        # Convert X to DataFrame if it's not already
+        if isinstance(X, np.ndarray):
+            if self._column_names is None:
+                self._column_names = [f"feature_{i}" for i in range(X.shape[1])]
+            X = pd.DataFrame(X, columns=self._column_names)
 
-        scaler = StandardScaler()
-        X_train_scaled = scaler.fit_transform(X_train)
-        X_test_scaled = scaler.transform(X_test)
+        print("[INFO] Initial X columns:", X.columns)
 
-        self.X_train_tensor = torch.tensor(X_train_scaled, dtype=torch.float32)
-        self.y_train_tensor = torch.tensor(y_train.values, dtype=torch.float32).unsqueeze(1)
-        self.X_test_tensor = torch.tensor(X_test_scaled, dtype=torch.float32)
-        self.y_test_tensor = torch.tensor(y_test.values, dtype=torch.float32).unsqueeze(1)
-    
-    def train(self, num_epochs=5000, batch_size=64):
+        # Handle categorical features
+        for col in X.select_dtypes(include=['object']).columns:
+            print(f"[INFO] Converting column '{col}' to numerical format")
+            X[col] = X[col].astype('category').cat.codes
 
-        for epoch in range(num_epochs):
-            self.discriminator.train()
-            self.optimizer_D.zero_grad()
+        # Handle categorical labels
+        if y is not None:
+            if isinstance(y, np.ndarray):
+                y = pd.Series(y)
+            if y.dtype == 'object':
+                print(f"[INFO] Converting labels to numerical format")
+                y = y.astype('category').cat.codes
 
-            idx = torch.randperm(self.X_train_tensor.size(0))[:batch_size]
-            real_data = self.X_train_tensor[idx]
-            real_labels = torch.ones((real_data.size(0), 1))
+        return X, y
+
+    def load_data(self, data_pathname):
+        """
+        Load data from the specified pathname.
+
+        Args:
+            data_pathname (str): The path to the data file.
+
+        Returns:
+            pd.DataFrame: The loaded data as a pandas DataFrame.
+        """
+        print(f"[INFO] Loading data from {data_pathname}")
+        try:
+            data = pd.read_csv(data_pathname)
+            print("[SUCCESS] Data loaded successfully.")
+            return data
+        except FileNotFoundError:
+            print(f"[ERROR] File '{data_pathname}' not found.")
+        except pd.errors.EmptyDataError:
+            print("[ERROR] The file is empty.")
+        except pd.errors.ParserError:
+            print("[ERROR] Parsing error while reading the file.")
+        except Exception as e:
+            print(f"[ERROR] An unexpected error occurred: {e}")
+            return None
+
+    def fit(self, X_train, y_train=None, k=0, batch_size=32, epochs=10):
+        """
+        Train the MEG model on the input data.
+
+        Args:
+            X_train (pd.DataFrame or np.ndarray): Training features.
+            y_train (pd.Series or np.ndarray): Training labels. Default is None.
+            k (int): An optional parameter for the model's fit method. Default is 0.
+            batch_size (int): The batch size for training. Default is 32.
+            epochs (int): The number of epochs for training. Default is 10.
+        """
+        if self.model is None:
+            print("[ERROR] Model is not loaded. Call 'load_model()' first.")
+            return
+
+        # Ensure X_train and y_train are pandas DataFrames or Series
+        if isinstance(X_train, np.ndarray):
+            X_train = pd.DataFrame(X_train, columns=self._column_names)
+        if isinstance(y_train, np.ndarray):
+            y_train = pd.Series(y_train)
+
+        # Preprocess data
+        X_train, y_train = self.preprocess_data(X_train, y_train)
+
+        try:
+            print("[INFO] Training MEG model")
+            self.model.fit(
+                X_train, y_train, k, batch_size=batch_size, epochs=epochs, verbose=0
+            )
+            self.training_sample_size = len(X_train)
+            print("[SUCCESS] Model training completed")
+        except ValueError as e:
+            print(f"[ERROR] ValueError during model training: {e}")
+        except TypeError as e:
+            print(f"[ERROR] TypeError during model training: {e}")
+        except Exception as e:
+            print(f"[ERROR] An unexpected error occurred during model training: {e}")
+
+    def generate(self, size=None):
+        """
+        Generate data using the MEG model.
+
+        Args:
+            size (int): The number of samples to generate. Defaults to the training sample size if not specified.
+
+        Returns:
+            pd.DataFrame or np.ndarray: The generated data.
+        """
+        if self.model is None:
+            print("[ERROR] Model is not loaded. Call 'load_model()' first.")
+            return None
+
+        try:
+            print("[INFO] Generating data using MEG model")
+            if size is None:
+                size = self.training_sample_size
+
+            generated_data = self.model.sample(size, verbose=0)
+            if isinstance(generated_data, np.ndarray):
+                generated_data = pd.DataFrame(generated_data, columns=self._column_names)
+            print("[SUCCESS] Data generation completed")
+            return generated_data
+        except ValueError as e:
+            print(f"[ERROR] ValueError during data generation: {e}")
+        except TypeError as e:
+            print(f"[ERROR] TypeError during data generation: {e}")
+        except AttributeError as e:
+            print(f"[ERROR] AttributeError during data generation: {e}")
+        except Exception as e:
+            print(f"[ERROR] An unexpected error occurred during data generation: {e}")
+            return None
 
 
-            noise = torch.randn(real_data.size(0), self.input_dim)
-            fake_data = torch.zeros_like(real_data)
-            for model in self.models:
-                fake_data += model(noise)
-            fake_labels = torch.zeros((real_data.size(0), 1))
 
-
-            real_output = self.discriminator(real_data)
-            fake_output = self.discriminator(fake_data.detach())
-            d_loss_real = self.criterion(real_output, real_labels)
-            d_loss_fake = self.criterion(fake_output, fake_labels)
-            d_loss = d_loss_real + d_loss_fake
-            d_loss.backward()
-            self.optimizer_D.step()
-
-
-            for i, model in enumerate(self.models):
-                self.optimizers[i].zero_grad()
-                noise = torch.randn(batch_size, self.input_dim)
-                fake_data = model(noise)
-                fake_output = self.discriminator(fake_data)
-                g_loss = self.criterion(fake_output, torch.ones((batch_size, 1)))
-                g_loss.backward()
-                self.optimizers[i].step()
-
-            if epoch % 500 == 0:
-                print(f'Epoch {epoch}, D Loss: {d_loss.item()}, G Loss: {g_loss.item()}')
-
-    def generate(self, num_samples):
-
-        synthetic_parts = [model(torch.randn(num_samples, self.input_dim)).detach().numpy() for model in self.models]
-        combined_data = np.sum(synthetic_parts, axis=0)
-        synthetic_df = pd.DataFrame(combined_data, columns=self.X_train_tensor.columns) 
-        return synthetic_df
-
-class Discriminator(nn.Module):
-    def __init__(self, input_dim):
-        super(Discriminator, self).__init__()
-        self.model = nn.Sequential(
-            nn.Linear(input_dim, 128),
-            nn.ReLU(),
-            nn.Linear(128, 1),
-            nn.Sigmoid()
-        )
-
-    def forward(self, x):
-        return self.model(x)
-
-class MaskedGenerator(nn.Module):
-    def __init__(self, input_dim, output_dim, mask):
-        super(MaskedGenerator, self).__init__()
-        self.mask = mask
-        self.model = nn.Sequential(
-            nn.Linear(input_dim, 128),
-            nn.ReLU(),
-            nn.Linear(128, output_dim),
-            nn.Tanh()
-        )
-
-    def forward(self, x):
-        output = self.model(x) * self.mask
-        return output
