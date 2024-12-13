@@ -1,0 +1,32 @@
+# Step 1: Use an official Miniconda image as a base image
+FROM continuumio/miniconda3:latest
+
+# Step 2: Set the working directory in the container
+WORKDIR /app
+
+# Step 3: Copy your application code (GANBLRPP model API code)
+COPY . /app
+
+# Step 4: Create a new Conda environment
+RUN conda create --name ganblrpp_env python=3.9.19 -y && \
+    echo "source activate ganblrpp_env" > ~/.bashrc
+
+# Step 5: Activate the environment and install necessary libraries in the precise order
+#/bin/bash -c "source activate ganblrpp_env && \
+RUN /bin/bash -c "source activate ganblrpp_env && \
+    pip install pyitlib && \
+    pip install tensorflow && \
+    pip install pgmpy && \
+    pip install sdv && \
+    pip install scikit-learn==1.0 && \
+    pip install fastapi uvicorn && \
+    pip install python-multipart"
+
+# Step 6: Expose the port that the FastAPI app will run on
+EXPOSE 8000
+
+# Step 7: Run the FastAPI server
+CMD ["/bin/bash", "-c", "source activate ganblrpp_env && uvicorn ganblrpp_api:app --host 0.0.0.0 --port 8000"]
+
+
+
