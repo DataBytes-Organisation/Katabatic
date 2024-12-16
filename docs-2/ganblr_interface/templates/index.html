@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GANBLR Interface</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .output-section {
+            margin-top: 20px;
+            padding: 10px;
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">GANBLR Project Interface</h1>
+        <p class="text-center">Run each step of the GANBLR pipeline and view outputs below.</p>
+
+        <!-- Buttons Section -->
+        <div class="row">
+            {% for task, label in {'load_dataset': 'Load Dataset', 
+                                   'preprocess_data': 'Preprocess Data',
+                                   'train_model': 'Train Model',
+                                   'verify_data': 'Verify Data',
+                                   'generate_visualizations': 'Generate Visualizations'}.items() %}
+            <div class="col-md-6 mb-3">
+                <form method="POST" action="/run/{{ task }}">
+                    <button type="submit" class="btn btn-primary btn-block">{{ label }}</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Outputs Section -->
+        {% if outputs %}
+            {% for key, result in outputs.items() %}
+                <div class="output-section">
+                    <h5>{{ key.replace('_', ' ').title() }} Output</h5>
+                    <pre>{{ result.output }}</pre>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
