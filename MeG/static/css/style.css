@@ -1,0 +1,218 @@
+/* Resetting styles for better cross-browser compatibility */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.4;
+    background-color: #0a0908; /* Dark background */
+    color: #eae0d5; /* Light text for readability */
+    font-size: 16px;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Header Section */
+header {
+    background-color: #223a3b; /* Deep teal for the header */
+    color: #eae0d5;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+header .logo {
+    font-size: 2.0rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+header nav a {
+    color: #eae0d5;
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #c6ac8f; /* Gold color on hover */
+
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    background: linear-gradient(135deg, #22333b, #5e503f); /* Gradient background */
+    color: #eae0d5;
+    text-align: center;
+    padding: 0 20px;
+    border-bottom: 2px solid #eae0d5; /* Soft border at the bottom */
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #c6ac8f; /* Subtle golden text for a gentle highlight */
+}
+
+.upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.upload-container input[type="file"] {
+    display: none;
+}
+
+.upload-container label {
+    background-color: #5e503f;
+    color: #eae0d5;
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 250px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.upload-container label:hover {
+    background-color: #c6ac8f; /* Hover effect to turn golden */
+    transform: translateY(-5px); /* Subtle hover lift effect */
+}
+
+/* Hover message when hovering over the "Choose File" button */
+.upload-container label::after {
+    content: 'Upload file here'; /* The message that will be displayed on hover */
+    position: absolute;
+    top: -30px; /* Position above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #eae0d5; /* Light color for the message */
+    font-size: 1rem;
+    visibility: hidden; /* Initially hidden */
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease-in-out; /* Smooth transition */
+}
+
+.upload-container label:hover::after {
+    visibility: visible; /* Show the message on hover */
+    opacity: 1; /* Make the message visible */
+}
+
+.upload-container span {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #eae0d5;
+    visibility: hidden;
+}
+
+.upload-container span.visible {
+    visibility: visible;
+    font-size: 1.1rem;
+    color: #c6ac8f;
+}
+
+/* Content Section */
+.content-section {
+    padding: 60px 30px;
+    background-color: #22333b;
+    text-align: center;
+    color: #eae0d5;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin-top: -40px; /* Pull up the section for seamless look */
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #c6ac8f;
+}
+
+.content-section p {
+    font-size: 1.2rem;
+    color: #eae0d5;
+    margin-bottom: 30px;
+}
+
+.content-section .btn {
+    background-color: #5e503f;
+    color: #eae0d5;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.content-section .btn:hover {
+    background-color: #c6ac8f; /* Golden hover effect */
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Footer Section */
+footer {
+    background-color: #0a0908;
+    color: #eae0d5;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+}
+
+footer a {
+    color: #c6ac8f;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: #5e503f; /* Dark brown color for footer links on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .upload-container label {
+        width: 60%;
+    }
+
+    .content-section h2 {
+        font-size: 2rem;
+    }
+
+    .content-section p {
+        font-size: 1.1rem;
+    }
+}

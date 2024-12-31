@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katabatic - Synthetic Data Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            max-height: 50px;
+            margin-right: 1rem;
+        }
+
+        header .logo h2 {
+            font-size: 40px; /* Increased font size */
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 1rem;
+        }
+
+        header nav a:hover {
+            color: #f0a500;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: white;
+            height: 100vh; /* Full viewport height */
+            width: 100%;
+            position: relative; /* Required for background slots */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind the content */
+        }
+
+        .hero .text-content {
+            max-width: 60%;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center; /* Center content for better alignment */
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero button {
+            background-color: #f0a500;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            display: inline-block; /* Ensures button is inline in the centered layout */
+        }
+
+        .hero button:hover {
+            background-color: #d48d00;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero .text-content {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h2>Katabatic</h2> <!-- Updated the name -->
+        </div>
+        <nav>
+            <a href="#about">About Us</a>
+            <a href="#services">Services</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="text-content">
+            <h1>Innovative Synthetic Data Solutions</h1>
+            <p>Empowering AI and ML development with high-quality, customizable synthetic data tailored to your needs.</p>
+            <button>Get Started</button>
+        </div>
+    </section>
+</body>
+</html>

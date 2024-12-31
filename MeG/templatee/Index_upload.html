@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthetic Data Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #e8f5e9; /* Light green for the entire background */
+        }
+
+        .heading {
+            font-size: 36px;
+            color: #2e7d32; /* Dark green for the heading */
+            font-weight: bold;
+        }
+
+        .upload-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .file-input, .dropdown {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #2e7d32;
+            border-radius: 5px;
+            background-color: #f1f8e9;
+            color: #2e7d32;
+        }
+
+        .action-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #338638; /* Dark green button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .action-button:hover {
+            background-color: #1b5e20; /* Darker green on hover */
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const dropdown = document.querySelector('.dropdown');
+            const selectedValue = dropdown.value;
+
+            if (selectedValue === "select") {
+                alert("Please select an option to generate!");
+                return false; // Prevent form submission
+            }
+
+            if (selectedValue === "none") {
+                alert("Nothing is generating!");
+                return false; // Prevent form submission
+            }
+
+            return true; // Allow form submission for "Meg"
+        }
+    </script>
+</head>
+<body>
+    <div class="heading">Synthetic Data Generator</div>
+    <div class="upload-container">
+        <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <label for="dropdown">Select an option:</label>
+            <select class="dropdown" id="dropdown" name="option">
+                <option value="select">-- Select an Option --</option>
+                <option value="none">None</option>
+                <option value="meg">Meg</option>
+            </select>
+            <input type="file" class="file-input" name="file" accept=".csv" required>
+            <button class="action-button" type="submit">Generate</button>
+        </form>
+    </div>
+</body>
+</html>
