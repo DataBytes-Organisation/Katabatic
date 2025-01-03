@@ -1,0 +1,9 @@
+.DS_store
+__pycache__
+venv_*
+
+*.drawio.bkp
+.$Katabatic.drawio.dtmp
+katabatic/output.csv
+katabatic/running.log
+katabatic/output.csv
