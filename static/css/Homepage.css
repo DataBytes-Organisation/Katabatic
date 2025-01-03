@@ -8,14 +8,14 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #d1d8e0 0%, #bcc6cc 100%);
+    background: linear-gradient(135deg, #bcc6cc 100%);
     color: #3b3b3b;
     text-align: center;
     padding: 0 20px;
 }
 
 .Firstpage h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: bold;
     letter-spacing: 3px;
     margin-bottom: 20px;
@@ -118,7 +118,7 @@ footer {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #d1d8e0 0%, #bcc6cc 100%); /* Retaining background */
+    background: linear-gradient(135deg, #bcc6cc 100%); /* Retaining background */
     color: #702323; /* Light color for text */
 }
 

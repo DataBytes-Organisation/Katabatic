@@ -4,6 +4,7 @@
 .services {
     background: linear-gradient(135deg, #7cabbc, #e7d6d6);
     padding: 50px 50px;
+    margin-top: 80px;
 }
 
 .services .container {
