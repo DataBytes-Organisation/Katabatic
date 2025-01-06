@@ -67,22 +67,24 @@ def preprocess_data():
 @app.route('/train_model', methods=['POST'])
 def train_model():
     """
-    Handles file upload for training and runs the train_ganblr_credit.py script.
+    Handles file upload for training and runs the selected model training script.
     """
     x_train_file = request.files.get('X_train_file')
     y_train_file = request.files.get('Y_train_file')
+    model_type = request.form.get('model_type', 'GANBLR')  # Default to GANBLR if no selection
 
-    if x_train_file and y_train_file:
+    if x_train_file and y_train_file and model_type:
         x_train_path = os.path.join(app.config['UPLOAD_FOLDER'], x_train_file.filename)
         y_train_path = os.path.join(app.config['UPLOAD_FOLDER'], y_train_file.filename)
         
         x_train_file.save(x_train_path)
         y_train_file.save(y_train_path)
         
-        result = run_script("train_ganblr_credit.py", args=["--x_train", x_train_path, "--y_train", y_train_path])
-        return render_template('index.html', status="Model training complete!" if result['status'] == "success" else "Failed to train model.", outputs={"train_model": result})
+        training_script = f"train_{model_type.lower()}_credit.py"  # Example: train_ganblr_credit.py
+        result = run_script(training_script, args=["--x_train", x_train_path, "--y_train", y_train_path])
+        return render_template('index.html', status=f"{model_type} training complete!" if result['status'] == "success" else f"Failed to train {model_type}.", outputs={"train_model": result})
     else:
-        return render_template('index.html', status="Please upload both X_train and Y_train files.", outputs={})
+        return render_template('index.html', status="Please upload both X_train and Y_train files, and select a model type.", outputs={})
 
 @app.route('/verify_data', methods=['POST'])
 def verify_data():
