@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Katabatic Synthetic Data Generator</title>
+</head>
+<body>
+    <h1>Katabatic Synthetic Data Generator</h1>
+    <form id="data-form">
+        <label for="size">Enter Data Size (Number of Rows):</label>
+        <input type="number" id="size" name="size" min="1" value="5" required>
+        <button type="submit">Generate Synthetic Data</button>
+    </form>
+    <div id="output">
+        <h2>Generated Synthetic Data:</h2>
+        <table id="synthetic-table">
+            <!-- Table rows will be dynamically added here -->
+        </table>
+    </div>
+    <script>
+        document.getElementById('data-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const size = document.getElementById('size').value;
+        
+            const response = await fetch('/process', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `size=${encodeURIComponent(size)}`
+            });
+        
+            const data = await response.json();
+            const syntheticData = data.synthetic_data;
+        
+            const table = document.getElementById('synthetic-table');
+            table.innerHTML = ''; // Clear any previous table content
+        
+            // Generate table headers
+            if (syntheticData.length > 0) {
+                const headers = Object.keys(syntheticData[0]);
+                const headerRow = document.createElement('tr');
+                headers.forEach(header => {
+                    const th = document.createElement('th');
+                    th.textContent = header;
+                    headerRow.appendChild(th);
+                });
+                table.appendChild(headerRow);
+            }
+        
+            // Generate table rows
+            syntheticData.forEach(row => {
+                const tr = document.createElement('tr');
+                Object.values(row).forEach(cell => {
+                    const td = document.createElement('td');
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                });
+                table.appendChild(tr);
+            });
+        });
+    </script>
+</body>
+</html>
