@@ -177,6 +177,40 @@ class MegAdapter(KatabaticModelSPI):
         except Exception as e:
             print(f"[ERROR] An unexpected error occurred during data generation: {e}")
             return None
+        
+    def predict(self, X):
+        """
+        Predict labels for the given input data.
+
+        Args:
+            X (pd.DataFrame or np.ndarray): Input features for prediction.
+
+        Returns:
+            pd.Series or np.ndarray: Predicted labels.
+        """
+        if self.model is None:
+            print("[ERROR] Model is not loaded. Call 'load_model()' first.")
+            return None
+
+        # Ensure X is a pandas DataFrame
+        if isinstance(X, np.ndarray):
+            X = pd.DataFrame(X, columns=self._column_names)
+
+        # Preprocess input data
+        X, _ = self.preprocess_data(X, None)
+
+        try:
+            print("[INFO] Making predictions with MEG model")
+            # Assuming the MEG model has a method for predictions
+            predictions = self.model.predict(X)  # Replace with actual prediction logic
+            print("[SUCCESS] Predictions completed")
+            return predictions
+        except AttributeError:
+            print("[ERROR] The MEG model does not support predictions.")
+            return None
+        except Exception as e:
+            print(f"[ERROR] An unexpected error occurred during prediction: {e}")
+            return None
 
 
 

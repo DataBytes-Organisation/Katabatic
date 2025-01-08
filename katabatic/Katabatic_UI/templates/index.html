@@ -5,16 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css">
     <title>Katabatic Synthetic Data Generator</title>
+    <style>
+        /* Animation for the dots */
+        @keyframes dots {
+            0% { content: ''; }
+            33% { content: '.'; }
+            66% { content: '..'; }
+            100% { content: '...'; }
+        }
+
+        #generating-message span::after {
+            content: '';
+            animation: dots 1.5s steps(3, end) infinite;
+        }
+    </style>
 </head>
 <body>
     <h1>Katabatic Synthetic Data Generator</h1>
-    <form id="data-form">
+    <form id="data-form" enctype="multipart/form-data">
+        <label for="file">Upload Your Dataset (CSV):</label>
+        <input type="file" id="file" name="file" accept=".csv">
+
         <label for="size">Enter Data Size (Number of Rows):</label>
         <input type="number" id="size" name="size" min="1" value="5" required>
+        
+        <label for="epochs">Enter Number of Epochs:</label>
+        <input type="number" id="epochs" name="epochs" min="1" value="5" required>
+        
         <button type="submit">Generate Synthetic Data</button>
     </form>
     <div id="output">
         <h2>Generated Synthetic Data:</h2>
+        <div id="reliability">
+            <!-- Reliability score will be displayed here -->
+        </div>
         <table id="synthetic-table">
             <!-- Table rows will be dynamically added here -->
         </table>
@@ -22,42 +46,85 @@
     <script>
         document.getElementById('data-form').addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            // Get form values
+            const formData = new FormData();
+            const fileInput = document.getElementById('file');
             const size = document.getElementById('size').value;
-        
-            const response = await fetch('/process', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `size=${encodeURIComponent(size)}`
-            });
-        
-            const data = await response.json();
-            const syntheticData = data.synthetic_data;
-        
-            const table = document.getElementById('synthetic-table');
-            table.innerHTML = ''; // Clear any previous table content
-        
-            // Generate table headers
-            if (syntheticData.length > 0) {
-                const headers = Object.keys(syntheticData[0]);
-                const headerRow = document.createElement('tr');
-                headers.forEach(header => {
-                    const th = document.createElement('th');
-                    th.textContent = header;
-                    headerRow.appendChild(th);
-                });
-                table.appendChild(headerRow);
+            const epochs = document.getElementById('epochs').value;
+
+            // Append the file only if it exists
+            if (fileInput && fileInput.files.length > 0) {
+                formData.append('file', fileInput.files[0]);
             }
-        
-            // Generate table rows
-            syntheticData.forEach(row => {
-                const tr = document.createElement('tr');
-                Object.values(row).forEach(cell => {
-                    const td = document.createElement('td');
-                    td.textContent = cell;
-                    tr.appendChild(td);
+
+            // Append other form data
+            formData.append('size', size);
+            formData.append('epochs', epochs);
+
+            // Display "Generating data..." message with animation
+            const outputDiv = document.getElementById('output');
+            const generatingMessage = document.createElement('p');
+            generatingMessage.id = 'generating-message';
+            generatingMessage.innerHTML = 'Generating data<span></span>'; // The animated dots are in the span
+            outputDiv.appendChild(generatingMessage);
+
+            try {
+                // Make the fetch request
+                const response = await fetch('/process', {
+                    method: 'POST',
+                    body: formData,
                 });
-                table.appendChild(tr);
-            });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+
+                const syntheticData = data.synthetic_data;
+                const reliability = data.reliability;
+
+                // Display reliability score
+                const reliabilityDiv = document.getElementById('reliability');
+                reliabilityDiv.innerHTML = `<p>Data Reliability: <strong>${reliability}%</strong></p>`;
+
+                // Generate synthetic data table
+                const table = document.getElementById('synthetic-table');
+                table.innerHTML = ''; // Clear any previous table content
+
+                // Generate table headers
+                if (syntheticData.length > 0) {
+                    const headers = Object.keys(syntheticData[0]);
+                    const headerRow = document.createElement('tr');
+                    headers.forEach(header => {
+                        const th = document.createElement('th');
+                        th.textContent = header;
+                        headerRow.appendChild(th);
+                    });
+                    table.appendChild(headerRow);
+                }
+
+                // Generate table rows
+                syntheticData.forEach(row => {
+                    const tr = document.createElement('tr');
+                    Object.values(row).forEach(cell => {
+                        const td = document.createElement('td');
+                        td.textContent = cell;
+                        tr.appendChild(td);
+                    });
+                    table.appendChild(tr);
+                });
+            } catch (error) {
+                alert('An error occurred while generating data.');
+            } finally {
+                // Remove the "Generating data..." message
+                const existingMessage = document.getElementById('generating-message');
+                if (existingMessage) {
+                    existingMessage.remove();
+                }
+            }
         });
     </script>
 </body>
