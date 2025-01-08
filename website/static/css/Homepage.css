@@ -1,0 +1,146 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-image: url('https://assets.datamation.com/uploads/2023/08/dm08172023-what-is-data-analytics-696x455.png'); /* Add your image URL here */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensures the content is vertically centered */
+}
+
+iframe {
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: gives a dark overlay behind the plot */
+    border: none;
+    border-radius: 10px; /* Optional: smooth rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.5); /* Optional: glow effect */
+    width: 80%; /* Adjust width to fit the container */
+    height: 600px; /* Adjust height as needed */
+    margin: 20px auto; /* Center the iframe horizontally */
+    display: block; /* Ensures it's centered properly */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 600px; /* Restricts the max width of the container */
+    width: 100%; /* Ensures full width */
+}
+
+h1 {
+    font-size: 3em;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Adding dark overlay for the background */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: -1;
+}
+
+.message {
+    font-size: 1.2em;
+    margin-top: 20px;
+    
+}
+
+/* Input Field Styling */
+input[type="number"], input[type="file"] {
+    font-size: 1.2em;
+    padding: 12px;
+    margin-top: 12px; /* Provides consistent vertical spacing */
+    margin-bottom: 12px;
+    width: 100%; /* Ensures the input field takes the full container width */
+    max-width: 400px; /* Restricts the maximum width */
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+input[type="number"]:focus, input[type="file"]:hover {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+input[type="number"]::placeholder, input[type="file"]::placeholder {
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+/* Button Styling */
+button, .glow-on-hover {
+    font-size: 1.2em;
+    padding: 12px 30px; /* Ensuring consistent padding */
+    margin-bottom: 12px;
+    border-radius: 50px;
+    background-color: rgba(0, 123, 255, 0.7);
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.5);
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: bold;
+    max-width: 400px; /* Match button width */
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+}
+
+/* Additional styling for the hover state of both buttons */
+button:hover, .glow-on-hover:hover {
+    background-color: rgba(0, 123, 255, 1);
+    transform: scale(1.05);
+}
+
+.glow-on-hover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: width 0.4s, height 0.4s, top 0.4s, left 0.4s;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.glow-on-hover:hover::before {
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+

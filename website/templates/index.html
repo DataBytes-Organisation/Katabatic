@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GANBLR++ Training</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>  <!-- Include Plotly -->
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="fade-in">GANBLR++</h1>
+
+            <!-- Upload Dataset -->
+            <form id="uploadForm" class="form-container">
+                <input type="file" id="fileInput" accept=".csv" required />
+                <button type="button" id="uploadButton" class="glow-on-hover">Upload Dataset</button>
+            </form>
+
+            <!-- Training Parameters -->
+            <div id="trainingParams" style="display: none;">
+                <!-- Epochs Field -->
+                <div class="form-group">
+                    <label for="epochsInput" class="form-label">Epochs:</label>
+                    <input 
+                        type="number" 
+                        id="epochsInput" 
+                        placeholder="Value of Epochs for GANBLR++" 
+                        class="form-input" 
+                        required />
+                </div>
+            
+                <!-- Batch Size Field -->
+                <div class="form-group">
+                    <label for="batchSizeInput" class="form-label">Batch Size:</label>
+                    <input 
+                        type="number" 
+                        id="batchSizeInput" 
+                        placeholder="Batch size of the synthetic data" 
+                        class="form-input" 
+                        required />
+                </div>
+            
+                <!-- Start Training Button -->
+                <button type="button" id="trainButton" class="glow-on-hover">Start Training</button>
+            </div>
+
+            <!-- Status Messages -->
+            <div id="message" class="message"></div>
+
+             <!-- Plotly Graph Container -->
+            <div id="plotlyGraph" style="margin-top: 20px;"></div>
+        </div>
+
+        <script>
+            const fileInput = document.getElementById('fileInput');
+            const uploadButton = document.getElementById('uploadButton');
+            const trainButton = document.getElementById('trainButton');
+            const trainingParams = document.getElementById('trainingParams');
+            const messageDiv = document.getElementById('message');
+            const epochsInput = document.getElementById('epochsInput');
+            const batchSizeInput = document.getElementById('batchSizeInput');
+            const plotlyGraph = document.getElementById('plotlyGraph');
+
+            let uploadedFilePath = null;
+
+            // Upload Dataset
+            uploadButton.addEventListener('click', async () => {
+                messageDiv.innerHTML = '';
+                if (!fileInput.files.length) {
+                    messageDiv.textContent = 'Please select a file to upload.';
+                    messageDiv.className = 'message error';
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+
+                try {
+                    messageDiv.textContent = 'Uploading dataset...';
+                    messageDiv.className = 'message info';
+
+                    const response = await fetch('/upload', {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        messageDiv.textContent = result.message || 'Dataset uploaded successfully!';
+                        messageDiv.className = 'message success';
+
+                        // Store the file path returned from the server
+                        uploadedFilePath = result.filepath;
+
+
+                        // Show Training Parameters
+                        trainingParams.style.display = 'block';
+                    } else {
+                        messageDiv.textContent = result.error || 'Failed to upload dataset.';
+                        messageDiv.className = 'message error';
+                    }
+                } catch (error) {
+                    messageDiv.textContent = 'Failed to connect to the server.';
+                    messageDiv.className = 'message error';
+                }
+            });
+
+            // Start Training
+            trainButton.addEventListener('click', async () => {
+                const epochs = parseInt(epochsInput.value);
+                const batchSize = parseInt(batchSizeInput.value);
+
+                // Validate inputs
+                if (isNaN(epochs) || epochs <= 0 || isNaN(batchSize) || batchSize <= 0) {
+                    messageDiv.textContent = 'Please enter valid values for epochs and batch size.';
+                    messageDiv.className = 'message error';
+                    return;
+                }
+
+                messageDiv.innerHTML = '';
+                try {
+                    messageDiv.textContent = 'Training started...';
+                    messageDiv.className = 'message info';
+
+                    const response = await fetch('/generate', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ filepath: uploadedFilePath, epochs, batch_size: batchSize }),
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        messageDiv.textContent = result.message || 'Training completed successfully!';
+                        messageDiv.className = 'message success';
+        
+                        
+
+                        
+                    } else {
+                        messageDiv.textContent = result.error || 'Training failed.';
+                        messageDiv.className = 'message error';
+                    }
+                } catch (error) {
+                    messageDiv.textContent = 'Failed to connect to the server.';
+                    messageDiv.className = 'message error';
+                }
+            });
+        </script>
+    </body>
+</html>
