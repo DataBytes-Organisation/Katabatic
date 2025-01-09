@@ -135,9 +135,29 @@
                     if (response.ok) {
                         messageDiv.textContent = result.message || 'Training completed successfully!';
                         messageDiv.className = 'message success';
-        
-                        
 
+                        if (result.csv_url) {
+                            // Remove any existing download button to avoid duplicates
+                            const existingButton = document.getElementById('downloadButton');
+                            if (existingButton) {
+                                existingButton.remove();
+                            }
+                        
+                            // Create the download button
+                            const downloadButton = document.createElement('button');
+                            downloadButton.id = 'downloadButton';
+                            downloadButton.textContent = 'Download Synthetic Data';
+                            downloadButton.className = 'glow-on-hover';
+                        
+                            // Add click event to initiate download
+                            downloadButton.addEventListener('click', () => {
+                                window.open(result.csv_url, '_blank');
+                            });
+                        
+                            // Append the button to the page
+                            document.body.appendChild(downloadButton);
+                        }
+        
                         
                     } else {
                         messageDiv.textContent = result.error || 'Training failed.';
