@@ -2,15 +2,6 @@
 # % pip install setuptools
 # % pip install twine
 
-import click
-import importlib  # are these
-import os
-import platform
-import shutil
-import sys
-import traceback  # necessary?
-
-from os.path import join
 from setuptools import find_packages, setup
 
 setup(
