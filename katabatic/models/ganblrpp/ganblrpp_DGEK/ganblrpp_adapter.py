@@ -78,3 +78,5 @@ class GanblrppAdapter(KatabaticModelSPI):
         except Exception as e:
             print(f"[ERROR] An error occurred during data generation: {e}")
             raise
+
+
