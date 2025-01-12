@@ -7,3 +7,6 @@ venv_*
 katabatic/output.csv
 katabatic/running.log
 katabatic/output.csv
+docs-2/ganblr_interface/creditcard.csv
+docs-2/ganblr_interface/uploaded_datasets/credit_X_train.csv
+docs-2/ganblr_interface/uploaded_datasets/creditcard.csv
