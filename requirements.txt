@@ -1,0 +1,5 @@
+pyitlib
+tensorflow
+pgmpy
+sdv
+scikit-learn==1.0
