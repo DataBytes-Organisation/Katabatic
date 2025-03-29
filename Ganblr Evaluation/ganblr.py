@@ -1,10 +1,14 @@
 import torch
 import torch.nn as nn
 import pandas as pd
+import logging
 
+# Setup logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 class GANBLR:
     def __init__(self, input_dim):
+        logging.info(f"Initializing GANBLR with input dimension {input_dim}")
         self.generator = self.build_generator(output_dim=input_dim)
         self.discriminator = self.build_discriminator(input_dim=input_dim)
         self.criterion = nn.BCELoss()
@@ -34,6 +38,7 @@ class GANBLR:
         )
 
     def fit(self, data):
+        logging.info(f"Starting training on data with {data.shape[0]} samples and {data.shape[1]} features")
         # Convert data to a tensor
         data_tensor = torch.tensor(data.values, dtype=torch.float32)
 
@@ -59,18 +64,18 @@ class GANBLR:
             d_loss.backward()
             self.optimizer_D.step()
 
-            print(f"Epoch {epoch+1}/100: Generator Loss: {g_loss.item()}, Discriminator Loss: {d_loss.item()}")
+            logging.info(f"Epoch {epoch+1}/100: Generator Loss: {g_loss.item()}, Discriminator Loss: {d_loss.item()}")
 
     def generate(self):
-        # Generate synthetic data
+        logging.info("Generating synthetic data...")
         noise = torch.randn(1000, 100)  # Example: Generate 1000 samples
         synthetic_data = self.generator(noise).detach().numpy()
         return pd.DataFrame(synthetic_data, columns=[f"Feature_{i}" for i in range(synthetic_data.shape[1])])
 
     def save(self, path):
         torch.save(self.generator.state_dict(), path)
-        print(f"Model saved to {path}")
+        logging.info(f"Model saved to {path}")
 
     def load(self, path):
         self.generator.load_state_dict(torch.load(path, weights_only=False))
-        print(f"Model loaded from {path}")
+        logging.info(f"Model loaded from {path}")
