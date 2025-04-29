@@ -1,9 +1,0 @@
-sdv>=1.15.0
-pandas>=2.2.3
-numpy>=1.26.4
-scikit-learn>=0.24.0
-matplotlib>=3.9.4
-seaborn>=0.13.2
-torch>=2.6.0
-xgboost>=2.1.4
-tqdm>=4.67.1
