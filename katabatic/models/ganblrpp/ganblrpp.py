@@ -214,7 +214,8 @@ class GANBLRPP:
             Fitted model.
         '''
         numerical_columns = self._numerical_columns
-        x[:,numerical_columns] = self.__discritizer.fit_transform(x[:,numerical_columns])
+        if len(numerical_columns) > 0:
+            x[:, numerical_columns] = self.__discritizer.fit_transform(x[:, numerical_columns])
         return self.__ganblr.fit(x, y, k, batch_size, epochs, warmup_epochs, verbose)
     
     def sample(self, size=None, verbose=1):
@@ -242,8 +243,10 @@ class GANBLRPP:
         if verbose:
             print('step 2/2: Sampling numerical data.')
         numerical_columns = self._numerical_columns
-        numerical_data = self.__discritizer.inverse_transform(syn_x[:,numerical_columns].astype(int))
-        syn_x[:,numerical_columns] = numerical_data 
+        if len(numerical_columns) > 0:
+            numerical_data = self.__discritizer.inverse_transform(syn_x[:, numerical_columns].astype(int))
+            syn_x[:, numerical_columns] = numerical_data
+            #  syn_x[:,numerical_columns] = numerical_data 
         return np.hstack([syn_x, syn_y])
 
     def evaluate(self, x, y, model='lr'):
