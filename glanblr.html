@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLANBLR Model - Katabatic</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Homepage.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('home') }}"><h2>Katabatic</h2></a>
+        </div>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About us</a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('Contact') }}">Contact Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>GLANBLR Model Overview</h1>
+        <p>
+            The <strong>GLANBLR model</strong> (Generative Latent Adaptive Neural Binary Logistic Regressor) helps generate synthetic environmental data, enabling analysts to study rare pollution patterns in lesser-known ports.
+        </p>
+
+        <h2>Applications:</h2>
+        <ul>
+            <li>Emission risk analysis</li>
+            <li>Synthetic data generation for gaps</li>
+            <li>Impact visualization for environmental compliance</li>
+        </ul>
+
+        <div class="chart-placeholder" style="padding:20px; border:1px dashed #aaa; margin-top:20px;">
+            [Insert GLANBLR Visualization Here]
+        </div>
+
+        <a href="/" class="custom-button">Go Back</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Katabatic. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
