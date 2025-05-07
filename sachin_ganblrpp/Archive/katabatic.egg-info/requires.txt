@@ -1,0 +1,9 @@
+pandas
+numpy
+scikit-learn
+pyitlib
+tensorflow
+pgmpy
+sdv
+
+[dev]

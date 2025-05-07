@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Katabatic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+        <p>Model Workflow: {{ model }}</p>
+    </header>
+
+    <main>
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="messages">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Dataset Preview -->
+        {% if dataset_preview %}
+        <section class="dataset-preview">
+            <h2>Dataset Preview</h2>
+            <div>{{ dataset_preview | safe }}</div>
+        </section>
+        {% endif %}
+
+        <!-- Preprocess Button -->
+        <section class="workflow-buttons">
+            <form method="POST" action="/preprocess">
+                <button type="submit">Preprocess Data</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Katabatic. All rights reserved.</p>
+    </footer>
+</body>
+</html>
