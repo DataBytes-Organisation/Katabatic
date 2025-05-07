@@ -1,0 +1,56 @@
+Dataset shape: (30000, 25)
+Columns: ['ID', 'LIMIT_BAL', 'SEX', 'EDUCATION', 'MARRIAGE', 'AGE', 'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', 'PAY_6', 'BILL_AMT1', 'BILL_AMT2', 'BILL_AMT3', 'BILL_AMT4', 'BILL_AMT5', 'BILL_AMT6', 'PAY_AMT1', 'PAY_AMT2', 'PAY_AMT3', 'PAY_AMT4', 'PAY_AMT5', 'PAY_AMT6', 'default.payment.next.month']
+Training data shape: (24000, 23)
+Testing data shape: (6000, 23)
+Processed training data shape: (24000, 91)
+Processed testing data shape: (6000, 91)
+Number of features after preprocessing: 91
+Data dimension: 91
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -16341184.1950 | Generator Loss: 14.2213 | Time: 64.27s
+Epoch [11/300] | Critic Loss: -1537229112341.7874 | Generator Loss: 3170749.6622 | Time: 52.29s
+Epoch [21/300] | Critic Loss: -36813985200433.0234 | Generator Loss: 213116745.1064 | Time: 52.28s
+Epoch [31/300] | Critic Loss: -217466585776825.1875 | Generator Loss: 2004303423.3191 | Time: 50.81s
+Epoch [41/300] | Critic Loss: -727960198148706.0000 | Generator Loss: 17856613166.2979 | Time: 52.12s
+Epoch [51/300] | Critic Loss: -5454125858949861.0000 | Generator Loss: 217139534913.3617 | Time: 52.24s
+Epoch [61/300] | Critic Loss: -23106061403729484.0000 | Generator Loss: 577504663246.9788 | Time: 50.80s
+Epoch [71/300] | Critic Loss: -54041166293472016.0000 | Generator Loss: 2480588508225.3618 | Time: 52.25s
+Epoch [81/300] | Critic Loss: -137263568025556432.0000 | Generator Loss: 5284739487874.7236 | Time: 51.98s
+Epoch [91/300] | Critic Loss: -658026784728346496.0000 | Generator Loss: 7135825315534.9785 | Time: 51.37s
+Epoch [101/300] | Critic Loss: -2442734806514989568.0000 | Generator Loss: 42663617701408.6797 | Time: 52.16s
+Epoch [111/300] | Critic Loss: -5825161114061658112.0000 | Generator Loss: 129415427240894.6406 | Time: 50.68s
+Epoch [121/300] | Critic Loss: -12612244386303633408.0000 | Generator Loss: 352294687546171.9375 | Time: 52.16s
+Epoch [131/300] | Critic Loss: -22690483812915060736.0000 | Generator Loss: 854277030033015.8750 | Time: 51.43s
+Epoch [141/300] | Critic Loss: -38275841655403864064.0000 | Generator Loss: 1980583070796516.7500 | Time: 51.90s
+Epoch [151/300] | Critic Loss: -89892743424416923648.0000 | Generator Loss: 3456119683605700.0000 | Time: 51.96s
+Epoch [161/300] | Critic Loss: -198685108065092108288.0000 | Generator Loss: 5582078997341031.0000 | Time: 50.83s
+Epoch [171/300] | Critic Loss: -302985143961548357632.0000 | Generator Loss: 9561645281432684.0000 | Time: 52.17s
+Epoch [181/300] | Critic Loss: -615349147934852382720.0000 | Generator Loss: 17128568232702562.0000 | Time: 51.55s
+Epoch [191/300] | Critic Loss: -925060427671726194688.0000 | Generator Loss: 26827740634376060.0000 | Time: 52.34s
+Epoch [201/300] | Critic Loss: -1313078785549921943552.0000 | Generator Loss: 40966465642767904.0000 | Time: 52.53s
+Epoch [211/300] | Critic Loss: -1873315483391341363200.0000 | Generator Loss: 57805254293923360.0000 | Time: 53.07s
+Epoch [221/300] | Critic Loss: -3066123773874802786304.0000 | Generator Loss: 89452368901327936.0000 | Time: 52.67s
+Epoch [231/300] | Critic Loss: -3780673454779292712960.0000 | Generator Loss: 131189089364155200.0000 | Time: 52.04s
+Epoch [241/300] | Critic Loss: -6541269095272436203520.0000 | Generator Loss: 223236752429324416.0000 | Time: 52.34s
+Epoch [251/300] | Critic Loss: -10801442173819774042112.0000 | Generator Loss: 297896932023445696.0000 | Time: 52.42s
+Epoch [261/300] | Critic Loss: -13702264006367464390656.0000 | Generator Loss: 385504985265164736.0000 | Time: 52.54s
+Epoch [271/300] | Critic Loss: -18666845719481238421504.0000 | Generator Loss: 451573384573627264.0000 | Time: 52.73s
+Epoch [281/300] | Critic Loss: -21881377438335221366784.0000 | Generator Loss: 594063513653909632.0000 | Time: 52.98s
+Epoch [291/300] | Critic Loss: -28030391839586894479360.0000 | Generator Loss: 746665398284253824.0000 | Time: 53.00s
+Epoch [300/300] | Critic Loss: -40209150878901212282880.0000 | Generator Loss: 954264783440537472.0000 | Time: 53.15s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Jensen-Shannon Divergence (average): 0.12039899243469934
+Wasserstein Distance (average): 0.24623715195070095
+
+Evaluating Machine Learning Utility (TSTR)...
+
+TSTR Results:
+Logistic Regression: Accuracy = 0.7727, F1 Score = 0.6761, AUC-ROC = 0.5088
+MLP: Accuracy = 0.7719, F1 Score = 0.6749, AUC-ROC = 0.4154
+Random Forest: Accuracy = 0.7742, F1 Score = 0.6756, AUC-ROC = 0.5203
+XGBoost: Accuracy = 0.7792, F1 Score = 0.7050, AUC-ROC = 0.6414
+
+Evaluation complete! Check the output directory for plots and saved model.
