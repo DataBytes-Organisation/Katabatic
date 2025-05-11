@@ -1,0 +1,213 @@
+/* ----------------- */
+/* Main Section      */
+/* ----------------- */
+.Firstpage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #bcc6cc 100%);
+    color: #3b3b3b;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.Firstpage h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    color: #2a374f; /* Darker shade for text */
+    text-transform: uppercase;
+}
+
+.Firstpage p {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    color: #3b3b3b;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Error Message Styling */
+.error-message {
+    color: #d99292; /* Light red for error messages */
+    font-size: 1.1rem; /* Slightly larger error message text */
+    margin-top: 10px; /* Space above the error message */
+    visibility: hidden; /* Hidden by default */
+}
+
+/* Mobile Responsiveness for Firstpage Section */
+@media (max-width: 768px) {
+    .Firstpage h1 {
+        font-size: 2.5rem; /* Adjusted header font size for smaller screens */
+    }
+    .Firstpage p {
+        font-size: 1rem; /* Adjusted paragraph font size for smaller screens */
+    }
+}
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 20px;
+    text-align: center;
+}
+
+footer .social-icons a {
+    color: var(--text-color);
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+footer .social-icons a:hover {
+    color: var(--secondary-color);
+}
+
+/* ----------------- */
+/* Footer Section    */
+/* ----------------- */
+footer {
+    background-color: #1a2a33; /* Dark footer background */
+    color: #eae0d5; /* Light footer text */
+    text-align: center; /* Center align footer text */
+    padding: 20px; /* Padding inside the footer */
+    font-size: 1rem; /* Standard font size */
+}
+
+/* ----------------- */
+/* Upload Section    */
+/* ----------------- */
+.upload-container {
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    flex-direction: column; /* Stack items vertically */
+    margin-top: 30px; /* Space above the upload container */
+}
+
+.upload-container input[type="file"] {
+    display: none; /* Hide the file input */
+}
+
+.upload-container label {
+    background-color: #4f2a4e; /* Deep blue */
+    color: #f8f9fa;
+    padding: 20px 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 8px 12px rgba(60, 70, 102, 0.2);
+}
+
+.upload-container label:hover {
+    background-color: #e1b07d; /* Amber hover effect */
+    color: #2a2e4f; /* Dark text color on hover */
+    transform: translateY(-5px);
+}
+
+/* ----------------- */
+/* Model Selection Section */
+/* ----------------- */
+.selection-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #bcc6cc 100%); /* Retaining background */
+    color: #702323; /* Light color for text */
+}
+
+.selection-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #233551; 
+}
+
+.dropdown-container {
+    text-align: center; /* Center align the dropdown */
+    margin-bottom: 20px; /* Space below the dropdown */
+}
+
+.dropdown-container select {
+    width: 300px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #090f30; /* New border color */
+    border-radius: 5px;
+    background-color: #8aa6ae; /* Deep blue background */
+    color: #080808; /* Light text */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-family:Arial, Helvetica, sans-serif ;
+}
+
+.dropdown-container select:hover {
+    border-color: #e1b07d; /* Amber color on hover */
+    
+}
+
+/* ----------------- */
+/* Error Message for Model Selection */
+/* ----------------- */
+.error-message {
+    color: #800e0e; /* Red error color */
+    font-size: 1.1rem; /* Slightly larger font size */
+    margin-top: 10px; /* Space above the error message */
+    visibility: hidden; /* Hidden by default */
+}
+
+/* ----------------- */
+/* Button Styling */
+/* ----------------- */
+.custom-button {
+    background-color: #2a2e4f; /* Deep blue background */
+    color: #f8f9fa; /* Light text */
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-button:hover {
+    background-color: #e1b07d; /* Amber color on hover */
+    transform: translateY(-3px);
+}
+
+.custom-button:active {
+    transform: translateY(1px);
+}
+
+/* ----------------- */
+/* Remove Button Styling */
+/* ----------------- */
+#remove-btn {
+    background-color: #581f1f; /* Red background for remove button */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding inside the button */
+    font-size: 1rem; /* Font size for the button text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-top: 10px; /* Space above the button */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover and active transitions */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Button shadow */
+}
+
+#remove-btn:hover {
+    background-color: #cc5555; /* Darker red on hover */
+    transform: translateY(-3px); /* Subtle lift effect */
+}
+
+#remove-btn:active {
+    transform: translateY(1px); /* Pressed down effect */
+}
+

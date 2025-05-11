@@ -1,0 +1,77 @@
+/* ----------------- */
+/* Global Layout      */
+/* ----------------- */
+html, body {
+    height: 100%; /* Ensure full height */
+    margin: 0; /* Remove default margins */
+    display: flex;
+    flex-direction: column; /* Arrange elements vertically */
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Arrange elements vertically */
+    min-height: 100vh; /* Ensure the body takes up at least the full height of the viewport */
+}
+
+main {
+    flex: 1; /* Allow the main content to grow and take up the remaining space */
+}
+
+/* ----------------- */
+/* Contact Us Section */
+/* ----------------- */
+.Contact {
+    background: linear-gradient(135deg, #d8dee4, #7a8da1); /* Dark gradient background */
+    color: #2e3435; /* Light text color */
+    font-size: 1.3rem;
+    height: 100vh;
+    padding: 100px 20px; /* Increased padding around the section */
+    text-align: center; /* Centering content */
+    border-radius: 0px; /* Rounded corners for the section */
+}
+
+.Contact h2 {
+    font-size: 3rem; /* Increased header font size */
+    color: #1f2120; /* Bright green for header */
+    margin-top: 50px;
+    margin-bottom: 0px; /* Reduced space below the header */
+    font-weight: 600; /* Bolder header text */
+}
+
+.Contact .form-container {
+    max-width: 600px; /* Reduced max width for better mobile visibility */
+    margin: 0 auto; /* Center the form */
+    display: flex;
+    flex-direction: column; /* Column layout for easier form input */
+    gap: 20px; /* Gap between form fields */
+    padding: 20px;
+    background-color: #8ca6b1; /* Dark background for the form */
+    border-radius: 10px; /* Rounded corners for the form */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.397); /* Shadow for depth */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .Contact h2 {
+        font-size: 1.8rem; /* Slightly smaller font size for header */
+    }
+
+    .Contact .form-container {
+        padding: 15px; /* Reduce padding on smaller screens */
+    }
+}
+
+/* ----------------- */
+/* Footer Section    */
+/* ----------------- */
+footer {
+    background-color: #212529; /* Dark footer background */
+    color: #f8f9fa; /* Light text color */
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+    width: 100%; /* Ensure footer spans the entire width */
+    position: relative;
+    bottom: 0;
+}
