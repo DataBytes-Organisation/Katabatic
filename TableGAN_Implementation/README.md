@@ -51,8 +51,14 @@ The implementation was evaluated on the Adult dataset with the following results
 - `run_adult_evaluation.py`: Evaluation script for the Adult dataset
 - `results_summary.md`: Detailed summary of results
 - `scores_comparison.md`: Comparison with paper results
+- `model_links.md`: Correct links to GitHub repositories and papers for all models
 - `requirements.txt`: Dependencies required for running the code
 - `results/`: Directory containing output files, images, and detailed evaluation results
+
+## GitHub Repository
+
+The implementation is available on GitHub at:
+[https://github.com/khushic/tableGAN-implementation](https://github.com/khushic/tableGAN-implementation)
 
 ## Usage
 
