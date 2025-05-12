@@ -1,9 +1,0 @@
-pyitlib
-pgmpy
-scikit-learn
-tensorflow
-sdv
-fastapi
-uvicorn
-pandas
-katabatic  

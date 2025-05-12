@@ -1,1 +1,0 @@
-from .ctgan_adapter import CtganAdapter
