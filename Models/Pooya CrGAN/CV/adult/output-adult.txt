@@ -1,0 +1,505 @@
+Data shape: (48842, 108)
+
+====== Running original data, Fold 1/5 ======
+Data dimension: 108
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -108974.2395 | Generator Loss: 12.9653 | Time: 50.87s
+Epoch [11/300] | Critic Loss: -483638761712834.0625 | Generator Loss: 33550237585.5686 | Time: 65.57s
+Epoch [21/300] | Critic Loss: -104865498051853808.0000 | Generator Loss: 7823975768545.8828 | Time: 66.55s
+Epoch [31/300] | Critic Loss: -2479174663700436992.0000 | Generator Loss: 174034226827130.1562 | Time: 56.66s
+Epoch [41/300] | Critic Loss: -24199622736113250304.0000 | Generator Loss: 2770798812350879.0000 | Time: 67.57s
+Epoch [51/300] | Critic Loss: -139562328545346093056.0000 | Generator Loss: 10446996927117860.0000 | Time: 62.66s
+Epoch [61/300] | Critic Loss: -594085059264942833664.0000 | Generator Loss: 47909181790317760.0000 | Time: 68.29s
+Epoch [71/300] | Critic Loss: -1717144429070259322880.0000 | Generator Loss: 151439557456503584.0000 | Time: 66.89s
+Epoch [81/300] | Critic Loss: -3947916518022187581440.0000 | Generator Loss: 291367851333453888.0000 | Time: 63.81s
+Epoch [91/300] | Critic Loss: -7980352620086487416832.0000 | Generator Loss: 679164234966148096.0000 | Time: 62.32s
+Epoch [101/300] | Critic Loss: -15494667570121338257408.0000 | Generator Loss: 1529039767342057728.0000 | Time: 65.01s
+Epoch [111/300] | Critic Loss: -27842402248879895478272.0000 | Generator Loss: 2819424425905388544.0000 | Time: 59.82s
+Epoch [121/300] | Critic Loss: -45566287182299085668352.0000 | Generator Loss: 4307614669690382336.0000 | Time: 67.91s
+Epoch [131/300] | Critic Loss: -72910821327119832842240.0000 | Generator Loss: 5955547768656163840.0000 | Time: 66.40s
+Epoch [141/300] | Critic Loss: -112309622283189591474176.0000 | Generator Loss: 7670040530279913472.0000 | Time: 68.24s
+Epoch [151/300] | Critic Loss: -172913046624780960137216.0000 | Generator Loss: 14770199291775418368.0000 | Time: 66.18s
+Epoch [161/300] | Critic Loss: -248921073096978073649152.0000 | Generator Loss: 22519905979964960768.0000 | Time: 62.43s
+Epoch [171/300] | Critic Loss: -329824282533369437224960.0000 | Generator Loss: 30967697519686406144.0000 | Time: 61.74s
+Epoch [181/300] | Critic Loss: -434089256157176282480640.0000 | Generator Loss: 51397000620796133376.0000 | Time: 66.12s
+Epoch [191/300] | Critic Loss: -503650631140183478632448.0000 | Generator Loss: 59853824282035888128.0000 | Time: 67.45s
+Epoch [201/300] | Critic Loss: -563690834650081819361280.0000 | Generator Loss: 80736278801094590464.0000 | Time: 60.71s
+Epoch [211/300] | Critic Loss: -531731568199062190555136.0000 | Generator Loss: 2321131315962290688.0000 | Time: 62.62s
+Epoch [221/300] | Critic Loss: -581498485440105471279104.0000 | Generator Loss: 14547540425892229120.0000 | Time: 67.39s
+Epoch [231/300] | Critic Loss: -649923491442689226833920.0000 | Generator Loss: 11010973113764894720.0000 | Time: 66.64s
+Epoch [241/300] | Critic Loss: -718079863437946846707712.0000 | Generator Loss: 6854711090636082176.0000 | Time: 69.55s
+Epoch [251/300] | Critic Loss: -808130958341156489920512.0000 | Generator Loss: 6662191544779331584.0000 | Time: 59.17s
+Epoch [261/300] | Critic Loss: -886678627517010802638848.0000 | Generator Loss: 7520391762034108416.0000 | Time: 65.29s
+Epoch [271/300] | Critic Loss: -965455086853887975489536.0000 | Generator Loss: 7616334336861968384.0000 | Time: 66.76s
+Epoch [281/300] | Critic Loss: -1026172614204308901068800.0000 | Generator Loss: 9315376258047674368.0000 | Time: 61.71s
+Epoch [291/300] | Critic Loss: -1115942915969904441032704.0000 | Generator Loss: 11940572551148951552.0000 | Time: 62.18s
+Epoch [300/300] | Critic Loss: -1213818170668281250185216.0000 | Generator Loss: 14006726516078252032.0000 | Time: 57.23s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Fold 1 Jensen-Shannon Divergence (average): nan
+Fold 1 Wasserstein Distance (average): 1.0484673264388933
+
+Evaluating Machine Learning Utility (TSTR) for fold 1...
+
+TSTR Results for fold 1:
+Logistic Regression: Accuracy = 0.2656, F1 Score = 0.1657
+MLP: Accuracy = 0.8933, F1 Score = 0.0501
+Random Forest: Accuracy = 0.8985, F1 Score = 0.0000
+XGBoost: Accuracy = 0.8932, F1 Score = 0.0324
+
+====== Running original data, Fold 2/5 ======
+Data dimension: 108
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -129928.3216 | Generator Loss: 16.3942 | Time: 61.04s
+Epoch [11/300] | Critic Loss: -442502755640634.5625 | Generator Loss: 21863426515.6601 | Time: 64.72s
+Epoch [21/300] | Critic Loss: -97361739087853152.0000 | Generator Loss: 4054049747613.2812 | Time: 63.92s
+Epoch [31/300] | Critic Loss: -2371336489639250432.0000 | Generator Loss: 116797624996562.8281 | Time: 52.78s
+Epoch [41/300] | Critic Loss: -23023961056564060160.0000 | Generator Loss: 1559208294911116.5000 | Time: 51.75s
+Epoch [51/300] | Critic Loss: -132456103890486870016.0000 | Generator Loss: 9431007058916426.0000 | Time: 47.16s
+Epoch [61/300] | Critic Loss: -576621505790122655744.0000 | Generator Loss: 38925397665640264.0000 | Time: 52.89s
+Epoch [71/300] | Critic Loss: -1698617369653379072000.0000 | Generator Loss: 113615468065918736.0000 | Time: 53.98s
+Epoch [81/300] | Critic Loss: -3691786776218133594112.0000 | Generator Loss: 267929451024866944.0000 | Time: 53.23s
+Epoch [91/300] | Critic Loss: -7601320596499208339456.0000 | Generator Loss: 488559688704116928.0000 | Time: 51.64s
+Epoch [101/300] | Critic Loss: -14208702125338773159936.0000 | Generator Loss: 949866821230485376.0000 | Time: 57.36s
+Epoch [111/300] | Critic Loss: -24300497124523734204416.0000 | Generator Loss: 1903543164144634880.0000 | Time: 58.24s
+Epoch [121/300] | Critic Loss: -42991765497704198701056.0000 | Generator Loss: 3568096400927729152.0000 | Time: 56.48s
+Epoch [131/300] | Critic Loss: -69372263300819083853824.0000 | Generator Loss: 7010799398904784896.0000 | Time: 56.25s
+Epoch [141/300] | Critic Loss: -108579371202643715162112.0000 | Generator Loss: 8768316493831406592.0000 | Time: 56.73s
+Epoch [151/300] | Critic Loss: -162221373801766882115584.0000 | Generator Loss: 11879819236475709440.0000 | Time: 55.98s
+Epoch [161/300] | Critic Loss: -232921995948018244780032.0000 | Generator Loss: 16192692517701423104.0000 | Time: 56.79s
+Epoch [171/300] | Critic Loss: -313833992731470793277440.0000 | Generator Loss: 24231084294777917440.0000 | Time: 56.21s
+Epoch [181/300] | Critic Loss: -411489562075506856165376.0000 | Generator Loss: 28064884761807847424.0000 | Time: 68.06s
+Epoch [191/300] | Critic Loss: -530141021969535152947200.0000 | Generator Loss: 45020703356912508928.0000 | Time: 66.00s
+Epoch [201/300] | Critic Loss: -598433843378726465699840.0000 | Generator Loss: 59417742695871913984.0000 | Time: 69.70s
+Epoch [211/300] | Critic Loss: -678747547636693725085696.0000 | Generator Loss: 37912164197738250240.0000 | Time: 67.85s
+Epoch [221/300] | Critic Loss: -761726846209826345713664.0000 | Generator Loss: 50502203196739174400.0000 | Time: 70.66s
+Epoch [231/300] | Critic Loss: -811151739843686432768000.0000 | Generator Loss: 35397347591741116416.0000 | Time: 67.05s
+Epoch [241/300] | Critic Loss: -812142250124837136629760.0000 | Generator Loss: 16992937495022002176.0000 | Time: 68.00s
+Epoch [251/300] | Critic Loss: -811074454306363510095872.0000 | Generator Loss: 1159115440321595904.0000 | Time: 59.02s
+Epoch [261/300] | Critic Loss: -854909524588892258304000.0000 | Generator Loss: 1345211209639862272.0000 | Time: 37.41s
+Epoch [271/300] | Critic Loss: -887176900599171778609152.0000 | Generator Loss: 1551247640319310592.0000 | Time: 33.81s
+Epoch [281/300] | Critic Loss: -983061442282402120466432.0000 | Generator Loss: 1280484281053741824.0000 | Time: 39.22s
+Epoch [291/300] | Critic Loss: -974755016316690670551040.0000 | Generator Loss: 1448465526462054656.0000 | Time: 46.91s
+Epoch [300/300] | Critic Loss: -1038478442686167193223168.0000 | Generator Loss: 1448078770552102912.0000 | Time: 65.54s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Fold 2 Jensen-Shannon Divergence (average): nan
+Fold 2 Wasserstein Distance (average): 1.0125942096783742
+
+Evaluating Machine Learning Utility (TSTR) for fold 2...
+
+TSTR Results for fold 2:
+Logistic Regression: Accuracy = 0.4128, F1 Score = 0.1310
+MLP: Accuracy = 0.8956, F1 Score = 0.0000
+Random Forest: Accuracy = 0.8985, F1 Score = 0.0000
+XGBoost: Accuracy = 0.8985, F1 Score = 0.0000
+
+====== Running original data, Fold 3/5 ======
+Data dimension: 108
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -128497.5694 | Generator Loss: 10.2500 | Time: 65.16s
+Epoch [11/300] | Critic Loss: -432199778200341.7500 | Generator Loss: 24641094843.3987 | Time: 61.74s
+Epoch [21/300] | Critic Loss: -86558400496747680.0000 | Generator Loss: 4893800408271.4775 | Time: 34.07s
+Epoch [31/300] | Critic Loss: -2165716383108920064.0000 | Generator Loss: 145608072748681.1875 | Time: 35.16s
+Epoch [41/300] | Critic Loss: -21422473643658690560.0000 | Generator Loss: 1508959195638656.7500 | Time: 30.93s
+Epoch [51/300] | Critic Loss: -124884581351033733120.0000 | Generator Loss: 9234884375088482.0000 | Time: 32.46s
+Epoch [61/300] | Critic Loss: -535769818785831452672.0000 | Generator Loss: 48616144246417448.0000 | Time: 33.16s
+Epoch [71/300] | Critic Loss: -1613768498982261882880.0000 | Generator Loss: 154987438083820800.0000 | Time: 32.66s
+Epoch [81/300] | Critic Loss: -3686366990719142330368.0000 | Generator Loss: 294656188448550400.0000 | Time: 45.15s
+Epoch [91/300] | Critic Loss: -7312830686621176168448.0000 | Generator Loss: 607216680965941888.0000 | Time: 37.54s
+Epoch [101/300] | Critic Loss: -13670302951061120352256.0000 | Generator Loss: 967772675024584960.0000 | Time: 39.63s
+Epoch [111/300] | Critic Loss: -24132092323769375260672.0000 | Generator Loss: 2385702111426958848.0000 | Time: 54.19s
+Epoch [121/300] | Critic Loss: -41317648324715392008192.0000 | Generator Loss: 5723599008658524160.0000 | Time: 45.48s
+Epoch [131/300] | Critic Loss: -66859415440156576972800.0000 | Generator Loss: 9708890637359486976.0000 | Time: 55.38s
+Epoch [141/300] | Critic Loss: -105980313745384810741760.0000 | Generator Loss: 18797582776292929536.0000 | Time: 45.95s
+Epoch [151/300] | Critic Loss: -164181938190372587962368.0000 | Generator Loss: 25061511076481699840.0000 | Time: 42.38s
+Epoch [161/300] | Critic Loss: -232944657031107958538240.0000 | Generator Loss: 23293635706184957952.0000 | Time: 55.96s
+Epoch [171/300] | Critic Loss: -304879763873617588256768.0000 | Generator Loss: 21188032432731308032.0000 | Time: 61.76s
+Epoch [181/300] | Critic Loss: -415738156000117765701632.0000 | Generator Loss: 32062030799826755584.0000 | Time: 39.69s
+Epoch [191/300] | Critic Loss: -504538305579866359070720.0000 | Generator Loss: 47583940399700647936.0000 | Time: 45.09s
+Epoch [201/300] | Critic Loss: -574612843192978996461568.0000 | Generator Loss: 47106687622193659904.0000 | Time: 55.20s
+Epoch [211/300] | Critic Loss: -635780012285019987902464.0000 | Generator Loss: 119315020176888872960.0000 | Time: 56.47s
+Epoch [221/300] | Critic Loss: -690857856196752841900032.0000 | Generator Loss: 38228801506000723968.0000 | Time: 57.39s
+Epoch [231/300] | Critic Loss: -663458445984825560006656.0000 | Generator Loss: 1325049570920003584.0000 | Time: 55.63s
+Epoch [241/300] | Critic Loss: -733689120865584064495616.0000 | Generator Loss: 1640846392372429312.0000 | Time: 54.87s
+Epoch [251/300] | Critic Loss: -788715169849367232249856.0000 | Generator Loss: 2281811325590763520.0000 | Time: 34.64s
+Epoch [261/300] | Critic Loss: -879977726694316377636864.0000 | Generator Loss: 2364437773932873728.0000 | Time: 47.98s
+Epoch [271/300] | Critic Loss: -915326639355604859092992.0000 | Generator Loss: 2208907220784468480.0000 | Time: 33.38s
+Epoch [281/300] | Critic Loss: -952566700275666018893824.0000 | Generator Loss: 1926698234724359680.0000 | Time: 47.46s
+Epoch [291/300] | Critic Loss: -990508076800570694828032.0000 | Generator Loss: 2393719237740080640.0000 | Time: 44.20s
+Epoch [300/300] | Critic Loss: -1062305942302059340496896.0000 | Generator Loss: 3403280977822172160.0000 | Time: 42.29s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Fold 3 Jensen-Shannon Divergence (average): nan
+Fold 3 Wasserstein Distance (average): 1.0210059253549302
+
+Evaluating Machine Learning Utility (TSTR) for fold 3...
+
+TSTR Results for fold 3:
+Logistic Regression: Accuracy = 0.3791, F1 Score = 0.1948
+MLP: Accuracy = 0.8984, F1 Score = 0.0100
+Random Forest: Accuracy = 0.9012, F1 Score = 0.0000
+XGBoost: Accuracy = 0.9012, F1 Score = 0.0000
+
+====== Running original data, Fold 4/5 ======
+Data dimension: 108
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -90904.8516 | Generator Loss: 2.4707 | Time: 58.78s
+Epoch [11/300] | Critic Loss: -489724749780202.2500 | Generator Loss: 57383710385.3595 | Time: 36.82s
+Epoch [21/300] | Critic Loss: -94379382657345904.0000 | Generator Loss: 7864768965290.6670 | Time: 34.76s
+Epoch [31/300] | Critic Loss: -2223515110617101824.0000 | Generator Loss: 203490358785954.3125 | Time: 45.05s
+Epoch [41/300] | Critic Loss: -21827222375102423040.0000 | Generator Loss: 1882631679234342.5000 | Time: 39.61s
+Epoch [51/300] | Critic Loss: -123692454337538408448.0000 | Generator Loss: 11474499220055890.0000 | Time: 45.40s
+Epoch [61/300] | Critic Loss: -526031160236556484608.0000 | Generator Loss: 51612799114307520.0000 | Time: 41.94s
+Epoch [71/300] | Critic Loss: -1468309845790175002624.0000 | Generator Loss: 149113049732481888.0000 | Time: 43.86s
+Epoch [81/300] | Critic Loss: -3493282354084374904832.0000 | Generator Loss: 330385137603220288.0000 | Time: 53.02s
+Epoch [91/300] | Critic Loss: -6723546067757480017920.0000 | Generator Loss: 661909557950660736.0000 | Time: 59.57s
+Epoch [101/300] | Critic Loss: -12463545162629296160768.0000 | Generator Loss: 1245401985347257856.0000 | Time: 38.43s
+Epoch [111/300] | Critic Loss: -21852252039133618241536.0000 | Generator Loss: 2198693286857485568.0000 | Time: 60.08s
+Epoch [121/300] | Critic Loss: -36962413583580891447296.0000 | Generator Loss: 3705759711364305408.0000 | Time: 43.02s
+Epoch [131/300] | Critic Loss: -61928233452740869619712.0000 | Generator Loss: 6016692234590987264.0000 | Time: 44.85s
+Epoch [141/300] | Critic Loss: -95126188092129793802240.0000 | Generator Loss: 9246660774676822016.0000 | Time: 37.87s
+Epoch [151/300] | Critic Loss: -138714660995426905227264.0000 | Generator Loss: 14327468581514887168.0000 | Time: 41.59s
+Epoch [161/300] | Critic Loss: -205092102218979827777536.0000 | Generator Loss: 21497610971562606592.0000 | Time: 54.44s
+Epoch [171/300] | Critic Loss: -287920705167969335902208.0000 | Generator Loss: 26747813497658388480.0000 | Time: 42.32s
+Epoch [181/300] | Critic Loss: -386231834309952368803840.0000 | Generator Loss: 29187119971242868736.0000 | Time: 32.72s
+Epoch [191/300] | Critic Loss: -431227901610490482130944.0000 | Generator Loss: 34586973160535248896.0000 | Time: 41.51s
+Epoch [201/300] | Critic Loss: -495702849360232900984832.0000 | Generator Loss: 35745627491820507136.0000 | Time: 63.37s
+Epoch [211/300] | Critic Loss: -589889160391222590701568.0000 | Generator Loss: 38915720051606241280.0000 | Time: 66.90s
+Epoch [221/300] | Critic Loss: -666315670289123712696320.0000 | Generator Loss: 51990401915252580352.0000 | Time: 72.99s
+Epoch [231/300] | Critic Loss: -745310576814232227020800.0000 | Generator Loss: 75213321253723324416.0000 | Time: 68.95s
+Epoch [241/300] | Critic Loss: -825053444815430652788736.0000 | Generator Loss: 104671504882955321344.0000 | Time: 66.31s
+Epoch [251/300] | Critic Loss: -919868247950936311332864.0000 | Generator Loss: 147282281963809341440.0000 | Time: 67.59s
+Epoch [261/300] | Critic Loss: -755397024570734672871424.0000 | Generator Loss: 19919571537023614976.0000 | Time: 67.17s
+Epoch [271/300] | Critic Loss: -682297905829900508463104.0000 | Generator Loss: 1006394594031114496.0000 | Time: 67.59s
+Epoch [281/300] | Critic Loss: -692010205361548243763200.0000 | Generator Loss: 2337055443044470784.0000 | Time: 65.91s
+Epoch [291/300] | Critic Loss: -748346592610842937655296.0000 | Generator Loss: 3290099088094332928.0000 | Time: 69.06s
+Epoch [300/300] | Critic Loss: -758216787756720483991552.0000 | Generator Loss: 4958325441319225344.0000 | Time: 59.64s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Fold 4 Jensen-Shannon Divergence (average): nan
+Fold 4 Wasserstein Distance (average): 1.008145784861269
+
+Evaluating Machine Learning Utility (TSTR) for fold 4...
+
+TSTR Results for fold 4:
+Logistic Regression: Accuracy = 0.4456, F1 Score = 0.0907
+MLP: Accuracy = 0.9305, F1 Score = 0.0423
+Random Forest: Accuracy = 0.9144, F1 Score = 0.0318
+XGBoost: Accuracy = 0.9359, F1 Score = 0.0040
+
+====== Running original data, Fold 5/5 ======
+Data dimension: 108
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -139827.3975 | Generator Loss: 13.3821 | Time: 60.01s
+Epoch [11/300] | Critic Loss: -510323085556796.2500 | Generator Loss: 25269356970.6667 | Time: 67.35s
+Epoch [21/300] | Critic Loss: -98441530471540448.0000 | Generator Loss: 6666044320640.8369 | Time: 65.22s
+Epoch [31/300] | Critic Loss: -2352107172102590976.0000 | Generator Loss: 188385820968411.1875 | Time: 66.71s
+Epoch [41/300] | Critic Loss: -22601349519081644032.0000 | Generator Loss: 1697601902347953.2500 | Time: 69.11s
+Epoch [51/300] | Critic Loss: -128723857260208865280.0000 | Generator Loss: 11379465643672088.0000 | Time: 63.21s
+Epoch [61/300] | Critic Loss: -538097793454978629632.0000 | Generator Loss: 50506741170365328.0000 | Time: 57.42s
+Epoch [71/300] | Critic Loss: -1580676538512030826496.0000 | Generator Loss: 134889302890652016.0000 | Time: 64.43s
+Epoch [81/300] | Critic Loss: -3416215004021250326528.0000 | Generator Loss: 270531583741532864.0000 | Time: 59.22s
+Epoch [91/300] | Critic Loss: -6862914581406960058368.0000 | Generator Loss: 562155853773926208.0000 | Time: 61.17s
+Epoch [101/300] | Critic Loss: -13081890445618648711168.0000 | Generator Loss: 1221795848319169024.0000 | Time: 63.79s
+Epoch [111/300] | Critic Loss: -23131704934830033600512.0000 | Generator Loss: 2283520595465996800.0000 | Time: 62.78s
+Epoch [121/300] | Critic Loss: -39360093503354788904960.0000 | Generator Loss: 3735949626891498496.0000 | Time: 67.20s
+Epoch [131/300] | Critic Loss: -63193440292763066171392.0000 | Generator Loss: 6022799701441539072.0000 | Time: 67.07s
+Epoch [141/300] | Critic Loss: -98861870970073289588736.0000 | Generator Loss: 8612745574053902336.0000 | Time: 65.23s
+Epoch [151/300] | Critic Loss: -149486570567543338041344.0000 | Generator Loss: 13232387868820629504.0000 | Time: 34.06s
+Epoch [161/300] | Critic Loss: -215559490864857168740352.0000 | Generator Loss: 19772121298420912128.0000 | Time: 35.43s
+Epoch [171/300] | Critic Loss: -292898485209000065368064.0000 | Generator Loss: 21274739926884073472.0000 | Time: 62.23s
+Epoch [181/300] | Critic Loss: -381998916032185642254336.0000 | Generator Loss: 29368297468522393600.0000 | Time: 56.67s
+Epoch [191/300] | Critic Loss: -482524801497460107116544.0000 | Generator Loss: 41198446870866763776.0000 | Time: 59.67s
+Epoch [201/300] | Critic Loss: -536714378260476730540032.0000 | Generator Loss: 53999056338411233280.0000 | Time: 64.00s
+Epoch [211/300] | Critic Loss: -558249086710969362546688.0000 | Generator Loss: 67807930544739688448.0000 | Time: 42.80s
+Epoch [221/300] | Critic Loss: -502295139019490330673152.0000 | Generator Loss: 19606574066785746944.0000 | Time: 31.85s
+Epoch [231/300] | Critic Loss: -567041385612385397506048.0000 | Generator Loss: 72022978300195774464.0000 | Time: 33.14s
+Epoch [241/300] | Critic Loss: -652996071287662755971072.0000 | Generator Loss: 116854190569159213056.0000 | Time: 33.18s
+Epoch [251/300] | Critic Loss: -731708516282824745025536.0000 | Generator Loss: 125756270188296372224.0000 | Time: 31.59s
+Epoch [261/300] | Critic Loss: -769602844850398588567552.0000 | Generator Loss: 96990013078307667968.0000 | Time: 31.97s
+Epoch [271/300] | Critic Loss: -810082219117120233406464.0000 | Generator Loss: 25476828320877961216.0000 | Time: 31.80s
+Epoch [281/300] | Critic Loss: -904072757318284589662208.0000 | Generator Loss: 73920667681501708288.0000 | Time: 31.38s
+Epoch [291/300] | Critic Loss: -1006110847043144649801728.0000 | Generator Loss: 106366125950399152128.0000 | Time: 31.98s
+Epoch [300/300] | Critic Loss: -1065598318766776186306560.0000 | Generator Loss: 121729825535795609600.0000 | Time: 31.03s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Fold 5 Jensen-Shannon Divergence (average): nan
+Fold 5 Wasserstein Distance (average): 1.0503447919319522
+
+Evaluating Machine Learning Utility (TSTR) for fold 5...
+
+TSTR Results for fold 5:
+Logistic Regression: Accuracy = 0.1303, F1 Score = 0.0754
+MLP: Accuracy = 0.9344, F1 Score = 0.0191
+Random Forest: Accuracy = 0.9578, F1 Score = 0.0000
+XGBoost: Accuracy = 0.9578, F1 Score = 0.0000
+
+====== Running shuffled data, Fold 1/5 ======
+Data dimension: 108
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -103171.0330 | Generator Loss: 6.3895 | Time: 31.40s
+Epoch [11/300] | Critic Loss: -493326521109644.5625 | Generator Loss: 35927439537.3595 | Time: 31.52s
+Epoch [21/300] | Critic Loss: -92861882482373600.0000 | Generator Loss: 4232094514129.1504 | Time: 31.47s
+Epoch [31/300] | Critic Loss: -2113865199203664640.0000 | Generator Loss: 88748009166058.2500 | Time: 31.06s
+Epoch [41/300] | Critic Loss: -21030060236151250944.0000 | Generator Loss: 848444371569590.3750 | Time: 31.52s
+Epoch [51/300] | Critic Loss: -122815871667443105792.0000 | Generator Loss: 5126795860778526.0000 | Time: 31.16s
+Epoch [61/300] | Critic Loss: -520958461669324947456.0000 | Generator Loss: 23687050124006848.0000 | Time: 32.01s
+Epoch [71/300] | Critic Loss: -1551679921671699693568.0000 | Generator Loss: 68930862043156344.0000 | Time: 31.95s
+Epoch [81/300] | Critic Loss: -3354354366250651484160.0000 | Generator Loss: 163359650312849280.0000 | Time: 30.97s
+Epoch [91/300] | Critic Loss: -6939739497808526311424.0000 | Generator Loss: 328904634164249024.0000 | Time: 31.46s
+Epoch [101/300] | Critic Loss: -12886566334738661900288.0000 | Generator Loss: 555109207210765824.0000 | Time: 30.77s
+Epoch [111/300] | Critic Loss: -23607930490479894855680.0000 | Generator Loss: 1034441267429121536.0000 | Time: 30.95s
+Epoch [121/300] | Critic Loss: -39283772133728470433792.0000 | Generator Loss: 1663225515857722112.0000 | Time: 31.12s
+Epoch [131/300] | Critic Loss: -62579734271141334745088.0000 | Generator Loss: 2705397668613140480.0000 | Time: 31.43s
+Epoch [141/300] | Critic Loss: -98123374176541505224704.0000 | Generator Loss: 4366989665691764224.0000 | Time: 31.31s
+Epoch [151/300] | Critic Loss: -141196277849720533024768.0000 | Generator Loss: 7942798937224793088.0000 | Time: 30.42s
+Epoch [161/300] | Critic Loss: -213738903798199110074368.0000 | Generator Loss: 12466986705133172736.0000 | Time: 32.41s
+Epoch [171/300] | Critic Loss: -293510513978266477395968.0000 | Generator Loss: 12902473639656744960.0000 | Time: 31.38s
+Epoch [181/300] | Critic Loss: -373450221132166608191488.0000 | Generator Loss: 15959680624280573952.0000 | Time: 31.02s
+Epoch [191/300] | Critic Loss: -449516603128994179579904.0000 | Generator Loss: 17794345464597571584.0000 | Time: 30.96s
+Epoch [201/300] | Critic Loss: -514077963475822095368192.0000 | Generator Loss: 20016757003298861056.0000 | Time: 30.60s
+Epoch [211/300] | Critic Loss: -504051168692736916193280.0000 | Generator Loss: 14386877812391798784.0000 | Time: 30.96s
+Epoch [221/300] | Critic Loss: -513647796240920191434752.0000 | Generator Loss: 8948817407888393216.0000 | Time: 31.01s
+Epoch [231/300] | Critic Loss: -557554070140804684316672.0000 | Generator Loss: 17533479978173868032.0000 | Time: 30.94s
+Epoch [241/300] | Critic Loss: -625477896502785637089280.0000 | Generator Loss: 21615924412534456320.0000 | Time: 36.77s
+Epoch [251/300] | Critic Loss: -712422732171243509776384.0000 | Generator Loss: 23570880673021857792.0000 | Time: 30.99s
+Epoch [261/300] | Critic Loss: -780291981146022532349952.0000 | Generator Loss: 22699491781453332480.0000 | Time: 30.85s
+Epoch [271/300] | Critic Loss: -860685662268901973557248.0000 | Generator Loss: 22329967775253127168.0000 | Time: 30.49s
+Epoch [281/300] | Critic Loss: -969073877626091422613504.0000 | Generator Loss: 21536449800509571072.0000 | Time: 31.15s
+Epoch [291/300] | Critic Loss: -1019406829992347793620992.0000 | Generator Loss: 23918649127721918464.0000 | Time: 30.80s
+Epoch [300/300] | Critic Loss: -1154555985364032925204480.0000 | Generator Loss: 23847169037793779712.0000 | Time: 30.94s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Fold 1 Jensen-Shannon Divergence (average): nan
+Fold 1 Wasserstein Distance (average): 1.050176026153972
+
+Evaluating Machine Learning Utility (TSTR) for fold 1...
+
+TSTR Results for fold 1:
+Logistic Regression: Accuracy = 0.3264, F1 Score = 0.1311
+MLP: Accuracy = 0.8993, F1 Score = 0.0344
+Random Forest: Accuracy = 0.9216, F1 Score = 0.0000
+XGBoost: Accuracy = 0.9155, F1 Score = 0.0000
+
+====== Running shuffled data, Fold 2/5 ======
+Data dimension: 108
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -167765.1439 | Generator Loss: 9.7114 | Time: 30.43s
+Epoch [11/300] | Critic Loss: -449340912575695.5000 | Generator Loss: 26049872576.4183 | Time: 31.44s
+Epoch [21/300] | Critic Loss: -92701428988753504.0000 | Generator Loss: 6644126109990.4834 | Time: 30.87s
+Epoch [31/300] | Critic Loss: -2209794728559618304.0000 | Generator Loss: 173924257042191.0625 | Time: 31.61s
+Epoch [41/300] | Critic Loss: -21351403853023064064.0000 | Generator Loss: 1827328009846677.0000 | Time: 30.48s
+Epoch [51/300] | Critic Loss: -123358036424307539968.0000 | Generator Loss: 11050164474448608.0000 | Time: 30.80s
+Epoch [61/300] | Critic Loss: -531197904330749378560.0000 | Generator Loss: 57428395184729176.0000 | Time: 30.98s
+Epoch [71/300] | Critic Loss: -1450592654730918100992.0000 | Generator Loss: 149995791848413248.0000 | Time: 30.63s
+Epoch [81/300] | Critic Loss: -3308212208732809461760.0000 | Generator Loss: 310474746048673280.0000 | Time: 30.72s
+Epoch [91/300] | Critic Loss: -6653519640384581402624.0000 | Generator Loss: 603289043863889024.0000 | Time: 31.50s
+Epoch [101/300] | Critic Loss: -12422752716219184316416.0000 | Generator Loss: 1371744971544198400.0000 | Time: 31.68s
+Epoch [111/300] | Critic Loss: -21447615515510452518912.0000 | Generator Loss: 2292765079256158464.0000 | Time: 30.52s
+Epoch [121/300] | Critic Loss: -37244276833865305161728.0000 | Generator Loss: 4114633335687170048.0000 | Time: 31.71s
+Epoch [131/300] | Critic Loss: -60845574563367527383040.0000 | Generator Loss: 6005139502428471296.0000 | Time: 30.75s
+Epoch [141/300] | Critic Loss: -94686134249198823931904.0000 | Generator Loss: 9544718164457797632.0000 | Time: 30.64s
+Epoch [151/300] | Critic Loss: -143928415851780067295232.0000 | Generator Loss: 15513588154523236352.0000 | Time: 30.68s
+Epoch [161/300] | Critic Loss: -208391365452844628967424.0000 | Generator Loss: 20530219893041315840.0000 | Time: 30.70s
+Epoch [171/300] | Critic Loss: -295225399177411532161024.0000 | Generator Loss: 26796089585819910144.0000 | Time: 30.13s
+Epoch [181/300] | Critic Loss: -366968479537409489371136.0000 | Generator Loss: 37281052349330530304.0000 | Time: 31.06s
+Epoch [191/300] | Critic Loss: -421045801518843612364800.0000 | Generator Loss: 61860907474333048832.0000 | Time: 30.77s
+Epoch [201/300] | Critic Loss: -418070723840484982128640.0000 | Generator Loss: 29670771406972149760.0000 | Time: 30.82s
+Epoch [211/300] | Critic Loss: -487361730724262542573568.0000 | Generator Loss: 54267313137246126080.0000 | Time: 31.73s
+Epoch [221/300] | Critic Loss: -514845978391946826088448.0000 | Generator Loss: 14194135121817972736.0000 | Time: 31.40s
+Epoch [231/300] | Critic Loss: -577184155444698251526144.0000 | Generator Loss: 10521966630617073664.0000 | Time: 30.59s
+Epoch [241/300] | Critic Loss: -606579500845739968299008.0000 | Generator Loss: 18969404617164505088.0000 | Time: 31.78s
+Epoch [251/300] | Critic Loss: -707123046485223853260800.0000 | Generator Loss: 17905163876154519552.0000 | Time: 31.04s
+Epoch [261/300] | Critic Loss: -792770585370761787080704.0000 | Generator Loss: 17433837804079718400.0000 | Time: 30.58s
+Epoch [271/300] | Critic Loss: -842915094412562922471424.0000 | Generator Loss: 14269643391169253376.0000 | Time: 30.43s
+Epoch [281/300] | Critic Loss: -931805766756915788906496.0000 | Generator Loss: 15444736475886698496.0000 | Time: 30.89s
+Epoch [291/300] | Critic Loss: -1017137676308098366570496.0000 | Generator Loss: 13102728611378159616.0000 | Time: 32.07s
+Epoch [300/300] | Critic Loss: -1065999244158732930646016.0000 | Generator Loss: 13894354676944902144.0000 | Time: 31.96s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Fold 2 Jensen-Shannon Divergence (average): nan
+Fold 2 Wasserstein Distance (average): 1.0479585310672554
+
+Evaluating Machine Learning Utility (TSTR) for fold 2...
+
+TSTR Results for fold 2:
+Logistic Regression: Accuracy = 0.2708, F1 Score = 0.1406
+MLP: Accuracy = 0.9234, F1 Score = 0.0000
+Random Forest: Accuracy = 0.9246, F1 Score = 0.0000
+XGBoost: Accuracy = 0.9030, F1 Score = 0.1124
+
+====== Running shuffled data, Fold 3/5 ======
+Data dimension: 108
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -41340.3496 | Generator Loss: 3.0106 | Time: 30.46s
+Epoch [11/300] | Critic Loss: -487728799098491.8125 | Generator Loss: 12420991173.4379 | Time: 30.42s
+Epoch [21/300] | Critic Loss: -109869610893020736.0000 | Generator Loss: 6580499218646.1699 | Time: 30.23s
+Epoch [31/300] | Critic Loss: -2655821479141556224.0000 | Generator Loss: 112762354365299.4531 | Time: 31.74s
+Epoch [41/300] | Critic Loss: -26051337059165503488.0000 | Generator Loss: 1566312249660650.2500 | Time: 29.98s
+Epoch [51/300] | Critic Loss: -150328074624483164160.0000 | Generator Loss: 9263570848521330.0000 | Time: 31.27s
+Epoch [61/300] | Critic Loss: -620849397524072890368.0000 | Generator Loss: 38295155203277440.0000 | Time: 32.00s
+Epoch [71/300] | Critic Loss: -1750618257718820995072.0000 | Generator Loss: 104479766926713312.0000 | Time: 30.95s
+Epoch [81/300] | Critic Loss: -3848854251512753815552.0000 | Generator Loss: 236771124125361472.0000 | Time: 30.72s
+Epoch [91/300] | Critic Loss: -7873717359474234097664.0000 | Generator Loss: 452001374992317696.0000 | Time: 30.35s
+Epoch [101/300] | Critic Loss: -14037638243357367992320.0000 | Generator Loss: 954838935428393984.0000 | Time: 29.85s
+Epoch [111/300] | Critic Loss: -25799477270250501701632.0000 | Generator Loss: 1528776424313686784.0000 | Time: 30.60s
+Epoch [121/300] | Critic Loss: -44080585473261886767104.0000 | Generator Loss: 2732140968441297920.0000 | Time: 30.42s
+Epoch [131/300] | Critic Loss: -70246889222875731984384.0000 | Generator Loss: 4413740017531128320.0000 | Time: 30.41s
+Epoch [141/300] | Critic Loss: -111846960414282173382656.0000 | Generator Loss: 6446373137778403328.0000 | Time: 30.54s
+Epoch [151/300] | Critic Loss: -171989622287467789942784.0000 | Generator Loss: 8213121457903072256.0000 | Time: 30.19s
+Epoch [161/300] | Critic Loss: -257030803848564154826752.0000 | Generator Loss: 10038844626804146176.0000 | Time: 29.83s
+Epoch [171/300] | Critic Loss: -338125768845042556862464.0000 | Generator Loss: 6293737974232745984.0000 | Time: 32.85s
+Epoch [181/300] | Critic Loss: -414878650016033654439936.0000 | Generator Loss: 8267315809331522560.0000 | Time: 30.67s
+Epoch [191/300] | Critic Loss: -472030657996431772614656.0000 | Generator Loss: 18212306141554585600.0000 | Time: 30.47s
+Epoch [201/300] | Critic Loss: -457380835541551763423232.0000 | Generator Loss: 14750194673017579520.0000 | Time: 31.34s
+Epoch [211/300] | Critic Loss: -480929139414238696046592.0000 | Generator Loss: 28022253602275078144.0000 | Time: 31.75s
+Epoch [221/300] | Critic Loss: -563545417597925397102592.0000 | Generator Loss: 58292686707321716736.0000 | Time: 30.45s
+Epoch [231/300] | Critic Loss: -625350084463102022123520.0000 | Generator Loss: 80988281842921848832.0000 | Time: 30.22s
+Epoch [241/300] | Critic Loss: -721591240474378960371712.0000 | Generator Loss: 87404806338670641152.0000 | Time: 32.31s
+Epoch [251/300] | Critic Loss: -771502352849750238167040.0000 | Generator Loss: 78618996337268539392.0000 | Time: 32.08s
+Epoch [261/300] | Critic Loss: -866091695897651777110016.0000 | Generator Loss: 71045528603646156800.0000 | Time: 32.89s
+Epoch [271/300] | Critic Loss: -912254419092154427113472.0000 | Generator Loss: 68933361326621122560.0000 | Time: 30.45s
+Epoch [281/300] | Critic Loss: -981182356841643129176064.0000 | Generator Loss: 68599105911147945984.0000 | Time: 30.46s
+Epoch [291/300] | Critic Loss: -1131587513526476404162560.0000 | Generator Loss: 73186103696703062016.0000 | Time: 30.37s
+Epoch [300/300] | Critic Loss: -1201635654629678901100544.0000 | Generator Loss: 71313409053304930304.0000 | Time: 29.76s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Fold 3 Jensen-Shannon Divergence (average): nan
+Fold 3 Wasserstein Distance (average): 1.0516962307558697
+
+Evaluating Machine Learning Utility (TSTR) for fold 3...
+
+TSTR Results for fold 3:
+Logistic Regression: Accuracy = 0.4205, F1 Score = 0.1511
+MLP: Accuracy = 0.8543, F1 Score = 0.1024
+Random Forest: Accuracy = 0.9213, F1 Score = 0.0000
+XGBoost: Accuracy = 0.7548, F1 Score = 0.1307
+
+====== Running shuffled data, Fold 4/5 ======
+Data dimension: 108
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -65784.2821 | Generator Loss: 1.2422 | Time: 29.84s
+Epoch [11/300] | Critic Loss: -508144698112441.7500 | Generator Loss: 33777834050.9281 | Time: 30.18s
+Epoch [21/300] | Critic Loss: -111472035217727536.0000 | Generator Loss: 9178673722762.8750 | Time: 30.23s
+Epoch [31/300] | Critic Loss: -2694892411489795584.0000 | Generator Loss: 244128754303832.6875 | Time: 29.64s
+Epoch [41/300] | Critic Loss: -26971331506117550080.0000 | Generator Loss: 2068028406840808.5000 | Time: 29.94s
+Epoch [51/300] | Critic Loss: -150273874852749836288.0000 | Generator Loss: 16168545484590970.0000 | Time: 30.47s
+Epoch [61/300] | Critic Loss: -631746931785550266368.0000 | Generator Loss: 54294408712986784.0000 | Time: 29.60s
+Epoch [71/300] | Critic Loss: -1712734151275608539136.0000 | Generator Loss: 156683299422052096.0000 | Time: 29.51s
+Epoch [81/300] | Critic Loss: -3753357062431873433600.0000 | Generator Loss: 376522457335251456.0000 | Time: 30.28s
+Epoch [91/300] | Critic Loss: -7693737737368756027392.0000 | Generator Loss: 734869855694891904.0000 | Time: 29.94s
+Epoch [101/300] | Critic Loss: -14614024769053699080192.0000 | Generator Loss: 1361660924053163264.0000 | Time: 30.12s
+Epoch [111/300] | Critic Loss: -24977539887446139863040.0000 | Generator Loss: 2526777075967347712.0000 | Time: 63.74s
+Epoch [121/300] | Critic Loss: -41923719714733524254720.0000 | Generator Loss: 4234377179304479744.0000 | Time: 59.43s
+Epoch [131/300] | Critic Loss: -68346490276115451478016.0000 | Generator Loss: 6168824078723153920.0000 | Time: 57.03s
+Epoch [141/300] | Critic Loss: -104010134480645246681088.0000 | Generator Loss: 9513720614971047936.0000 | Time: 54.69s
+Epoch [151/300] | Critic Loss: -162584965618530225487872.0000 | Generator Loss: 15113043087792300032.0000 | Time: 54.72s
+Epoch [161/300] | Critic Loss: -236468609295111287734272.0000 | Generator Loss: 21987449211901202432.0000 | Time: 54.09s
+Epoch [171/300] | Critic Loss: -317215394352021783969792.0000 | Generator Loss: 29884010911246716928.0000 | Time: 54.62s
+Epoch [181/300] | Critic Loss: -419934023193185472217088.0000 | Generator Loss: 43361562681707659264.0000 | Time: 60.44s
+Epoch [191/300] | Critic Loss: -476700051550978495741952.0000 | Generator Loss: 52397583409595318272.0000 | Time: 62.63s
+Epoch [201/300] | Critic Loss: -504698304875522080899072.0000 | Generator Loss: 46418281308001460224.0000 | Time: 54.22s
+Epoch [211/300] | Critic Loss: -504614683568276208877568.0000 | Generator Loss: 18043276149347635200.0000 | Time: 52.38s
+Epoch [221/300] | Critic Loss: -533965791611378185797632.0000 | Generator Loss: 13282474725973671936.0000 | Time: 55.09s
+Epoch [231/300] | Critic Loss: -568773604371743306153984.0000 | Generator Loss: 4418470861913112064.0000 | Time: 46.02s
+Epoch [241/300] | Critic Loss: -636877992935443335741440.0000 | Generator Loss: 9604681238385446912.0000 | Time: 50.94s
+Epoch [251/300] | Critic Loss: -711900206174853996216320.0000 | Generator Loss: 9588375667341496320.0000 | Time: 46.96s
+Epoch [261/300] | Critic Loss: -762253323952994782281728.0000 | Generator Loss: 10203052593090996224.0000 | Time: 50.12s
+Epoch [271/300] | Critic Loss: -883827278143709044015104.0000 | Generator Loss: 11128752151662419968.0000 | Time: 48.03s
+Epoch [281/300] | Critic Loss: -939474720852548285104128.0000 | Generator Loss: 13037554927592546304.0000 | Time: 52.52s
+Epoch [291/300] | Critic Loss: -1030705374786443070668800.0000 | Generator Loss: 14855108101683339264.0000 | Time: 31.35s
+Epoch [300/300] | Critic Loss: -1063875453247962010877952.0000 | Generator Loss: 16347228600310845440.0000 | Time: 32.13s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Fold 4 Jensen-Shannon Divergence (average): nan
+Fold 4 Wasserstein Distance (average): 1.0241912951284757
+
+Evaluating Machine Learning Utility (TSTR) for fold 4...
+
+TSTR Results for fold 4:
+Logistic Regression: Accuracy = 0.1896, F1 Score = 0.1411
+MLP: Accuracy = 0.9202, F1 Score = 0.0000
+Random Forest: Accuracy = 0.9202, F1 Score = 0.0000
+XGBoost: Accuracy = 0.9202, F1 Score = 0.0000
+
+====== Running shuffled data, Fold 5/5 ======
+Data dimension: 108
+Latent dimension: 100
+Training CramerGAN for 300 epochs...
+Epoch [1/300] | Critic Loss: -123250.9006 | Generator Loss: 8.4884 | Time: 35.97s
+Epoch [11/300] | Critic Loss: -471914875246123.5000 | Generator Loss: 25362383791.6863 | Time: 34.89s
+Epoch [21/300] | Critic Loss: -92723795508166016.0000 | Generator Loss: 5685432561369.5166 | Time: 44.59s
+Epoch [31/300] | Critic Loss: -2192219129061322496.0000 | Generator Loss: 150470415225019.4062 | Time: 47.39s
+Epoch [41/300] | Critic Loss: -21439041947228082176.0000 | Generator Loss: 1201325232537278.7500 | Time: 36.71s
+Epoch [51/300] | Critic Loss: -129536842826719707136.0000 | Generator Loss: 7562747205871121.0000 | Time: 34.96s
+Epoch [61/300] | Critic Loss: -542639140624446455808.0000 | Generator Loss: 30910702602269448.0000 | Time: 32.32s
+Epoch [71/300] | Critic Loss: -1558158586827748147200.0000 | Generator Loss: 89907273800368880.0000 | Time: 32.54s
+Epoch [81/300] | Critic Loss: -3462397918379838013440.0000 | Generator Loss: 170236224634700096.0000 | Time: 29.67s
+Epoch [91/300] | Critic Loss: -7169710491431376781312.0000 | Generator Loss: 383590929967772928.0000 | Time: 30.07s
+Epoch [101/300] | Critic Loss: -13558825263018650107904.0000 | Generator Loss: 609974824748388096.0000 | Time: 40.41s
+Epoch [111/300] | Critic Loss: -24654552160661443444736.0000 | Generator Loss: 866081228531077120.0000 | Time: 34.71s
+Epoch [121/300] | Critic Loss: -42103988468670965743616.0000 | Generator Loss: 1300241631751003136.0000 | Time: 35.71s
+Epoch [131/300] | Critic Loss: -66815121904962612756480.0000 | Generator Loss: 2269388254069035008.0000 | Time: 36.22s
+Epoch [141/300] | Critic Loss: -106482017275308968771584.0000 | Generator Loss: 3595587523393883648.0000 | Time: 36.45s
+Epoch [151/300] | Critic Loss: -160205999045625610502144.0000 | Generator Loss: 5608354638131379200.0000 | Time: 41.14s
+Epoch [161/300] | Critic Loss: -236396154030282747412480.0000 | Generator Loss: 8304082471176987648.0000 | Time: 34.94s
+Epoch [171/300] | Critic Loss: -329143961944671184224256.0000 | Generator Loss: 7024590648708660224.0000 | Time: 36.01s
+Epoch [181/300] | Critic Loss: -409961137145216363397120.0000 | Generator Loss: 6062641219417583616.0000 | Time: 35.66s
+Epoch [191/300] | Critic Loss: -446347605631292338601984.0000 | Generator Loss: 12033605816862275584.0000 | Time: 34.15s
+Epoch [201/300] | Critic Loss: -497572213972525731807232.0000 | Generator Loss: 18769725913500590080.0000 | Time: 34.27s
+Epoch [211/300] | Critic Loss: -485281139047564385976320.0000 | Generator Loss: 12937411045624008704.0000 | Time: 30.75s
+Epoch [221/300] | Critic Loss: -558796420182482735857664.0000 | Generator Loss: 21240985387024134144.0000 | Time: 30.88s
+Epoch [231/300] | Critic Loss: -616154474027244408799232.0000 | Generator Loss: 25424566934246780928.0000 | Time: 29.96s
+Epoch [241/300] | Critic Loss: -703955189075239472463872.0000 | Generator Loss: 23356218587546062848.0000 | Time: 30.24s
+Epoch [251/300] | Critic Loss: -798663583984537588203520.0000 | Generator Loss: 20449350275638689792.0000 | Time: 31.48s
+Epoch [261/300] | Critic Loss: -900304641311377641701376.0000 | Generator Loss: 22755704119391916032.0000 | Time: 30.29s
+Epoch [271/300] | Critic Loss: -943126087073350625001472.0000 | Generator Loss: 25577288122001199104.0000 | Time: 31.16s
+Epoch [281/300] | Critic Loss: -1054103441283607798218752.0000 | Generator Loss: 30297759580138000384.0000 | Time: 31.44s
+Epoch [291/300] | Critic Loss: -1115767405335202643312640.0000 | Generator Loss: 33765163023291719680.0000 | Time: 31.38s
+Epoch [300/300] | Critic Loss: -1211686953586642540036096.0000 | Generator Loss: 35143203883417616384.0000 | Time: 30.55s
+Generating 1000 synthetic samples...
+Evaluating statistical similarity...
+
+Fold 5 Jensen-Shannon Divergence (average): nan
+Fold 5 Wasserstein Distance (average): 1.0563207838328657
+
+Evaluating Machine Learning Utility (TSTR) for fold 5...
+
+TSTR Results for fold 5:
+Logistic Regression: Accuracy = 0.1374, F1 Score = 0.1481
+MLP: Accuracy = 0.8957, F1 Score = 0.0578
+Random Forest: Accuracy = 0.9154, F1 Score = 0.0000
+XGBoost: Accuracy = 0.9118, F1 Score = 0.0029
+
+====== OVERALL RESULTS (Average of 10 runs) ======
+
+Machine Learning Utility (TSTR) Results:
+Logistic Regression: Accuracy = 0.2978 ± 0.1117, F1 Score = 0.1369 ± 0.0325
+MLP: Accuracy = 0.9045 ± 0.0225, F1 Score = 0.0316 ± 0.0313
+Random Forest: Accuracy = 0.9174 ± 0.0165, F1 Score = 0.0032 ± 0.0096
+XGBoost: Accuracy = 0.8992 ± 0.0515, F1 Score = 0.0282 ± 0.0478
+
+Statistical Similarity Results:
+Jensen-Shannon Divergence: nan ± nan
+Wasserstein Distance: 1.0371 ± 0.0174
+
+Results saved to CSV files.

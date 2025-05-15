@@ -1,0 +1,14 @@
+﻿Country,Capital City,Latitude,Longitude,Temperature,Category
+Canada,Ottawa,45.4166968,-75.7000153,6.6,Continental
+Ukraine,Kiev,50.43336733,30.51662797,8.4,Continental
+Austria,Vienna,48.20001528,16.36663896,10.4,Continental
+Croatia,Zagreb,45.80000673,15.99999467,10.7,Continental
+North Korea,Pyongyang,39.0194387,125.7546907,10.8,Continental
+Armenia,Yerevan,40.18115074,44.51355139,12.4,Continental
+New Zealand,Wellington,-41.29998785,174.7832659,12.9,Subtropical
+Syria,Damascus,33.500034,36.29999589,17,Subtropical
+Kenya,Nairobi,-1.283346742,36.81665686,17.8,Subtropical
+Taiwan,Taipei,25.03752,121.56368,23,Tropical
+Saudi Arabia,Riyadh,24.64083315,46.77274166,26,Tropical
+Indonesia,Jakarta,-6.174417705,106.8294376,26.7,Tropical
+Philippines,Manila,14.60415895,120.9822172,28.4,Tropical
