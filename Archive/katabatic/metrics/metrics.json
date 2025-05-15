@@ -1,9 +1,0 @@
-{
-    "trtr_logreg": "katabatic/metrics/trtr_logreg.py",
-    "tstr_logreg": "katabatic/metrics/tstr_logreg.py",
-    "tstr_rf": "katabatic/metrics/tstr_rf.py",
-    "tstr_mlp": "katabatic/metrics/tstr_mlp.py",
-    "model_compatability": "katabatic/metrics/model_compatability.py",
-    "q_score": "katabatic/metrics/q_score.py",
-    "similarity:": "katabatic/metrics/similarity.py"
-}
