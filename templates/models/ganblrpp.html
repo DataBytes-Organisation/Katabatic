@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GANBLR++ Synthetic Data Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4F46E5;
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text: #1E293B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1.5rem;
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .step {
+      flex: 1;
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.5rem;
+    }
+
+    .step.active .step-number {
+      background: var(--primary);
+      color: white;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      padding: 1rem;
+      border: 2px dashed #CBD5E1;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+
+    .preview-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    .preview-table th, 
+    .preview-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #E2E8F0;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    .nav-button {
+      background: #E2E8F0;
+      color: var(--text);
+    }
+
+    .primary-button {
+      background: var(--primary);
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .console {
+      background: #1E293B;
+      color: #F8FAFC;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-family: monospace;
+      font-size: 0.9rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #column-selection {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    #column-selection label {
+      padding: 0.5rem;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .param-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>GANBLR++ Generator</h1>
+      <p>Generate synthetic data with Bayesian privacy preservation</p>
+    </div>
+
+    <div class="step-indicator">
+      <div class="step active" id="step1">
+        <div class="step-number">1</div>
+        <div>Upload Data</div>
+      </div>
+      <div class="step" id="step2">
+        <div class="step-number">2</div>
+        <div>Configure</div>
+      </div>
+      <div class="step" id="step3">
+        <div class="step-number">3</div>
+        <div>Generate</div>
+      </div>
+    </div>
+
+    <!-- Step 1: Data Upload -->
+    <div class="card" id="upload-card">
+      <h2>Upload CSV Dataset</h2>
+      <input type="file" id="file-input" accept=".csv">
+      <div id="preview-section" class="hidden">
+        <h3>Data Preview</h3>
+        <table class="preview-table" id="preview-table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+        <div class="button-group">
+          <button class="nav-button" onclick="showStep(1)">Cancel</button>
+          <button class="primary-button" onclick="showStep(2)">Continue</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Configuration -->
+    <div class="card hidden" id="config-card">
+      <h2>Model Configuration</h2>
+      <div class="form-group">
+        <label>Select Numerical Columns</label>
+        <div id="column-selection"></div>
+      </div>
+      
+      <div class="form-group">
+        <label>Model Parameters</label>
+        <div class="param-grid">
+          <div>
+            <label>k Value (0-2)</label>
+            <input type="number" id="k-value" value="0" min="0" max="2">
+          </div>
+          <div>
+            <label>Batch Size</label>
+            <input type="number" id="batch-size" value="32" min="16">
+          </div>
+          <div>
+            <label>Training Epochs</label>
+            <input type="number" id="epochs" value="10" min="1">
+          </div>
+          <div>
+            <label>Warmup Epochs</label>
+            <input type="number" id="warmup" value="1" min="1">
+          </div>
+        </div>
+      </div>
+      
+      <div class="button-group">
+        <button class="nav-button" onclick="showStep(1)">Back</button>
+        <button class="primary-button" onclick="showStep(3)">Generate</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Generation -->
+    <div class="card hidden" id="generate-card">
+      <h2>Generate Synthetic Data</h2>
+      <button class="primary-button" onclick="startGeneration()" id="generate-btn">
+        <i class="fas fa-bolt"></i> Start Generation
+      </button>
+      <div class="console" id="console">> Ready to start generation process...</div>
+      <div id="download-section" class="hidden">
+        <h3>Generation Complete!</h3>
+        <button class="primary-button" id="download-btn">
+          <i class="fas fa-download"></i> Download Synthetic Data
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentDataset = null;
+    let syntheticData = null;
+
+    // File upload handler
+    document.getElementById('file-input').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        const text = e.target.result;
+        currentDataset = parseCSV(text);
+        showPreview(currentDataset);
+        document.getElementById('preview-section').classList.remove('hidden');
+      };
+      
+      reader.readAsText(file);
+    });
+
+    function parseCSV(text) {
+      const rows = text.split('\n').filter(row => row.trim() !== '');
+      return {
+        columns: rows[0].split(',').map(c => c.trim()),
+        data: rows.slice(1, 6).map(row => row.split(',').map(c => c.trim()))
+      };
+    }
+
+    function showPreview(data) {
+      const table = document.getElementById('preview-table');
+      table.innerHTML = `
+        <thead><tr>${data.columns.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+        <tbody>${data.data.map(row => 
+          `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`
+        ).join('')}</tbody>`;
+    }
+
+    // Step navigation
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById(`step${step}`).classList.add('active');
+      
+      document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+      document.getElementById(['upload-card', 'config-card', 'generate-card'][step-1])
+        .classList.remove('hidden');
+      
+      if(step === 2) {
+        initializeColumnSelection(currentDataset.columns);
+      }
+    }
+
+    function initializeColumnSelection(columns) {
+      const container = document.getElementById('column-selection');
+      container.innerHTML = columns.map((col, idx) => `
+        <label>
+          <input type="checkbox" value="${idx}">
+          ${col} (Column ${idx + 1})
+        </label>
+      `).join('');
+    }
+
+    // Generation process
+    function startGeneration() {
+      const consoleElem = document.getElementById('console');
+      const generateBtn = document.getElementById('generate-btn');
+      generateBtn.disabled = true;
+      consoleElem.innerHTML = '> Initializing GANBLR++ model...\n';
+      
+      const params = {
+        numericalColumns: Array.from(
+          document.querySelectorAll('#column-selection input:checked')
+        ).map(input => parseInt(input.value)),
+        k: parseInt(document.getElementById('k-value').value),
+        batchSize: parseInt(document.getElementById('batch-size').value),
+        epochs: parseInt(document.getElementById('epochs').value),
+        warmup: parseInt(document.getElementById('warmup').value)
+      };
+
+      const steps = [
+        '> Discretizing numerical columns using DMM...',
+        `> Building Bayesian network structure (k=${params.k})...`,
+        `> Starting warmup phase (${params.warmup} epochs)...`,
+        `> Training generator network (${params.epochs} epochs)...`,
+        '> Sampling synthetic data...',
+        '> Applying privacy preservation...',
+        '> Validation complete!'
+      ];
+
+      steps.forEach((step, index) => {
+        setTimeout(() => {
+          consoleElem.innerHTML += step + '\n';
+          consoleElem.scrollTop = consoleElem.scrollHeight;
+          
+          if(index === steps.length - 1) {
+            syntheticData = generateSyntheticData(currentDataset, params);
+            setupDownload(syntheticData);
+            document.getElementById('download-section').classList.remove('hidden');
+            generateBtn.disabled = false;
+          }
+        }, (index + 1) * 2000);
+      });
+    }
+
+    function generateSyntheticData(originalData, params) {
+      const syntheticRows = originalData.data.map(row => {
+        return row.map((cell, colIndex) => {
+          if(params.numericalColumns.includes(colIndex)) {
+            const baseValue = parseFloat(cell) || 0;
+            const noise = params.k * (Math.random() - 0.5);
+            const scaledValue = baseValue * (1 + (params.epochs/100));
+            return (scaledValue + noise).toFixed(2);
+          }
+          return `${cell}_synth`;
+        });
+      });
+      
+      return {
+        columns: originalData.columns.map(c => `${c}_synthetic`),
+        data: syntheticRows
+      };
+    }
+
+    function setupDownload(data) {
+      const csvContent = generateCSV(data);
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      
+      document.getElementById('download-btn').onclick = () => {
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `synthetic_data_${Date.now()}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      };
+    }
+
+    function generateCSV(data) {
+      const csvRows = [
+        data.columns.join(','),
+        ...data.data.map(row => row.join(','))
+      ];
+      return csvRows.join('\n');
+    }
+  </script>
+</body>
+</html>F

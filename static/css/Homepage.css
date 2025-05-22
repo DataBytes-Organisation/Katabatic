@@ -1,213 +1,365 @@
-/* ----------------- */
-/* Main Section      */
-/* ----------------- */
-.Firstpage {
+.hero {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #bcc6cc 100%);
-    color: #3b3b3b;
-    text-align: center;
-    padding: 0 20px;
+    justify-content: space-between;
+    padding: 5rem 2rem;
+    gap: 3rem;
+    min-height: 80vh;
 }
 
-.Firstpage h1 {
-    font-size: 3.5rem;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    color: #2a374f; /* Darker shade for text */
-    text-transform: uppercase;
-}
-
-.Firstpage p {
-    font-size: 1.4rem;
-    margin-bottom: 30px;
-    color: #3b3b3b;
+.hero-content {
+    flex: 1;
     max-width: 600px;
-    line-height: 1.6;
 }
 
-/* Error Message Styling */
-.error-message {
-    color: #d99292; /* Light red for error messages */
-    font-size: 1.1rem; /* Slightly larger error message text */
-    margin-top: 10px; /* Space above the error message */
-    visibility: hidden; /* Hidden by default */
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-/* Mobile Responsiveness for Firstpage Section */
-@media (max-width: 768px) {
-    .Firstpage h1 {
-        font-size: 2.5rem; /* Adjusted header font size for smaller screens */
-    }
-    .Firstpage p {
-        font-size: 1rem; /* Adjusted paragraph font size for smaller screens */
-    }
-}
-footer {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    padding: 20px;
-    text-align: center;
-}
-
-footer .social-icons a {
-    color: var(--text-color);
-    margin: 0 15px;
-    text-decoration: none;
+.hero-content p {
     font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--dark);
+    opacity: 0.9;
 }
 
-footer .social-icons a:hover {
-    color: var(--secondary-color);
-}
-
-/* ----------------- */
-/* Footer Section    */
-/* ----------------- */
-footer {
-    background-color: #1a2a33; /* Dark footer background */
-    color: #eae0d5; /* Light footer text */
-    text-align: center; /* Center align footer text */
-    padding: 20px; /* Padding inside the footer */
-    font-size: 1rem; /* Standard font size */
-}
-
-/* ----------------- */
-/* Upload Section    */
-/* ----------------- */
-.upload-container {
-    display: flex; /* Flexbox for centering */
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
-    flex-direction: column; /* Stack items vertically */
-    margin-top: 30px; /* Space above the upload container */
-}
-
-.upload-container input[type="file"] {
-    display: none; /* Hide the file input */
-}
-
-.upload-container label {
-    background-color: #4f2a4e; /* Deep blue */
-    color: #f8f9fa;
-    padding: 20px 50px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border-radius: 25px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 8px 12px rgba(60, 70, 102, 0.2);
-}
-
-.upload-container label:hover {
-    background-color: #e1b07d; /* Amber hover effect */
-    color: #2a2e4f; /* Dark text color on hover */
-    transform: translateY(-5px);
-}
-
-/* ----------------- */
-/* Model Selection Section */
-/* ----------------- */
-.selection-container {
+.cta-buttons {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #bcc6cc 100%); /* Retaining background */
-    color: #702323; /* Light color for text */
+    gap: 1rem;
 }
 
-.selection-container h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #233551; 
-}
-
-.dropdown-container {
-    text-align: center; /* Center align the dropdown */
-    margin-bottom: 20px; /* Space below the dropdown */
-}
-
-.dropdown-container select {
-    width: 300px;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #090f30; /* New border color */
-    border-radius: 5px;
-    background-color: #8aa6ae; /* Deep blue background */
-    color: #080808; /* Light text */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    font-family:Arial, Helvetica, sans-serif ;
-}
-
-.dropdown-container select:hover {
-    border-color: #e1b07d; /* Amber color on hover */
-    
-}
-
-/* ----------------- */
-/* Error Message for Model Selection */
-/* ----------------- */
-.error-message {
-    color: #800e0e; /* Red error color */
-    font-size: 1.1rem; /* Slightly larger font size */
-    margin-top: 10px; /* Space above the error message */
-    visibility: hidden; /* Hidden by default */
-}
-
-/* ----------------- */
-/* Button Styling */
-/* ----------------- */
 .custom-button {
-    background-color: #2a2e4f; /* Deep blue background */
-    color: #f8f9fa; /* Light text */
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    background: var(--primary);
+    color: white;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
 .custom-button:hover {
-    background-color: #e1b07d; /* Amber color on hover */
+    background: var(--secondary);
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.custom-button:active {
-    transform: translateY(1px);
+.custom-button.secondary {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
 }
 
-/* ----------------- */
-/* Remove Button Styling */
-/* ----------------- */
-#remove-btn {
-    background-color: #581f1f; /* Red background for remove button */
-    color: white; /* White text */
-    padding: 10px 20px; /* Padding inside the button */
-    font-size: 1rem; /* Font size for the button text */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    margin-top: 10px; /* Space above the button */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover and active transitions */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Button shadow */
+.custom-button.secondary:hover {
+    background: var(--primary);
+    color: white;
 }
 
-#remove-btn:hover {
-    background-color: #cc5555; /* Darker red on hover */
-    transform: translateY(-3px); /* Subtle lift effect */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#remove-btn:active {
-    transform: translateY(1px); /* Pressed down effect */
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    animation: float 6s ease-in-out infinite;
 }
 
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.upload-section {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: white;
+    margin: 2rem 0;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+}
+
+.upload-section h2 {
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    color: var(--dark);
+}
+
+.upload-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.upload-area {
+    border: 2px dashed #d1d5db;
+    border-radius: 10px;
+    padding: 3rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.upload-area.highlight {
+    border-color: var(--primary);
+    background-color: rgba(67, 97, 238, 0.05);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.upload-text {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.upload-subtext {
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background: var(--primary);
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.upload-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.file-details {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    background: #f9fafb;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.file-info {
+    text-align: left;
+    flex: 1;
+}
+
+.file-name {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.25rem;
+    word-break: break-all;
+}
+
+.file-size {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    line-height: 1;
+}
+
+.remove-btn:hover {
+    color: var(--warning);
+}
+
+.model-selection {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.model-selection h2 {
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    color: var(--dark);
+}
+
+.model-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.model-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 280px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.model-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.model-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.model-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+
+.model-card p {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    flex: 1;
+}
+
+.select-btn {
+    width: 100%;
+    padding: 0.7rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.select-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+footer {
+    background-color: var(--dark);
+    color: var(--light);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.social-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 1rem;
+        min-height: auto;
+    }
+    
+    .hero-content {
+        margin-bottom: 2rem;
+    }
+    
+    .cta-buttons {
+        justify-content: center;
+    }
+    
+    .model-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .model-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .upload-area {
+        padding: 2rem 1rem;
+    }
+}
+
+.error-toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ff6b6b;
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 80%;
+    animation: fadeInOut 3s ease-in-out forwards;
+    opacity: 0;
+}
+
+.error-toast i {
+    font-size: 1.5rem;
+}
+
+.error-toast p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -40%); }
+    20% { opacity: 1; transform: translate(-50%, -50%); }
+    80% { opacity: 1; transform: translate(-50%, -50%); }
+    100% { opacity: 0; transform: translate(-50%, -60%); }
+}

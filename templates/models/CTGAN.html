@@ -1,31 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CTGAN Model</title>
-    <!-- Link to the CTGAN-specific CSS file -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/CTGAN.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <title>CTGAN Synthetic Data Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Ensure navbar does not overlap content */
+        body {
+            padding-top: 80px;
+            background-color: #f8f9fa;
+            /* Light gray background */
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Card Styling */
+        .card {
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px #232b2b;
+            padding: 20px;
+            background-color: white;
+        }
+
+        /* Button Styling */
+        .btn {
+            width: auto;
+            /* Adjusted to content */
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .card button {
+            display: inline-block;
+            margin: 10px auto 0 auto;
+            text-align: left;
+            margin-left: 0;
+        }
+
+        /* New Button Styling */
+        .btn-primary {
+            background-color: #353839;
+            border-color: #353839;
+        }
+
+        .btn-primary:hover {
+            background-color: #232b2b;
+            border-color: #232b2b;
+        }
+
+        /* Footer Styling */
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 20px;
+            background-color: #343a40;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-        <h1>CTGAN Model</h1>
-        <nav>
-            <a href="{{ url_for('home') }}">Home</a>
-            <a href="{{ url_for('about') }}">About us</a>
-            <a href="{{ url_for('services') }}">Services</a>
-            <a href="{{ url_for('Contact') }}">Contact Us</a>
-        </nav>
-    </header>
 
-    <main>
-        <p>Welcome to the CTGAN model page. This section explains everything you need to know about the CTGAN model and how it helps in synthetic tabular data generation.</p>
-        <a href="/" class="custom-button">Go Back</a>
-    </main>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CTGAN Model</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('home') }}">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('about') }}">ABOUT US</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('services') }}">SERVICES</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('Contact') }}">CONTACT US</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <footer>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">CTGAN Synthetic Data Generator</h1>
+        
+        <!-- Step 1: Upload Dataset -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Step 1: Upload Dataset</h5>
+            </div>
+            <div class="card-body">
+                <form id="upload-form" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="dataset" class="form-label">Upload CSV File:</label>
+                        <input type="file" id="dataset" class="form-control" name="dataset" accept=".csv" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload Dataset</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Step 2: Configure Data Generation -->
+        <div id="generation-config" class="card mb-4" style="display:none;">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Step 2: Configure Synthetic Data Generation</h5>
+            </div>
+            <div class="card-body">
+                <form id="generation-form">
+                    <div class="mb-3">
+                        <label class="form-label">Select Columns to Include:</label>
+                        <div id="column_selection" class="border p-3 rounded">
+                            <div class="mb-2">
+                                <input type="checkbox" id="select_all" class="form-check-input">
+                                <label for="select_all" class="form-check-label">Select All</label>
+                            </div>
+                            <div id="columns_list" class="row"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="num_samples" class="form-label">Number of Synthetic Samples:</label>
+                        <input type="number" id="num_samples" class="form-control" name="num_samples" value="1000" min="1" max="10000" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success w-100">Generate Synthetic Data</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Status Display -->
+        <div id="status-display" class="alert alert-info mt-3" style="display:none;">
+            Initializing...
+        </div>
+        
+        <!-- Results Display -->
+        <div id="results" class="card mt-4" style="display:none;">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Synthetic Data Preview</h5>
+            </div>
+            <div class="card-body">
+                <div id="data-preview" class="table-responsive"></div>
+                <div class="mt-3 text-center">
+                    <a href="/download" id="download-btn" class="btn btn-primary">
+                        <i class="bi bi-download"></i> Download Complete Synthetic Dataset
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            let categoricalColumns = [];
+            
+            // Handle dataset upload
+            $('#upload-form').submit(function (e) {
+                e.preventDefault();
+                const formData = new FormData();
+                const fileInput = $('#dataset')[0];
+                
+                if (fileInput.files.length === 0) {
+                    alert('Please select a file to upload');
+                    return;
+                }
+                
+                formData.append('dataset', fileInput.files[0]);
+                
+                $.ajax({
+                    url: '/upload',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        // Store categorical columns
+                        categoricalColumns = response.categorical_columns;
+                        
+                        // Populate columns selection
+                        const columnsList = $('#columns_list');
+                        columnsList.empty();
+                        
+                        response.columns.forEach(col => {
+                            const isCategory = categoricalColumns.includes(col);
+                            const columnItem = `
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input column-checkbox" 
+                                               id="col_${col}" name="selected_columns[]" value="${col}" checked>
+                                        <label class="form-check-label" for="col_${col}">
+                                            ${col} 
+                                            <span class="badge ${isCategory ? 'bg-info' : 'bg-secondary'}">
+                                                ${isCategory ? 'Categorical' : 'Numerical'}
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            `;
+                            columnsList.append(columnItem);
+                        });
+                        
+                        // Show the generation configuration section
+                        $('#generation-config').show();
+                    },
+                    error: function (xhr) {
+                        const response = xhr.responseJSON || {};
+                        alert(response.error || 'Error uploading dataset');
+                    }
+                });
+            });
+            
+            // Handle select all checkbox
+            $('#select_all').change(function() {
+                $('.column-checkbox').prop('checked', $(this).is(':checked'));
+            });
+            
+            // Handle generation form submission
+            $('#generation-form').submit(function (e) {
+                e.preventDefault();
+                
+                const selectedColumns = [];
+                $('.column-checkbox:checked').each(function() {
+                    selectedColumns.push($(this).val());
+                });
+                
+                if (selectedColumns.length === 0) {
+                    alert('Please select at least one column');
+                    return;
+                }
+                
+                const numSamples = $('#num_samples').val();
+                if (numSamples <= 0) {
+                    alert('Number of samples must be greater than 0');
+                    return;
+                }
+                
+                // Show status display
+                $('#status-display').show().text('Initializing model...');
+                
+                // Create form data
+                const formData = new FormData();
+                selectedColumns.forEach(col => {
+                    formData.append('selected_columns[]', col);
+                });
+                formData.append('num_samples', numSamples);
+                
+                // Start polling status
+                const statusInterval = setInterval(function() {
+                    $.get('/training_status', function(statusData) {
+                        $('#status-display').text(statusData.message);
+                        
+                        if (statusData.status === 'completed' || statusData.status === 'error') {
+                            clearInterval(statusInterval);
+                            
+                            if (statusData.status === 'error') {
+                                $('#status-display').removeClass('alert-info').addClass('alert-danger');
+                            } else {
+                                $('#status-display').removeClass('alert-info').addClass('alert-success');
+                            }
+                        }
+                    });
+                }, 1000);
+                
+                // Submit generation request
+                $.ajax({
+                    url: '/generate',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        // Generate table for preview
+                        let tableHtml = '<table class="table table-striped table-bordered">';
+                        
+                        // Header row
+                        if (response.synthetic_data.length > 0) {
+                            tableHtml += '<thead><tr>';
+                            Object.keys(response.synthetic_data[0]).forEach(key => {
+                                tableHtml += `<th>${key}</th>`;
+                            });
+                            tableHtml += '</tr></thead>';
+                        }
+                        
+                        // Data rows
+                        tableHtml += '<tbody>';
+                        response.synthetic_data.forEach(row => {
+                            tableHtml += '<tr>';
+                            Object.values(row).forEach(value => {
+                                tableHtml += `<td>${value}</td>`;
+                            });
+                            tableHtml += '</tr>';
+                        });
+                        tableHtml += '</tbody></table>';
+                        
+                        // Display the results
+                        $('#data-preview').html(tableHtml);
+                        $('#results').show();
+                    },
+                    error: function (xhr) {
+                        const response = xhr.responseJSON || {};
+                        $('#status-display')
+                            .removeClass('alert-info')
+                            .addClass('alert-danger')
+                            .text(response.error || 'Error generating synthetic data');
+                    }
+                });
+            });
+        });
+    </script>
+
+    
+    <!-- Footer -->
+    <footer class="footer">
         <p>&copy; 2025 CTGAN Model. All Rights Reserved.</p>
     </footer>
 </body>
+
 </html>

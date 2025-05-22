@@ -1,150 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katabatic - Synthetic Data Solutions</title>
-    <!-- Link to the CSS file -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Homepage.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Homepage.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Error Toast Styles */
+        .error-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ff6b6b;
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 80%;
+            animation: fadeInOut 3s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .error-toast i {
+            font-size: 1.5rem;
+        }
+
+        .error-toast p {
+            margin: 0;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+
+            20% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+
+            80% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+        }
+
+        /* Fix for file input */
+        #file-upload {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+        }
+    </style>
 </head>
+
 <body>
-    <!-- Header Section -->
     <header>
         <div class="logo">
-            <a href="{{ url_for('home') }}"><h2>Katabatic</h2></a> <!-- Logo text -->
+            <a href="{{ url_for('home') }}">
+                <h2>Katabatic</h2>
+            </a>
         </div>
         <nav>
-            <!-- Navigation links using Flask routing -->
-
-            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('home') }}" class="active">Home</a>
             <a href="{{ url_for('about') }}">About us</a>
             <a href="{{ url_for('services') }}">Services</a>
             <a href="{{ url_for('Contact') }}">Contact Us</a>
         </nav>
     </header>
 
-    <!-- Firstpage Section (Introduction) -->
-    <section class="Firstpage">
-        <div class="text-content">
-            <h1>Innovative Synthetic Data Solutions</h1> <!-- Main headline -->
-            <p>Empowering AI and ML development with high-quality, customizable synthetic data tailored to your needs.</p>
-        </div>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Innovative Synthetic Data Solutions</h1>
+                <p>Generate high-quality synthetic datasets for your AI/ML projects with our cutting-edge algorithms</p>
+                <div class="cta-buttons">
+                    <a href="#upload-section" class="custom-button">Get Started</a>
+                    <a href="{{ url_for('about') }}" class="custom-button secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='images/databytes.png') }}" alt="Data Visualization">
+            </div>
+        </section>
 
-        <!-- File upload container -->
-        <div class="upload-container">
-            <!-- File input field -->
-            <input type="file" id="file-upload" onchange="displayFileName()" />
-            <!-- Label for the file upload button -->
-            <label for="file-upload" id="file-label">Choose File</label>
-            <!-- Element to display the selected file name -->
-            <span id="file-name" style="visibility: hidden;"></span>
-            <!-- Button to remove the selected file -->
-            <button id="remove-btn" style="visibility: hidden;" onclick="removeFile()">Remove File</button> 
-        </div>
-    </section>
+        <section id="upload-section" class="upload-section">
+            <h2>Upload Your Dataset</h2>
+            <div class="upload-container">
+                <div class="upload-area" id="drop-zone">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p class="upload-text">Drag & drop your file here</p>
+                    <p class="upload-subtext">or</p>
+                    <label for="file-upload" class="upload-btn">Browse Files</label>
+                    <input type="file" id="file-upload" accept=".csv,.json,.xlsx,.xls">
+                </div>
+                <div class="file-details" id="file-details">
+                    <div class="file-info">
+                        <span class="file-name" id="file-name">No file selected</span>
+                        <span class="file-size" id="file-size"></span>
+                    </div>
+                    <button class="remove-btn" id="remove-btn">×</button>
+                </div>
+            </div>
+        </section>
 
-    <!-- Model Selection Section -->
-    <section id="selection-container" class="selection-container">
-        <h1>Select a Model</h1>
+        <section class="model-selection">
+            <h2>Select a Model</h2>
+            <div class="model-cards">
+                <div class="model-card" data-model="glanblr">
+                    <div class="model-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>GLANBLR</h3>
+                    <p>Generative Latent Autoregressive Network</p>
+                    <button class="select-btn">Select</button>
+                </div>
 
-        <div class="dropdown-container">
-            <!-- Dropdown menu for model selection -->
-            <select id="model-dropdown" disabled>
-                <option value="" selected>None</option>
-                <option value="glanblr">Glanblr</option>
-                <option value="ctgan">CTGAN</option>
-                <option value="meg">Meg</option>
-            </select>
-            <!-- Error message element (single instance) -->
-            <p id="error-message" class="error-message" style="visibility: hidden;"></p>
-        </div>
+                <div class="model-card" data-model="ctgan">
+                    <div class="model-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>CTGAN</h3>
+                    <p>Conditional Tabular GAN</p>
+                    <button class="select-btn">Select</button>
+                </div>
 
-        <!-- Button to proceed with the selected model -->
-        <button class="custom-button" onclick="proceedToModel()">Proceed</button>
-    </section>
-    <!-- Footer Section -->
+                <div class="model-card" data-model="meg">
+                    <div class="model-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3>MEG</h3>
+                    <p>Multivariate Exponential Generator</p>
+                    <button class="select-btn">Select</button>
+                </div>
+
+                <div class="model-card" data-model="ganblrpp">
+                    <div class="model-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>GANBLR++</h3>
+                    <p>Advanced Generative Latent Autoregressive Network</p>
+                    <button class="select-btn">Select</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
         <p>&copy; 2025 Katabatic. All rights reserved.</p>
-        <div class="social-icons">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
         </div>
     </footer>
 
     <script>
-        // Function to display the selected file name
-        function displayFileName() {
-            const fileInput = document.getElementById("file-upload");
-            const fileNameLabel = document.getElementById("file-name");
-            const removeBtn = document.getElementById("remove-btn");
-            const modelDropdown = document.getElementById("model-dropdown");
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-upload');
+        const fileDetails = document.getElementById('file-details');
+        const fileName = document.getElementById('file-name');
+        const fileSize = document.getElementById('file-size');
+        const removeBtn = document.getElementById('remove-btn');
+        const uploadBtn = document.querySelector('.upload-btn');
 
-            // Get the file name, if selected
-            const fileName = fileInput.files[0] ? fileInput.files[0].name : "";
+        let currentFile = null;
 
-            // Update the UI to show/hide file name and remove button
-            fileNameLabel.textContent = fileName;
-            fileNameLabel.style.visibility = fileName ? "visible" : "hidden";
-            removeBtn.style.visibility = fileName ? "visible" : "hidden";
+        fileDetails.style.display = 'none';
 
-            // Enable or disable the model dropdown based on file selection
-            modelDropdown.disabled = !fileName;
+        function showError(message) {
+            const existingError = document.querySelector('.error-toast');
+            if (existingError) existingError.remove();
 
-            // Scroll to the model selection section
-            document.getElementById("selection-container").scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+            const errorToast = document.createElement('div');
+            errorToast.className = 'error-toast';
+            errorToast.innerHTML = `
+                <i class="fas fa-exclamation-circle"></i>
+                <p>${message}</p>
+            `;
 
-        // Function to remove the selected file
-        function removeFile() {
-            const fileInput = document.getElementById("file-upload");
-            const fileNameLabel = document.getElementById("file-name");
-            const removeBtn = document.getElementById("remove-btn");
-            const modelDropdown = document.getElementById("model-dropdown");
+            document.body.appendChild(errorToast);
 
-            // Clear the file input and reset UI elements
-            fileInput.value = "";
-            fileNameLabel.textContent = "";
-            fileNameLabel.style.visibility = "hidden";
-            removeBtn.style.visibility = "hidden";
-            modelDropdown.disabled = true;
-        }
-
-        // Function to proceed to the selected model's page
-        function proceedToModel() {
-            const dropdown = document.getElementById("model-dropdown");
-            const selectedModel = dropdown.value;
-            const errorMessage = document.getElementById("error-message");
-            const fileInput = document.getElementById("file-upload");
-
-            // Set a timeout to hide the message after 3 seconds
-            setTimeout(function() {
-                errorMessage.style.visibility = "hidden";
+            setTimeout(() => {
+                errorToast.remove();
             }, 3000);
-
-            // Validate file upload and model selection
-            if (!fileInput.value) {
-                errorMessage.textContent = "Please upload a file before selecting a model.";
-                errorMessage.style.visibility = "visible";
-                return;
-            }
-
-            if (!selectedModel) {
-                errorMessage.textContent = "Please select a model before proceeding.";
-                errorMessage.style.visibility = "visible";
-                return;
-            }
-
-            // Redirect to the respective model's page
-            const modelPages = {
-                glanblr: "/glanblr",
-                ctgan: "/ctgan",
-                meg: "/meg"
-            };
-
-            window.location.href = modelPages[selectedModel];
         }
+
+        uploadBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', function () {
+            if (this.files && this.files.length > 0) {
+                currentFile = this.files[0];
+                handleFiles(this.files);
+            }
+        });
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight() {
+            dropZone.classList.add('highlight');
+        }
+
+        function unhighlight() {
+            dropZone.classList.remove('highlight');
+        }
+
+        dropZone.addEventListener('drop', function (e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length) {
+                currentFile = files[0];
+                fileInput.files = files;
+            }
+            handleFiles(files);
+        }, false);
+
+        function handleFiles(files) {
+            if (files.length) {
+                const file = files[0];
+                displayFileInfo(file);
+            }
+        }
+
+        function displayFileInfo(file) {
+            fileName.textContent = file.name;
+            fileSize.textContent = formatFileSize(file.size);
+            fileDetails.style.display = 'flex';
+            dropZone.style.display = 'none';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Remove file
+        removeBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            fileInput.value = '';
+            currentFile = null;
+            fileDetails.style.display = 'none';
+            dropZone.style.display = 'flex';
+        });
+
+        document.querySelectorAll('.select-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const modelCard = this.closest('.model-card');
+                const modelName = modelCard.getAttribute('data-model');
+
+                if (!currentFile) {
+                    showError('Please upload a file before selecting a model');
+                    return;
+                }
+
+                if (!modelName) {
+                    showError('Please select a valid model');
+                    return;
+                }
+
+                console.log(`Selected model: ${modelName} with file: ${currentFile.name}`);
+
+                window.location.href = `/${modelName}`;
+            });
+        });
     </script>
 </body>
+
 </html>

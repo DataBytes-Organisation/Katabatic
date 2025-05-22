@@ -1,106 +1,169 @@
-
-header + .about-us {
-    margin-top: 100px; /* Adds space between the header and the info section */
-}
-/* ----------------- */
-/* About Us Section  */
-/* ----------------- */
 .about-us {
-    background: linear-gradient(135deg, #DAE2F8, #d6a4a4); /* Lighter gradient background */
-    color: #0d161f; /* Dark text for readability */
-    padding: 30px 20px;
+    margin-top: 100px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #212529;
+    padding: 4rem 2rem;
+    min-height: calc(100vh - 160px);
 }
 
 .about-us .container {
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    align-items: start;
 }
 
 .about-us h1 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #28223f; 
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #4361ee;
     text-align: center;
-    grid-column: span 2;
+    font-weight: 700;
 }
 
-.about-us .info-card {
-    background-color: #adb5bd; /* Light gray-blue background for info cards */
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
+.info-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.info-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #3a0ca3;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.info-card h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #4895ef;
+    border-radius: 2px;
+}
+
+.info-card p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: #495057;
+}
+
+.info-card ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.info-card ul li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.info-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234361ee'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.info-card ul.features li {
+    margin-bottom: 1.5rem;
+}
+
+.info-card ul.features li strong {
+    color: #3a0ca3;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.team-section {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.team-members {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
-.about-us .info-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.63);
+.team-member {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 280px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
-.about-us .info-card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #28223f; 
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.about-us .info-card p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
+.team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 5px solid #f8f9fa;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for list items */
-.about-us .info-card ul.features {
-    list-style-position: outside;
-    padding-left: 30px;
-    line-height: 1.6;
-    margin-top: 0;
-    text-align: left;
+.team-member h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #212529;
 }
 
-.about-us .info-card ul.features li {
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-    line-height: 1.6;
-}
-
-.about-us .info-card ul.features li::before {
-    content: '✔';
-    color: #f8b400; /* Bright yellow for the icon */
-    margin-right: 10px;
-    font-size: 1.2rem;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .about-us .container {
-        grid-template-columns: 1fr;
-    }
-
-    .about-us h1 {
-        font-size: 1.5rem;
-    }
-
-    .about-us .info-card {
-        padding: 30px;
-    }
-}
-
-/* ----------------- */
-/* Footer Section    */
-/* ----------------- */
-footer {
-    background-color: #212529; /* Dark footer background */
-    color: #f8f9fa; /* Light text color */
-    text-align: center;
-    padding: 20px;
+.team-member p {
+    color: #6c757d;
     font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .about-us {
+        padding: 2rem 1rem;
+        margin-top: 80px;
+    }
+    
+    .about-us h1 {
+        font-size: 2rem;
+    }
+    
+    .info-card {
+        padding: 1.5rem;
+    }
+    
+    .team-members {
+        flex-direction: column;
+        align-items: center;
+    }
 }
