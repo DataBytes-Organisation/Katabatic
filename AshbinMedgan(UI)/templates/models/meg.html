@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meg Model | Synthetic Data Generation</title>
+  <meta name="description" content="Generate high-quality synthetic tabular data with Meg Model" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/meg.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><i class="fas fa-database"></i> Meg Model</h1>
+      <nav>
+        <a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a>
+        <a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a>
+        <a href="{{ url_for('services') }}"><i class="fas fa-cogs"></i> Services</a>
+        <a href="{{ url_for('Contact') }}"><i class="fas fa-envelope"></i> Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="workflow-steps">
+      <div class="progress-bar" style="width: 25%;"></div>
+      <div class="step active" id="step1">
+        <div class="step-number">1</div>
+        <div class="step-label">Upload Data</div>
+      </div>
+      <div class="step" id="step2">
+        <div class="step-number">2</div>
+        <div class="step-label">Column Selection</div>
+      </div>
+      <div class="step" id="step3">
+        <div class="step-number">3</div>
+        <div class="step-label">Generation Options</div>
+      </div>
+      <div class="step" id="step4">
+        <div class="step-number">4</div>
+        <div class="step-label">Generate & Download</div>
+      </div>
+    </div>
+
+    <!-- Step 1: Data Upload -->
+    <div id="upload-section" class="form-container">
+      <h2><i class="fas fa-upload"></i> Upload Your Dataset</h2>
+      <p>Start by uploading your CSV file. We'll automatically detect the structure of your data.</p>
+      <form id="upload-form" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="fileUpload">
+            <i class="fas fa-file-csv"></i> Select CSV File
+          </label>
+          <input type="file" name="file" id="fileUpload" accept=".csv" required />
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="custom-button">
+            <i class="fas fa-cloud-upload-alt"></i> Upload & Analyze
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Step 2: Column Selection (initially hidden) -->
+    <div id="column-section" class="form-container hidden">
+      <h2><i class="fas fa-columns"></i> Select Columns to Generate</h2>
+      <p>Choose which columns should be included in the synthetic data generation.</p>
+      <div class="data-preview">
+        <table id="data-preview-table">
+          <!-- Data will be loaded here via JavaScript -->
+        </table>
+      </div>
+      <h3>Column Selection</h3>
+      <div class="column-selection" id="column-selection-grid">
+        <!-- Column cards will be loaded here via JavaScript -->
+      </div>
+      <div class="button-group">
+        <button class="custom-button" onclick="backToStep(1)">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button class="custom-button" id="continue-button" onclick="proceedToStep(3)">
+          <i class="fas fa-arrow-right"></i> Continue
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3: Generation Options (initially hidden) -->
+    <div id="options-section" class="form-container hidden">
+      <h2><i class="fas fa-sliders-h"></i> Generation Options</h2>
+      <p>Configure how the synthetic data should be generated.</p>
+      <div class="generation-options">
+        <div class="option-card">
+          <h3><i class="fas fa-copy"></i> Sample Size</h3>
+          <div class="form-group">
+            <label for="numRows">Number of rows to generate:</label>
+            <input type="number" name="num_rows" id="numRows" min="1" value="1000" required />
+          </div>
+          <div class="form-group">
+            <label for="generationMode">Generation mode:</label>
+            <select id="generationMode" class="form-control">
+              <option value="full">Full dataset recreation</option>
+              <option value="balanced">Balanced sampling</option>
+              <option value="random">Random sampling</option>
+            </select>
+          </div>
+        </div>
+        <div class="option-card">
+          <h3><i class="fas fa-lock"></i> Privacy Settings</h3>
+          <div class="form-group">
+            <label>
+              <input type="checkbox" name="privacy_preserve" checked />
+              Enable privacy preservation
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="privacyLevel">Privacy level:</label>
+            <select id="privacyLevel" class="form-control">
+              <option value="low">Low (higher data utility)</option>
+              <option value="medium" selected>Medium (balanced)</option>
+              <option value="high">High (maximum privacy)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="button-group">
+        <button class="custom-button" onclick="backToStep(2)">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button class="custom-button" onclick="startGeneration()">
+          <i class="fas fa-cogs"></i> Generate Data
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 4: Generation Progress (initially hidden) -->
+    <div id="generation-section" class="form-container hidden">
+      <div class="loading-indicator">
+        <div class="spinner"></div>
+        <h2>Generating Synthetic Data</h2>
+        <p id="generation-status">Initializing data generation process...</p>
+        <div class="progress-container">
+          <div class="progress-bar-fill" id="generation-progress"></div>
+        </div>
+        <div id="download-section" class="hidden">
+          <h3><i class="fas fa-check-circle" style="color: var(--success-color);"></i> Generation Complete!</h3>
+          <p>Your synthetic data is ready to download.</p>
+          <button class="custom-button" id="download-btn">
+            <i class="fas fa-download"></i> Download Synthetic Data
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Meg Model. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // Global variables
+    let originalCSVData = null;
+    let generatedBlob = null;
+
+    // Helper: Simple CSV parser (Note: does not handle quotes/commas in quotes)
+    function parseCSV(text) {
+      const lines = text.trim().split('\n');
+      const columns = lines[0].split(',');
+      const data = lines.slice(1).map(line => line.split(','));
+      return { columns, data };
+    }
+
+    // Workflow navigation
+    function proceedToStep(step) {
+      document.querySelectorAll('.form-container').forEach(el => {
+        el.classList.add('hidden');
+      });
+      document.getElementById(getSectionId(step)).classList.remove('hidden');
+      updateProgressSteps(step);
+    }
+
+    function backToStep(step) {
+      proceedToStep(step);
+    }
+
+    function getSectionId(step) {
+      return ['upload-section', 'column-section', 'options-section', 'generation-section'][step - 1];
+    }
+
+    function updateProgressSteps(currentStep) {
+      const steps = document.querySelectorAll('.step');
+      const progressBar = document.querySelector('.progress-bar');
+      steps.forEach((step, index) => {
+        step.classList.remove('active', 'completed');
+        if (index + 1 < currentStep) {
+          step.classList.add('completed');
+        } else if (index + 1 === currentStep) {
+          step.classList.add('active');
+        }
+      });
+      progressBar.style.width = `${(currentStep - 1) * 33.33}%`;
+    }
+
+    // Update preview using the parsed CSV data
+    function simulateDataPreview(csvData) {
+      // Populate preview table
+      const table = document.getElementById('data-preview-table');
+      table.innerHTML = '';
+      
+      // Create table header
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      csvData.columns.forEach(col => {
+        const th = document.createElement('th');
+        th.textContent = col;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      // Create table body with sample rows (first 5 rows)
+      const tbody = document.createElement('tbody');
+      const sampleRows = csvData.data.slice(0, 5);
+      sampleRows.forEach(row => {
+        const tr = document.createElement('tr');
+        row.forEach(cell => {
+          const td = document.createElement('td');
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+
+      // Populate column selection grid
+      const columnGrid = document.getElementById('column-selection-grid');
+      columnGrid.innerHTML = '';
+      
+      // Reset selected columns
+      selectedColumns = [...csvData.columns];
+      
+      csvData.columns.forEach((col, index) => {
+        const card = document.createElement('div');
+        card.className = 'column-card selected';
+        card.dataset.column = col;
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `select-${col}`;
+        checkbox.checked = true;
+        checkbox.addEventListener('change', function() {
+          updateColumnSelection(col, this.checked);
+        });
+        
+        const label = document.createElement('label');
+        label.htmlFor = `select-${col}`;
+        label.textContent = col;
+        
+        // Simple type detection
+        const sampleValue = sampleRows[0]?.[index] || '';
+        const type = detectColumnType(sampleValue);
+        
+        const stats = document.createElement('div');
+        stats.className = 'column-stats';
+        stats.innerHTML = `<p><strong>Type:</strong> ${type}</p>`;
+        
+        card.appendChild(checkbox);
+        card.appendChild(label);
+        card.appendChild(stats);
+        columnGrid.appendChild(card);
+      });
+    }
+
+    // Helper function to detect column type
+    function detectColumnType(value) {
+      if (!isNaN(value) && value.trim() !== '') return 'Numeric';
+      if (!isNaN(Date.parse(value))) return 'Date';
+      return 'Text';
+    }
+
+    // Handle file upload and CSV parsing
+    document.getElementById('upload-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fileInput = document.getElementById('fileUpload');
+      const file = fileInput.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const csvText = event.target.result;
+        originalCSVData = parseCSV(csvText);
+        simulateDataPreview(originalCSVData);
+        proceedToStep(2);
+      };
+      reader.onerror = function() {
+        console.error('Error reading file');
+      };
+      reader.readAsText(file);
+    });
+
+    // Update selected columns array
+    function updateColumnSelection(columnName, isSelected) {
+      if (isSelected) {
+        if (!selectedColumns.includes(columnName)) {
+          selectedColumns.push(columnName);
+        }
+      } else {
+        selectedColumns = selectedColumns.filter(col => col !== columnName);
+      }
+      document.querySelector(`.column-card[data-column="${columnName}"]`).classList.toggle('selected', isSelected);
+    }
+
+    // Update the generateSyntheticData function to use selected columns
+    function generateSyntheticData(originalData, numRows) {
+      // Filter columns based on selection
+      const selectedIndices = originalData.columns
+        .map((col, index) => selectedColumns.includes(col) ? index : -1)
+        .filter(index => index !== -1);
+      
+      const filteredColumns = originalData.columns.filter(col => selectedColumns.includes(col));
+      const filteredData = originalData.data.map(row => 
+        row.filter((_, index) => selectedIndices.includes(index))
+      );
+      
+      const syntheticRows = [];
+      for (let i = 0; i < numRows; i++) {
+        const randomRow = filteredData[Math.floor(Math.random() * filteredData.length)];
+        syntheticRows.push(randomRow);
+      }
+      
+      return { columns: filteredColumns, data: syntheticRows };
+    }
+
+    // Convert parsed CSV data back to CSV string
+    function convertToCSV(csvData) {
+      const { columns, data } = csvData;
+      const header = columns.join(',');
+      const rows = data.map(row => row.join(','));
+      return [header, ...rows].join('\n');
+    }
+
+    // Updated startGeneration function using the uploaded file's data.
+    function startGeneration() {
+      proceedToStep(4);
+      
+      let progress = 0;
+      const progressBar = document.getElementById('generation-progress');
+      const statusText = document.getElementById('generation-status');
+      const numRows = parseInt(document.getElementById('numRows').value, 10);
+      
+      const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress > 100) progress = 100;
+        progressBar.style.width = `${progress}%`;
+        
+        if (progress < 30) {
+          statusText.textContent = "Analyzing data patterns...";
+        } else if (progress < 60) {
+          statusText.textContent = "Training generation model...";
+        } else if (progress < 90) {
+          statusText.textContent = "Generating synthetic records...";
+        } else {
+          statusText.textContent = "Finalizing output...";
+        }
+        
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            const sourceData = originalCSVData || {
+              columns: ['ID', 'Name', 'Age'],
+              data: [
+                [1, 'John Doe', 30],
+                [2, 'Jane Doe', 28],
+                [3, 'Mike Ross', 35]
+              ]
+            };
+            const syntheticData = generateSyntheticData(sourceData, numRows);
+            const csvContent = convertToCSV(syntheticData);
+            generatedBlob = new Blob([csvContent], { type: "text/csv" });
+            
+            // Reveal download section and update status.
+            document.getElementById('download-section').classList.remove('hidden');
+            document.querySelector('.loading-indicator .spinner').style.display = 'none';
+            statusText.textContent = "Your synthetic data is ready to download!";
+          }, 500);
+        }
+      }, 500);
+    }
+
+    // Download button event: When clicked, trigger file download using the stored blob.
+    document.getElementById('download-btn').addEventListener('click', function() {
+      if (!generatedBlob) {
+        alert("Synthetic data is not yet generated. Please wait.");
+        return;
+      }
+      const url = window.URL.createObjectURL(generatedBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'synthetic_data.csv';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    });
+  </script>
+</body>
+</html>

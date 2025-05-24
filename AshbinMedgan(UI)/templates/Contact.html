@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Katabatic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Contact.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('home') }}">
+                <h2>Katabatic</h2>
+            </a>
+        </div>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About us</a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('Contact') }}" class="active">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2>Contact Us</h2>
+                <p>Have questions or want to learn more about our services? Reach out to our team and we'll get back to
+                    you as soon as possible.</p>
+            </div>
+
+            <div class="contact-cards">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Our Location</h4>
+                                <p>123 Data Science Drive<br>Tech Park, VIC 3000<br>Australia</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone Number</h4>
+                                <p><a href="tel:+610123456789">+61 (0) 123 456 789</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email Address</h4>
+                                <p><a href="mailto:info@katabatic.ai">info@katabatic.ai</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Business Hours</h4>
+                                <p>Monday - Friday: 9am - 5pm AEST<br>Weekends: Closed</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm" action="{{ url_for('Contact') }}" method="POST">
+                    </form>
+                </div>
+            </div>
+
+            <div class="contact-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.332572044414!2d144.963143315845!3d-37.8141079797521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b4b3e4e07f%3A0x7a4b4c1b4b3e4e07!2sMelbourne%20VIC!5e0!3m2!1sen!2sau!4v1620000000000!5m2!1sen!2sau"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Katabatic. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

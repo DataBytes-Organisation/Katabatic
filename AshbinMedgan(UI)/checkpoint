@@ -1,0 +1,2 @@
+model_checkpoint_path: "medgan_run1-999"
+all_model_checkpoint_paths: "medgan_run1-999"

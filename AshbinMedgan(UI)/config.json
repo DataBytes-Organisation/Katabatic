@@ -1,0 +1,21 @@
+{
+  "ctgan_params": {
+    "noise_dim": 128,
+    "learning_rate": 2e-4,
+    "batch_size": 256,
+    "discriminator_steps": 5,
+    "epochs": 10,
+    "lambda_gp": 10,
+    "pac": 10,
+    "cuda": false,
+    "vgm_components": 10
+  },
+  "evaluation": {
+    "test_size": 0.2,
+    "random_state": 42
+  },
+  "visualization": {
+    "n_features": 5,
+    "figsize": [15, 20]
+  } 
+}

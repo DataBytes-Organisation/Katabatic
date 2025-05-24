@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Katabatic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('home') }}"><h2>Katabatic</h2></a>
+        </div>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About us</a>
+            <a href="{{ url_for('services') }}" class="active">Services</a>
+            <a href="{{ url_for('Contact') }}">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Synthetic Data Generation</h3>
+                    <p>
+                        We provide cutting-edge synthetic data generation using algorithms like GANBLR, CT-GAN, and MedGAN. Our solutions deliver high-quality, privacy-preserving datasets tailored to your specific requirements.
+                    </p>
+                    <ul>
+                        <li>Multiple generation algorithms</li>
+                        <li>Fully customizable outputs</li>
+                        <li>High-fidelity data synthesis</li>
+                        <li>Privacy-preserving techniques</li>
+                        <li>Format conversion support</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Data Quality Analysis</h3>
+                    <p>
+                        Comprehensive data profiling and quality assessment to ensure your datasets meet the highest standards for AI training and analysis.
+                    </p>
+                    <ul>
+                        <li>Statistical profiling</li>
+                        <li>Anomaly detection</li>
+                        <li>Data validation</li>
+                        <li>Quality scoring</li>
+                        <li>Visual reporting</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Model Integration</h3>
+                    <p>
+                        Seamless integration of synthetic data pipelines with your existing machine learning workflows and infrastructure.
+                    </p>
+                    <ul>
+                        <li>API access</li>
+                        <li>Cloud integration</li>
+                        <li>Custom connectors</li>
+                        <li>Pipeline automation</li>
+                        <li>Continuous delivery</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pricing-section">
+                <h2>Flexible Pricing</h2>
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <h3>Starter</h3>
+                        <div class="price">$99<span>/month</span></div>
+                        <ul class="pricing-features">
+                            <li>Up to 10,000 rows</li>
+                            <li>2 algorithms</li>
+                            <li>Basic quality metrics</li>
+                            <li>Email support</li>
+                        </ul>
+                        <a href="{{ url_for('Contact') }}" class="custom-button">Get Started</a>
+                    </div>
+                    
+                    <div class="pricing-card popular">
+                        <h3>Professional</h3>
+                        <div class="price">$299<span>/month</span></div>
+                        <ul class="pricing-features">
+                            <li>Up to 100,000 rows</li>
+                            <li>All algorithms</li>
+                            <li>Advanced analytics</li>
+                            <li>Priority support</li>
+                        </ul>
+                        <a href="{{ url_for('Contact') }}" class="custom-button">Get Started</a>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <h3>Enterprise</h3>
+                        <div class="price">Custom</div>
+                        <ul class="pricing-features">
+                            <li>Unlimited scale</li>
+                            <li>Custom algorithms</li>
+                            <li>Dedicated infrastructure</li>
+                            <li>24/7 support</li>
+                        </ul>
+                        <a href="{{ url_for('Contact') }}" class="custom-button">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Katabatic. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

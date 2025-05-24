@@ -1,0 +1,21 @@
+Model,Fold,Data Type,Accuracy/Distance
+Logistic Regression,1,Real,0.8262
+Logistic Regression,1,Synthetic,0.8284
+Random Forest,1,Real,0.8418
+Random Forest,1,Synthetic,0.849
+XGBoost,1,Real,0.8546
+XGBoost,1,Synthetic,0.849
+MLP,1,Real,0.837
+MLP,1,Synthetic,0.8362
+JSD,1,-,0.09014939723247195
+Wasserstein Distance,1,-,0.1170000000000001
+Logistic Regression,2,Real,0.8252
+Logistic Regression,2,Synthetic,0.8232
+Random Forest,2,Real,0.8366
+Random Forest,2,Synthetic,0.839
+XGBoost,2,Real,0.8544
+XGBoost,2,Synthetic,0.8368
+MLP,2,Real,0.8292
+MLP,2,Synthetic,0.8308
+JSD,2,-,0.03850607366857495
+Wasserstein Distance,2,-,0.047800000000000065

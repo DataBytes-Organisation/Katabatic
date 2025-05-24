@@ -1,0 +1,8 @@
+numpy>=1.26.0
+torch>=2.5.0
+scikit-learn==1.5.2
+matplotlib>=3.10.0
+scipy>=1.15.0
+tabpfn>=2.0.1
+pandas>=2.2.0
+seaborn>=0.12.0
