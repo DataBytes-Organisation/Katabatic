@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Katabatic</title>
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('home') }}"><h2>Katabatic</h2></a>
+        </div>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About us</a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('Contact') }}">Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- About Us Section -->
+    <main class="about-us">
+        <div class="container">
+            <section class="intro">
+                <div class="info-card">
+                    <h1>About Katabatic</h1>
+                    <p>
+                        Katabatic is an innovative open-source project spearheaded by Dr. Nayyar Zaidi and Mr. Jaime Blackwell, under the leadership of DataBytes, a cutting-edge firm specializing in AI and data science solutions. This project addresses a critical gap in the development and integration of tabular data generation algorithms, bringing together diverse methods in a seamless and unified platform.
+                    </p>
+                    <p>
+                        In the rapidly evolving world of artificial intelligence (AI) and machine learning (ML), high-quality data is essential for training robust models. However, the development of tabular data, which is integral to many machine learning tasks, remains a fragmented and complex process. Traditional data generation techniques often operate in silos, requiring different skill sets and workflows. To tackle this challenge, Katabatic aims to simplify and streamline the creation of synthetic tabular data by integrating existing algorithms, thus making it easier for researchers, data scientists, and AI practitioners to access, compare, and evaluate various methods in one unified environment.
+                    </p>
+                </div>
+            </section>
+
+            <section class="details">
+                <div class="info-card">
+                    <h2>What is Katabatic?</h2>
+                    <p>
+                        Katabatic is a platform that consolidates several leading algorithms for synthetic tabular data generation into a cohesive ecosystem. Currently, algorithms like GANBLR, MEG, CT-GAN, TableGAN, and MedGAN each have their own frameworks and requirements, creating challenges for researchers who want to explore these tools in parallel or compare results across different models. By combining these disparate technologies, Katabatic simplifies the process of testing and evaluating synthetic data generation techniques, enabling users to generate customizable, high-quality datasets for a variety of machine learning applications.
+                    </p>
+                    <p>
+                        The platform is open-source, ensuring that it remains transparent, flexible, and accessible to the global AI community. Researchers can easily adapt and extend the platform to suit their specific needs, contributing to the growing field of synthetic data generation and sharing their advancements with the broader scientific community.
+                    </p>
+                </div>
+            </section>
+
+            <section class="importance">
+                <div class="info-card">
+                    <h2>Why Katabatic Matters?</h2>
+                    <p>
+                        As AI and ML continue to push boundaries in industries such as healthcare, finance, and autonomous systems, access to high-quality data is crucial for model development. However, acquiring real-world data is often challenging due to issues such as data privacy concerns, ethical dilemmas, or the sheer scarcity of relevant datasets. This is where synthetic data comes in, offering a powerful solution that mirrors real-world data characteristics without compromising privacy or security.
+                    </p>
+                    <ul class="key-points">
+                        <li><strong>Simplified Workflow:</strong> Researchers can use a single environment to develop, test, and evaluate multiple algorithms, streamlining the typically fragmented process of synthetic data generation.</li>
+                        <li><strong>Easy Model Comparison:</strong> Compare algorithm performances effectively.</li>
+                        <li><strong>Customizable Data Generation:</strong> Tailor data outputs to specific project needs.</li>
+                        <li><strong>Open-Source Contribution:</strong> Foster innovation through collaboration.</li>
+                        <li><strong>High-Quality Datasets:</strong> Generate realistic datasets for AI/ML tasks.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="info-card">
+                    <h2>Core Features</h2>
+                    <ul>
+                        <li><strong>Integrated Algorithms:</strong> Access a variety of top synthetic data generation algorithms like GANBLR, MEG, and CT-GAN.</li>
+                        <li><strong>Customizable Generation:</strong> Modify settings for tailored tabular data generation.</li>
+                        <li><strong>Open-Source and Extensible:</strong> Expandable to meet evolving project requirements.</li>
+                        <li><strong>Streamlined Evaluation:</strong> Quickly test, compare, and evaluate algorithms.</li>
+                        <li><strong>Enhanced Model Development:</strong> Train AI/ML models with high-quality synthetic data.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="future">
+                <div class="info-card">
+                    <h2>The Future of Synthetic Data Generation</h2>
+                    <p>
+                        Katabatic is shaping the future of synthetic data generation by providing a user-friendly, all-in-one platform for the development, testing, and evaluation of synthetic tabular datasets. As the platform evolves, new algorithms, features, and improvements will be added to further enhance its capabilities. By simplifying the synthetic data creation process and providing a robust environment for testing and evaluation, Katabatic is accelerating the development of AI and ML models, enabling innovative solutions across diverse industries.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Katabatic. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
